@@ -1,0 +1,7 @@
+Primary: Blue #2563EB
+
+Secondary: Green #16A34A
+
+Background: Light gray #F8FAFC
+
+Text: Dark #0F172A
