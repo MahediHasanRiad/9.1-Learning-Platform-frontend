@@ -2,7 +2,6 @@ import DemoClass from "@/components/feature/Teacher-Profile/DemoClass";
 import Image from "@/components/feature/Teacher-Profile/image";
 import InfoItem from "@/components/feature/Teacher-Profile/info-item";
 import Dropdown from "@/utils/DropDown";
-import Player from "@/utils/video-player";
 import React from "react";
 
 function TeacherProfile() {
