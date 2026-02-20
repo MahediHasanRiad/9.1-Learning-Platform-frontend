@@ -1,13 +1,13 @@
 import Dropdown from "@/utils/DropDown";
-import Card from "../components/feature/Teachers/Card";
 import PaginationItems from "@/utils/Pagination";
 import FilterItems from "@/utils/filter";
 import InputField from "@/utils/input";
 import Button from "@/utils/button";
+import CardItem from "../components/feature/Teachers/Card";
 
 function TeachersPage() {
   return (
-    <div className="bg-background space-y-6 w-5/6 m-auto">
+    <div className="bg-background space-y-6 m-auto">
       {/* filter section */}
       <section>
         <FilterItems
@@ -32,9 +32,18 @@ function TeachersPage() {
       </section>
 
       {/* teachers profiles */}
-      <section className="grid grid-cols-1 gap-3 md:grid-cols-3 lg:grid-cols-5">
-        <Card
-          image={""}
+      <section className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
+        <CardItem
+          path="terachers/teachersProfile"
+          image={"/public/cover-image.jpg"}
+          name={"Mahedi Hasan Riad"}
+          subjects={"Math, English, Bangla"}
+          availableTime={"Sun - Fri 5pm to 9pm"}
+          rating="4.5"
+        />
+        <CardItem
+          path="terachers/teachersProfile"
+          image={"/public/cover-image.jpg"}
           name={"Mahedi Hasan Riad"}
           subjects={"Math, English, Bangla"}
           availableTime={"Sun - Fri 5pm to 9pm"}

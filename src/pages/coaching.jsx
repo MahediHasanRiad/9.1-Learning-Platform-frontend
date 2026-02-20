@@ -47,27 +47,6 @@ function CoachingPage() {
           subjects={["Math, English, Bangla"]}
           rating={"4.5"}
         />
-        <CardItem
-          image={"https://avatar.vercel.sh/shadcn1"}
-          name={"Batch Alfa new"}
-          classes={"Class-8"}
-          subjects={["Math, English, Bangla"]}
-          rating={"4.5"}
-        />
-        <CardItem
-          image={"https://avatar.vercel.sh/shadcn1"}
-          name={"Batch Alfa new"}
-          classes={"Class-8"}
-          subjects={["Math, English, Bangla"]}
-          rating={"4.5"}
-        />
-        <CardItem
-          image={"https://avatar.vercel.sh/shadcn1"}
-          name={"Batch Alfa new"}
-          classes={"Class-8"}
-          subjects={["Math, English, Bangla"]}
-          rating={"4.5"}
-        />
       </section>
 
       {/* -------------------------- Pagination --------------------- */}

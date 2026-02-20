@@ -14,8 +14,8 @@ function Navbar() {
 
         {/* Desktop Menu */}
         <div className="hidden lg:flex gap-6 items-center">
-          <Menu text="Teacher" />
-          <Menu text="Coaching" />
+          <Menu text="Teacher" path={'teachers'} />
+          <Menu text="Coaching" path={'coaching'} />
           <Menu text="About" />
           <Menu text="Contact" />
           <ProfileDropdown />

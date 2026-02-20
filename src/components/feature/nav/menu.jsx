@@ -1,10 +1,14 @@
 import React from "react";
+import { NavLink } from "react-router";
 
-function Menu({ text }) {
+function Menu({ text, path = '#' }) {
   return (
-    <div className=" text-white font-medium rounded-lg transition duration-200 focus:outline-none cursor-pointer active:scale-95 ">
+    <NavLink
+      to={`/${path}`}
+      className=" text-white font-medium rounded-lg transition duration-200 focus:outline-none cursor-pointer active:scale-95 "
+    >
       <span>{text}</span>
-    </div>
+    </NavLink>
   );
 }
 

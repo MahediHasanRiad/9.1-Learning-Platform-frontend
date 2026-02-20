@@ -10,29 +10,30 @@ function Batch() {
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
         <CardItem
+          path="coaching/coachingProfile"
           image={"/public/cover-image.jpg"}
           name={"Alfa Batch 23"}
           classes={"Class 10"}
           rating={"3.8"}
+          btnText={'View Batch...'}
         />
         <CardItem
+          path="coaching/coachingProfile"
           image={"/public/cover-image.jpg"}
           name={"Alfa Batch 23"}
           classes={"Class 10"}
           rating={"3.8"}
+          btnText={'View Batch...'}
         />
         <CardItem
+          path="coaching/coachingProfile"
           image={"/public/cover-image.jpg"}
           name={"Alfa Batch 23"}
           classes={"Class 10"}
           rating={"3.8"}
+          btnText={'View Batch...'}
         />
-        <CardItem
-          image={"/public/cover-image.jpg"}
-          name={"Alfa Batch 23"}
-          classes={"Class 10"}
-          rating={"3.8"}
-        />
+        
       </div>
     </section>
   );

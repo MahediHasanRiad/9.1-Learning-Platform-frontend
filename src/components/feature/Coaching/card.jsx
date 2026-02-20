@@ -7,14 +7,17 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
+import { Link } from "react-router";
 
 function CardItem({
+  path = "#",
   image,
   name,
   classes,
   subjects,
   rating,
   featured = "new",
+  btnText = "View Batch...",
 }) {
   return (
     <Card className="relative mx-auto w-full max-w-sm pt-0">
@@ -34,9 +37,11 @@ function CardItem({
         <br />
         <CardDescription>Rating: {rating}</CardDescription>
       </CardHeader>
-      <CardFooter>
-        <Button className="w-full bg-secondary-0">View Batch...</Button>
-      </CardFooter>
+      <Link to={`/${path}`}>
+        <CardFooter>
+          <Button className="w-full bg-secondary-0">{btnText}</Button>
+        </CardFooter>
+      </Link>
     </Card>
   );
 }

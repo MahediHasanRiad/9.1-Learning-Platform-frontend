@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router";
 
-function TeacherInfo({ image, name, subject, rating }) {
+function TeacherInfo({ path, image, name, subject, rating }) {
   return (
     <div className="flex-row justify-center gap-4 p-3 rounded-2xl hover:bg-gray-50 transition cursor-pointer">
       
@@ -15,7 +16,7 @@ function TeacherInfo({ image, name, subject, rating }) {
 
       {/* Info */}
       <div className="flex flex-col">
-        <p className="font-medium text-sm lg:text-base">{name}</p>
+        <Link to={`/${path}`} className="font-medium text-sm text-secondary-0 lg:text-base">{name}</Link>
         
         {subject && (
           <span className="text-xs lg:text-sm text-gray-500">

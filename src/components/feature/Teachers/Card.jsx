@@ -1,23 +1,57 @@
-function Card({ image, name, subjects, availableTime, rating }) {
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardAction,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+import { Link } from "react-router";
+
+function CardItem({
+  path = '#',
+  featured = "new",
+  image,
+  name,
+  subjects,
+  availableTime,
+  rating,
+  btnText = "View Profile...",
+}) {
   return (
-    <div className="max-w-xs bg-background-0 border p-2 rounded-md overflow-hidden shadow:md hover:shadow-sm transition-shadow duration-300">
-      <img src={image} alt={name} className="w-full h-40 object-cover" />
-      <div className="p-4">
-        <h3 className="font-heading text-sm text-text-0 mb-2 hover:text-secondary-0">
-          <b>Name: </b>{name}
-        </h3>
-        <p className="text-sm text-textColor mb-2">
-          <b>Subjects:</b> {subjects}
-        </p>
-        <p className="text-sm text-textColor">
+    <Card className="relative mx-auto w-full max-w-sm pt-0">
+      <div className="absolute inset-0 z-30 aspect-video bg-black/35" />
+      <img
+        src={image}
+        alt="Event cover"
+        className="relative z-20 aspect-video w-full object-cover brightness-60 grayscale dark:brightness-40"
+      />
+      <CardHeader>
+        <CardAction>
+          <Badge variant="default">{featured}</Badge>
+        </CardAction>
+        <CardDescription>
+          <b>Name:</b> {name}
+        </CardDescription>
+        <CardDescription>
+          <b>Subject:</b> {subjects}
+        </CardDescription>
+        <CardDescription>
           <b>Available-Time:</b> {availableTime}
-        </p>
-        <p className="text-sm text-textColor">
+        </CardDescription>
+        <br />
+        <CardDescription>
           <b>Rating:</b> {rating}
-        </p>
-      </div>
-    </div>
+        </CardDescription>
+      </CardHeader>
+      <Link to={`/${path}`}>
+        <CardFooter>
+          <Button className="w-full bg-secondary-0">{btnText}</Button>
+        </CardFooter>
+      </Link>
+    </Card>
   );
 }
 
-export default Card;
+export default CardItem;
