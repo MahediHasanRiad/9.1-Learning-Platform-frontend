@@ -1,11 +1,61 @@
-import React from 'react'
+import Button from "@/shared/components/button";
+import ErrorMsg from "@/shared/components/error-msg";
+import InputField from "@/shared/components/input";
+import React from "react";
+import { useForm, Controller } from "react-hook-form";
 
 function ChangePassword() {
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      oldPassword: "",
+      newPassword: "",
+    },
+  });
+
+  const saveData = (data) => {
+    console.log(data);
+  };
+
   return (
-    <div>
-      <h1>change password</h1>
-    </div>
-  )
+    <section>
+      <form onSubmit={handleSubmit(saveData)}>
+        <section className="grid md:grid-cols-2 gap-3">
+          <div>
+            <Controller
+              name="oldPassword"
+              control={control}
+              rules={{
+                required: "old password are required !!!",
+              }}
+              render={({ field }) => (
+                <InputField label="Old Password" {...field} />
+              )}
+            />
+            {<ErrorMsg text={errors.oldPassword?.message} />}
+          </div>
+          <div>
+            <Controller
+              name="newPassword"
+              control={control}
+              rules={{
+                required: "new password are required !!!",
+              }}
+              render={({ field }) => (
+                <InputField label="New Password" {...field} />
+              )}
+            />
+            {<ErrorMsg text={errors.newPassword?.message} />}
+          </div>
+        </section>
+        <Button text={"Save"} className={"float-right mt-4"} />
+      </form>
+    </section>
+  );
 }
 
-export default ChangePassword
+export default ChangePassword;

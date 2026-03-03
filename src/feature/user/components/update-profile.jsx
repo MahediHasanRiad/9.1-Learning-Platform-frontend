@@ -1,6 +1,5 @@
-import Button from "@/feature/teacher/utils/button";
-import InputField from "@/feature/teacher/utils/input";
-import ErrorMsg from "@/shared/components/error-msg";
+import Button from "@/shared/components/button";
+import InputField from "@/shared/components/input";
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 
@@ -54,15 +53,24 @@ function UpdateProfile() {
           <Controller
             name="coverImage"
             control={control}
-            render={({ field }) => (
-              <InputField label="Cover Image" type="file" {...field} />
+            render={({ field: { onChange } }) => (
+              <InputField
+                label="Cover Image"
+                type="file"
+                // {...rest}
+                onChange={(e) => onChange(e.target.files[0])}
+              />
             )}
           />
           <Controller
             name="avatar"
             control={control}
-            render={({ field }) => (
-              <InputField label="Avatar" type="file" {...field} />
+            render={({ field: { onChange } }) => (
+              <InputField
+                label="Avatar"
+                type="file"
+                onChange={(e) => onChange(e.target.files[0])}
+              />
             )}
           />
         </section>
