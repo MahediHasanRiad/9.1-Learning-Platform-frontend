@@ -3,7 +3,7 @@ import FilterItems from "@/feature/teacher/utils/filter";
 import Button from "@/shared/components/button";
 import InputField from "@/shared/components/input";
 import Dropdown from "@/feature/teacher/utils/DropDown";
-import CardItem from "@/feature/coaching/components/card";
+import CoachingBatchCard from "@/feature/coaching/components/CoachingBatchCard";
 import PaginationItems from "@/shared/components/Pagination";
 
 function CoachingPage() {
@@ -40,7 +40,7 @@ function CoachingPage() {
       {/* ------------------------------------ batches ----------------------------------- */}
 
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 my-6">
-        <CardItem
+        <CoachingBatchCard
           image={"https://avatar.vercel.sh/shadcn1"}
           name={"Batch Alfa new"}
           classes={"Class-8"}

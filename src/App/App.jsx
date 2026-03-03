@@ -7,6 +7,7 @@ import CoachingProfile from "../feature/coaching/pages/Coaching-Profile";
 import { Route, Routes } from "react-router";
 import Profile from "@/feature/user/pages/profile.page";
 import UserDashboard from "@/feature/user/pages/dashboard.page";
+import EnrolledBatch from "@/feature/user/pages/enrolled-batch.page";
 
 function App() {
   return (
@@ -19,7 +20,10 @@ function App() {
           {/* user  */}
           <Route path="/user/profile" element={<Profile />}/>
           <Route path="/user/dashboard" element={<UserDashboard />}/>
+          <Route path="/user/enrolled" element={<EnrolledBatch />}/>
 
+          {/* teacher  */}
+          <Route path="/teachers" element={<TeachersPage />} />
           <Route path="/teachers" element={<TeachersPage />} />
           <Route path="/terachers/teachersProfile" element={<TeacherProfile />} />
           <Route path="/coaching" element={<CoachingPage />} />

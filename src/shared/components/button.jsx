@@ -6,8 +6,7 @@ function Button({
   className,
   ...props
 }) {
-  const base =
-    "font-medium rounded-lg transition duration-200 focus:outline-none cursor-pointer";
+  const base = `font-medium rounded-lg transition duration-200 focus:outline-none cursor-pointer ${className}`;
 
   const sizes = {
     sm: "px-3 py-1.5 text-sm",
@@ -17,7 +16,7 @@ function Button({
 
   return (
     <button
-      className={`${base} ${sizes[size]} bg-${bg} text-${textColor} ${className} active:scale-95`}
+      className={`${base} ${sizes[size]} bg-${bg} text-${textColor} active:scale-95`}
       {...props}
     >
       {text}

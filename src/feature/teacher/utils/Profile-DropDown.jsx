@@ -1,5 +1,5 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,14 +7,9 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import {
-  UserPen ,
-  LayoutDashboard,
-  BellIcon,
-  LogOutIcon,
-} from "lucide-react"
-import { Link } from "react-router"
+} from "@/components/ui/dropdown-menu";
+import { UserPen, LayoutDashboard, Library, LogOutIcon } from "lucide-react";
+import { Link } from "react-router";
 
 function ProfileDropdown() {
   return (
@@ -29,22 +24,24 @@ function ProfileDropdown() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuGroup>
-          <Link to={'/user/profile'}>
+          <Link to={"/user/profile"}>
             <DropdownMenuItem>
-            <UserPen />
-            Profile
-          </DropdownMenuItem>
+              <UserPen />
+              Profile
+            </DropdownMenuItem>
           </Link>
-          <Link to={'/user/dashboard'}>
+          <Link to={"/user/dashboard"}>
             <DropdownMenuItem>
-            <LayoutDashboard />
-            Dashboard
-          </DropdownMenuItem>
-         </Link>
-          <DropdownMenuItem>
-            <BellIcon />
-            Notifications
-          </DropdownMenuItem>
+              <LayoutDashboard />
+              Dashboard
+            </DropdownMenuItem>
+          </Link>
+          <Link to={"/user/enrolled"}>
+            <DropdownMenuItem>
+              <Library />
+              Enrolled Batch
+            </DropdownMenuItem>
+          </Link>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
@@ -53,8 +50,7 @@ function ProfileDropdown() {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }
 
-
-export default ProfileDropdown
+export default ProfileDropdown;

@@ -1,4 +1,4 @@
-import CardItem from "@/feature/coaching/components/card";
+import CoachingBatchCard from "@/feature/coaching/components/CoachingBatchCard";
 import React from "react";
 
 function Batch() {
@@ -9,7 +9,7 @@ function Batch() {
         <hr />
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
-        <CardItem
+        <CoachingBatchCard
           path="coaching/coachingProfile"
           image={"/public/cover-image.jpg"}
           name={"Alfa Batch 23"}
@@ -17,7 +17,7 @@ function Batch() {
           rating={"3.8"}
           btnText={'View Batch...'}
         />
-        <CardItem
+        <CoachingBatchCard
           path="coaching/coachingProfile"
           image={"/public/cover-image.jpg"}
           name={"Alfa Batch 23"}
@@ -25,7 +25,7 @@ function Batch() {
           rating={"3.8"}
           btnText={'View Batch...'}
         />
-        <CardItem
+        <CoachingBatchCard
           path="coaching/coachingProfile"
           image={"/public/cover-image.jpg"}
           name={"Alfa Batch 23"}
