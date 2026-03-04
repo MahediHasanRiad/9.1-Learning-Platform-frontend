@@ -3,6 +3,7 @@ import { useState } from "react";
 import MenuItem from "../../../shared/components/menu-item";
 import UpdateProfile from "../components/update-profile";
 import ChangePassword from "../components/change-password";
+import MainLayout from "@/layout/Main-Layout";
 
 function UserDashboard() {
   const [open, setOpen] = useState(false);
@@ -23,7 +24,7 @@ function UserDashboard() {
   };
 
   return (
-    <section className="">
+    <MainLayout className="">
       {/* top hidden section  */}
       <section onClick={handleMenu} className="md:hidden w-full h-10">
         {open ? <X /> : <Menu />}
@@ -69,7 +70,7 @@ function UserDashboard() {
           </section>
         </>
       )}
-    </section>
+    </MainLayout>
   );
 }
 

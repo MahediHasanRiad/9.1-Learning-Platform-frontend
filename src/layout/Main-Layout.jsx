@@ -1,16 +1,18 @@
 import ProfileDropdown from "@/feature/teacher/utils/Profile-DropDown.jsx";
-import Menu from "./nav-menu.jsx";
+import Menu from "./components/nav-menu.jsx";
 import { useState } from "react";
 import { Menu as MenuIcon, X } from "lucide-react";
+import { Link } from "react-router";
 
-function Navbar() {
+function MainLayout({children}) {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="w-full my-4 bg-primary-0/10 flex justify-center">
+   <section>
+     <nav className="w-full my-4 bg-secondary-0/10 flex justify-center">
       <section className="w-5/6 p-3 flex items-center justify-between ">
         {/* Logo */}
-        <div className="text-xl font-bold">Logo</div>
+        <div className="text-xl font-bold"><Link to={'/teachers'}>Logo</Link></div>
 
         {/* Desktop Menu */}
         <div className="hidden lg:flex gap-6 items-center">
@@ -38,7 +40,20 @@ function Navbar() {
         )}
       </section>
     </nav>
+
+    {/* children section  */}
+    <section className="w-full min-h-screen">
+      {children}
+    </section>
+
+    {/* footer section  */}
+    <section>
+      <footer className="w-full min-h-10 bg-gray-200 mt-10">
+        <p className="pt-2 text-center text-text-0 italic text-sm">@copyright by mahedihasanriad.</p>
+      </footer>
+    </section>
+   </section>
   );
 }
 
-export default Navbar;
+export default MainLayout;

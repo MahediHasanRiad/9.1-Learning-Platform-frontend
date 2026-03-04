@@ -5,10 +5,11 @@ import InputField from "@/shared/components/input";
 import Dropdown from "@/feature/teacher/utils/DropDown";
 import CoachingBatchCard from "@/feature/coaching/components/CoachingBatchCard";
 import PaginationItems from "@/shared/components/Pagination";
+import MainLayout from "@/layout/Main-Layout";
 
 function CoachingPage() {
   return (
-    <section>
+    <MainLayout>
       {/* ----------------------- Filter ---------------------- */}
       <section>
         {/* search  */}
@@ -41,7 +42,7 @@ function CoachingPage() {
 
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 my-6">
         <CoachingBatchCard
-          image={"https://avatar.vercel.sh/shadcn1"}
+          image={'/public/cover-image.jpg'}
           name={"Batch Alfa new"}
           classes={"Class-8"}
           subjects={["Math, English, Bangla"]}
@@ -53,7 +54,7 @@ function CoachingPage() {
       <section>
         <PaginationItems />
       </section>
-    </section>
+    </MainLayout>
   );
 }
 

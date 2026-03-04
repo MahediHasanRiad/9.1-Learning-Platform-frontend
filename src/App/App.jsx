@@ -1,7 +1,6 @@
 import React from "react";
 import TeachersPage from "../feature/teacher/pages/Teachers";
-import Navbar from "../layout/nav";
-import TeacherProfile from "../feature/teacher/pages/Teacher-Profile";
+import Navbar from "../layout/Main-Layout";
 import CoachingPage from "../feature/coaching/pages/coaching";
 import CoachingProfile from "../feature/coaching/pages/Coaching-Profile";
 import { Route, Routes } from "react-router";
@@ -12,9 +11,6 @@ import EnrolledBatch from "@/feature/user/pages/enrolled-batch.page";
 function App() {
   return (
     <div className="bg-background m-auto">
-      <section>
-        <Navbar />
-      </section>
       <section className="w-5/6 m-auto">
         <Routes>
           {/* user  */}
@@ -24,8 +20,6 @@ function App() {
 
           {/* teacher  */}
           <Route path="/teachers" element={<TeachersPage />} />
-          <Route path="/teachers" element={<TeachersPage />} />
-          <Route path="/terachers/teachersProfile" element={<TeacherProfile />} />
           <Route path="/coaching" element={<CoachingPage />} />
           <Route path="/coaching/coachingProfile" element={<CoachingProfile />} />
         </Routes>

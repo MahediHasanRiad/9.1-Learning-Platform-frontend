@@ -3,22 +3,25 @@ import Info from "@/feature/coaching/components/Coaching-Profile/info";
 import TopImagees from "@/feature/coaching/components/Coaching-Profile/top-image";
 import Teachers from "@/feature/coaching/components/Coaching-Profile/teachers";
 import Batch from "@/feature/coaching/components/Coaching-Profile/batch";
+import MainLayout from "@/layout/Main-Layout";
 
 function CoachingProfile() {
   return (
-    <section className="w-full max-w-6xl mx-auto p-4 space-y-5">
-      {/* Cover Section */}
-      <TopImagees />
+    <MainLayout>
+      <section className="w-full max-w-6xl mx-auto p-4 space-y-5">
+        {/* Cover Section */}
+        <TopImagees />
 
-      {/* Info Section */}
-      <Info />
+        {/* Info Section */}
+        <Info />
 
-      {/* subjects section */}
-      <Teachers />
+        {/* subjects section */}
+        <Teachers />
 
-      {/* Batch section */}
-      <Batch />
-    </section>
+        {/* Batch section */}
+        <Batch />
+      </section>
+    </MainLayout>
   );
 }
 
