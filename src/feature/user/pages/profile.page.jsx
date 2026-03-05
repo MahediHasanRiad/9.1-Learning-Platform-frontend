@@ -1,4 +1,4 @@
-import Button from "@/shared/components/button";
+import Button from "@/shared/utils/button";
 import { Quote } from "lucide-react";
 import React, { useState } from "react";
 import UserInfo from "../components/user-info";

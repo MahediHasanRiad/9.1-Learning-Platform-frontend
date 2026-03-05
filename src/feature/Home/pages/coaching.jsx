@@ -1,10 +1,10 @@
 import React from "react";
 import FilterItems from "@/feature/teacher/utils/filter";
-import Button from "@/shared/components/button";
-import InputField from "@/shared/components/input";
+import Button from "@/shared/utils/button";
+import InputField from "@/shared/utils/input";
 import Dropdown from "@/feature/teacher/utils/DropDown";
 import CoachingBatchCard from "@/feature/coaching/components/CoachingBatchCard";
-import PaginationItems from "@/shared/components/Pagination";
+import PaginationItems from "@/shared/utils/Pagination";
 import MainLayout from "@/layout/Main-Layout";
 
 function CoachingPage() {

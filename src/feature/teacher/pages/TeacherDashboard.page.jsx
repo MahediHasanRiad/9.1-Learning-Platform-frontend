@@ -1,10 +1,11 @@
 import DashboardLayout from "@/layout/dashboard-layout";
-import MenuItem from "@/shared/components/menu-item";
+import MenuItem from "@/shared/utils/menu-item";
 import { UserPen, MonitorPlay, Book, Lock } from "lucide-react";
 import { useTeacherDashboard } from "../hooks/useTeacherDashboard";
 import UpdateProfile from "../components/update-profile";
-import DemoClass from "../components/demo-class";
-import AddNewSubject from "../components/add-new-subject";
+import DemoClass from "../../../shared/components/demo-class";
+import AddNewSubject from "../../../shared/components/add-new-subject";
+import ResetPassword from "../../../shared/components/reset-password";
 
 function TeacherDashboard() {
   const {
@@ -54,7 +55,7 @@ function TeacherDashboard() {
         {updateProfile && <UpdateProfile />}
         {demoClass && <DemoClass />}
         {addSubject && <AddNewSubject />}
-        {resetPassword && <h1>this is resetPassword</h1>}
+        {resetPassword && <ResetPassword />}
       </main>
     </DashboardLayout>
   );

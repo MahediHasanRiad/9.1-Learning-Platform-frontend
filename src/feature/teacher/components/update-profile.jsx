@@ -1,7 +1,7 @@
-import Button from "@/shared/components/button";
-import CustomInput from "@/shared/components/custom-input";
-import InputField from "@/shared/components/input";
-import MultiSelect from "@/shared/components/multi-select";
+import Button from "@/shared/utils/button";
+import CustomInput from "@/shared/utils/custom-input";
+import InputField from "@/shared/utils/input";
+import MultiSelect from "@/shared/utils/multi-select";
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 

@@ -1,9 +1,9 @@
 import Dropdown from "@/feature/teacher/utils/DropDown";
-import PaginationItems from "@/shared/components/Pagination";
+import PaginationItems from "@/shared/utils/Pagination";
 import FilterItems from "@/feature/teacher/utils/filter";
-import InputField from "@/shared/components/input";
-import Button from "@/shared/components/button";
-import CardItem from "../utils/Card";
+import InputField from "@/shared/utils/input";
+import Button from "@/shared/utils/button";
+import CardItem from "../../teacher/utils/Card";
 import MainLayout from "@/layout/Main-Layout";
 
 function TeachersPage() {

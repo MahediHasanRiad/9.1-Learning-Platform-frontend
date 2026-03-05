@@ -1,8 +1,8 @@
 import CoachingBatchCard from "@/feature/coaching/components/CoachingBatchCard";
 import MainLayout from "@/layout/Main-Layout";
-import React from "react";
 
-function UserEnrolledBatch({}) {
+
+function TeacherEnrolledBatch({}) {
   return (
     <MainLayout>
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 my-6">
@@ -19,4 +19,4 @@ function UserEnrolledBatch({}) {
   );
 }
 
-export default UserEnrolledBatch;
+export default TeacherEnrolledBatch;

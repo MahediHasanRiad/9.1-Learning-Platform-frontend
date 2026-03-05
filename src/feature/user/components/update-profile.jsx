@@ -1,5 +1,5 @@
-import Button from "@/shared/components/button";
-import InputField from "@/shared/components/input";
+import Button from "@/shared/utils/button";
+import InputField from "@/shared/utils/input";
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 

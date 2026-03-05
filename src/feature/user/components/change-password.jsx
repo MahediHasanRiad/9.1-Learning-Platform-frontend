@@ -1,6 +1,6 @@
-import Button from "@/shared/components/button";
-import ErrorMsg from "@/shared/components/error-msg";
-import InputField from "@/shared/components/input";
+import Button from "@/shared/utils/button";
+import ErrorMsg from "@/shared/utils/error-msg";
+import InputField from "@/shared/utils/input";
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 

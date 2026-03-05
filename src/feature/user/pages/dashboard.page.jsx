@@ -1,6 +1,6 @@
 import { Menu, X, UserPen, Lock } from "lucide-react";
 import { useState } from "react";
-import MenuItem from "../../../shared/components/menu-item";
+import MenuItem from "../../../shared/utils/menu-item";
 import UpdateProfile from "../components/update-profile";
 import ChangePassword from "../components/change-password";
 import MainLayout from "@/layout/Main-Layout";

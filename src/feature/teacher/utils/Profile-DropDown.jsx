@@ -8,40 +8,63 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { UserPen, LayoutDashboard, Library, LogOutIcon } from "lucide-react";
+import { UserPen, LayoutDashboard, Library, LogOutIcon, School } from "lucide-react";
 import { Link } from "react-router";
 
-function ProfileDropdown() {
+function ProfileDropdown({
+  profile = false,
+  profilePath = '#',
+  dashboard = false,
+  dashboardPath = '#',
+  enrolledBatch = false,
+  enrolledBatchPath = '#',
+  connectedBatch = false,
+  connectedCoachingPath = '#',
+}) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" className="rounded-full">
           <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" alt="shadcn" />
+            <AvatarImage src={"/public/riad.png"} alt="shadcn" />
             <AvatarFallback>LR</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuGroup>
-          <Link to={"/user/profile"}>
-            <DropdownMenuItem>
-              <UserPen />
-              Profile
-            </DropdownMenuItem>
-          </Link>
-          <Link to={"/user/dashboard"}>
-            <DropdownMenuItem>
-              <LayoutDashboard />
-              Dashboard
-            </DropdownMenuItem>
-          </Link>
-          <Link to={"/user/enrolled"}>
-            <DropdownMenuItem>
-              <Library />
-              Enrolled Batch
-            </DropdownMenuItem>
-          </Link>
+          {profile && (
+            <Link to={profilePath}>
+              <DropdownMenuItem>
+                <UserPen />
+                Profile
+              </DropdownMenuItem>
+            </Link>
+          )}
+          {dashboard && (
+            <Link to={dashboardPath}>
+              <DropdownMenuItem>
+                <LayoutDashboard />
+                Dashboard
+              </DropdownMenuItem>
+            </Link>
+          )}
+          {enrolledBatch && (
+            <Link to={enrolledBatchPath}>
+              <DropdownMenuItem>
+                <Library />
+                Enrolled Batch
+              </DropdownMenuItem>
+            </Link>
+          )}
+          {connectedBatch && (
+            <Link to={connectedCoachingPath}>
+              <DropdownMenuItem>
+                <School />
+                Connected Coaching
+              </DropdownMenuItem>
+            </Link>
+          )}
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem>

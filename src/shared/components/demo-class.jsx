@@ -1,10 +1,10 @@
-import Button from "@/shared/components/button";
-import ErrorMsg from "@/shared/components/error-msg";
-import InputField from "@/shared/components/input";
-import MultiSelect from "@/shared/components/multi-select";
+import Button from "@/shared/utils/button";
+import ErrorMsg from "@/shared/utils/error-msg";
+import InputField from "@/shared/utils/input";
+import MultiSelect from "@/shared/utils/multi-select";
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
-import CustomMultiSelect from "@/shared/components/custom-multi-select";
+import CustomMultiSelect from "@/shared/utils/custom-multi-select";
 
 const dayOptions = [
   "Saturday",

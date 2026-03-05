@@ -1,4 +1,4 @@
-import Button from "@/shared/components/button";
+import Button from "@/shared/utils/button";
 import { Link } from "react-router";
 
 function CoachingBatchCard({
