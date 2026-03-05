@@ -1,4 +1,4 @@
-import InfoItem from '@/feature/teacher/components/info-item'
+import InfoItem from '@/feature/teacher/utils/info-item'
 import React from 'react'
 
 function Info() {

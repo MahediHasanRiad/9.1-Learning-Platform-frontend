@@ -13,7 +13,7 @@ import {
 import InfoMenuItem from "../utils/info-menu-item";
 import InfoMenuButton from "../utils/info-menu-btn";
 import { useTeacherInfo } from "../hooks/useTeacherInfo";
-import DemoClass from "@/feature/teacher/components/DemoClass";
+import DemoClass from "@/feature/teacher/utils/DemoClass";
 import Dropdown from "@/feature/teacher/utils/DropDown";
 
 function TeacherInfo() {

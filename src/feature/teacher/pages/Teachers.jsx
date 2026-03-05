@@ -3,7 +3,7 @@ import PaginationItems from "@/shared/components/Pagination";
 import FilterItems from "@/feature/teacher/utils/filter";
 import InputField from "@/shared/components/input";
 import Button from "@/shared/components/button";
-import CardItem from "../components/Card";
+import CardItem from "../utils/Card";
 import MainLayout from "@/layout/Main-Layout";
 
 function TeachersPage() {

@@ -6,13 +6,14 @@ function InputField({
   type = "text",
   id = "",
   placeholder = "",
+  ref,
   ...props
 }) {
   return (
     <FieldGroup className="">
       <Field>
         {label && <FieldLabel htmlFor={id}>{label}</FieldLabel>}
-        <Input type={type} id={id} placeholder={placeholder} {...props} />
+        <Input type={type} ref={ref} id={id} placeholder={placeholder} {...props}/>
       </Field>
     </FieldGroup>
   );

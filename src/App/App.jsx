@@ -1,12 +1,12 @@
 import React from "react";
 import TeachersPage from "../feature/teacher/pages/Teachers";
-import Navbar from "../layout/Main-Layout";
 import CoachingPage from "../feature/coaching/pages/coaching";
 import CoachingProfile from "../feature/coaching/pages/Coaching-Profile";
 import { Route, Routes } from "react-router";
 import Profile from "@/feature/user/pages/profile.page";
 import UserDashboard from "@/feature/user/pages/dashboard.page";
 import EnrolledBatch from "@/feature/user/pages/enrolled-batch.page";
+import TeacherDashboard from "@/feature/teacher/pages/TeacherDashboard";
 
 function App() {
   return (
@@ -20,6 +20,7 @@ function App() {
 
           {/* teacher  */}
           <Route path="/teachers" element={<TeachersPage />} />
+          <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
           <Route path="/coaching" element={<CoachingPage />} />
           <Route path="/coaching/coachingProfile" element={<CoachingProfile />} />
         </Routes>
