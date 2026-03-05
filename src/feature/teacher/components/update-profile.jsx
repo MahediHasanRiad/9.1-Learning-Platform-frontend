@@ -1,40 +1,40 @@
 import Button from "@/shared/components/button";
 import CustomInput from "@/shared/components/custom-input";
-import ErrorMsg from "@/shared/components/error-msg";
 import InputField from "@/shared/components/input";
-import MultiSelectField from "@/shared/components/multi-select";
 import MultiSelect from "@/shared/components/multi-select";
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 
+const items = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"];
+
 const dayOptions = [
-  { value: "sat", label: "Saturday" },
-  { value: "sun", label: "Sunday" },
-  { value: "mon", label: "Monday" },
-  { value: "tue", label: "Tuesday" },
-  { value: "wed", label: "Wednesday" },
-  { value: "thu", label: "Thursday" },
-  { value: "fri", label: "Friday" },
+  "Saturday",
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
 ];
 const timeOptions = [
-  { value: "6am-7am", label: "6am - 7am" },
-  { value: "7am-8am", label: "7am - 8am" },
-  { value: "8am-9am", label: "8am - 9am" },
-  { value: "9am-10am", label: "9am - 10am" },
-  { value: "10am-11am", label: "10am - 11am" },
-  { value: "11am-12pm", label: "11am - 12pm" },
-  { value: "12pm-1pm", label: "12pm - 1pm" },
-  { value: "1pm-2pm", label: "1pm - 2pm" },
-  { value: "2pm-3pm", label: "2pm - 3pm" },
-  { value: "3pm-4pm", label: "3pm - 4pm" },
-  { value: "4pm-5pm", label: "4pm - 5pm" },
-  { value: "5pm-6pm", label: "5pm - 6pm" },
-  { value: "6pm-7pm", label: "6pm - 7pm" },
-  { value: "7pm-8pm", label: "7pm - 8pm" },
-  { value: "8pm-9pm", label: "8pm - 9pm" },
-  { value: "9pm-10pm", label: "9pm - 10pm" },
-  { value: "10pm-11pm", label: "10pm - 11pm" },
-  { value: "11pm-12am", label: "11pm - 12am" }
+  "6am - 7am",
+  "7am - 8am",
+  "8am - 9am",
+  "9am - 10am",
+  "10am - 11am",
+  "11am - 12pm",
+  "12pm - 1pm",
+  "1pm - 2pm",
+  "2pm - 3pm",
+  "3pm - 4pm",
+  "4pm - 5pm",
+  "5pm - 6pm",
+  "6pm - 7pm",
+  "7pm - 8pm",
+  "8pm - 9pm",
+  "9pm - 10pm",
+  "10pm - 11pm",
+  "11pm - 12am",
 ];
 
 function UpdateProfile() {
@@ -50,12 +50,15 @@ function UpdateProfile() {
       mobile: "",
       avatar: "",
       coverImage: "",
+      education: "",
       experience: "",
       certificates: "",
+      expartIn: "",
       availableDay: "",
       availableTime: "",
       facebookLink: "",
       linkedInLink: "",
+      bio: "",
     },
   });
 
@@ -83,12 +86,20 @@ function UpdateProfile() {
           <Controller
             name="name"
             control={control}
-            render={({ field }) => <InputField label="Name" placeholder="Md. Riad." {...field} />}
+            render={({ field }) => (
+              <InputField label="Name" placeholder="Md. Riad." {...field} />
+            )}
           />
           <Controller
             name="address"
             control={control}
-            render={({ field }) => <InputField label="Address" placeholder="mirpur 10, JC block/D" {...field} />}
+            render={({ field }) => (
+              <InputField
+                label="Address"
+                placeholder="mirpur 10, JC block/D"
+                {...field}
+              />
+            )}
           />
           <Controller
             name="mobile"
@@ -99,7 +110,13 @@ function UpdateProfile() {
                 message: "Must Add 88 - before number.",
               },
             }}
-            render={({ field }) => <InputField label="Mobile" placeholder="015*********" {...field} />}
+            render={({ field }) => (
+              <InputField
+                label="Mobile"
+                placeholder="015*********"
+                {...field}
+              />
+            )}
           />
           <Controller
             name="avatar"
@@ -124,10 +141,25 @@ function UpdateProfile() {
             )}
           />
           <Controller
+            name="education"
+            control={control}
+            render={({ field }) => (
+              <InputField
+                label="Education"
+                placeholder="BSc in Computer Science at BRACK"
+                {...field}
+              />
+            )}
+          />
+          <Controller
             name="experienceOfYears"
             control={control}
             render={({ field }) => (
-              <InputField label="Experience" placeholder="6 years of experience in IT" {...field} />
+              <InputField
+                label="Experience"
+                placeholder="6 years of experience in IT"
+                {...field}
+              />
             )}
           />
           <Controller
@@ -141,7 +173,7 @@ function UpdateProfile() {
                 label="Certificates"
                 {...field}
                 onChange={(e) => {
-                  // convet in array 
+                  // convet in array
                   const files = Array.from(e.target.files);
                   onChange(files);
                 }}
@@ -149,12 +181,26 @@ function UpdateProfile() {
             )}
           />
           <Controller
+            name="expartIn"
+            control={control}
+            defaultValue={[]}
+            render={({ field }) => (
+              <MultiSelect
+                label="Expart In"
+                items={items}
+                placeholder="Subjects..."
+                {...field}
+              />
+            )}
+          />
+          <Controller
             name="availableDays"
             control={control}
+            defaultValue={[]}
             render={({ field }) => (
-              <MultiSelectField
+              <MultiSelect
                 label="Available Days"
-                options={dayOptions}
+                items={dayOptions}
                 placeholder="Select days..."
                 {...field}
               />
@@ -163,10 +209,11 @@ function UpdateProfile() {
           <Controller
             name="availableTime"
             control={control}
+            defaultValue={[]}
             render={({ field }) => (
-              <MultiSelectField
+              <MultiSelect
                 label="Available Times"
-                options={timeOptions}
+                items={timeOptions}
                 placeholder="Select Free Time..."
                 {...field}
               />
@@ -176,18 +223,37 @@ function UpdateProfile() {
             name="facebookLink"
             control={control}
             render={({ field }) => (
-              <InputField label="Facebook Profile" placeholder="https://..."{...field} />
+              <InputField
+                label="Facebook Profile"
+                placeholder="https://..."
+                {...field}
+              />
             )}
           />
           <Controller
             name="linkedInLink"
             control={control}
             render={({ field }) => (
-              <InputField label="LinkedIn Profile" placeholder="https://..."{...field} />
+              <InputField
+                label="LinkedIn Profile"
+                placeholder="https://..."
+                {...field}
+              />
+            )}
+          />
+          <Controller
+            name="bio"
+            control={control}
+            render={({ field }) => (
+              <InputField
+                label="Bio.."
+                placeholder="what's on your mind 🤔"
+                {...field}
+              />
             )}
           />
         </section>
-        
+
         {/* submit btn  */}
         <Button text={"Save"} className={"float-right mt-10"} />
       </form>

@@ -1,71 +1,72 @@
-import React from "react";
-import Select from "react-select";
-import makeAnimated from "react-select/animated";
+import * as React from "react";
+import {
+  Combobox,
+  ComboboxChip,
+  ComboboxChips,
+  ComboboxChipsInput,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxItem,
+  ComboboxList,
+  ComboboxValue,
+  useComboboxAnchor,
+} from "@/components/ui/combobox";
+import { Label } from "@/components/ui/label";
 
-const animatedComponents = makeAnimated();
+function MultiSelect({
+  label = "Select Frameworks",
+  items = [],
+  value = [],
+  onChange,
+}) {
+  const anchor = useComboboxAnchor();
+  const id = React.useId();
 
-const MultiSelectField = React.forwardRef(
-  (
-    { label, options, value, onChange, placeholder = "Select...", ...props },
-    ref,
-  ) => {
-    // react-select send object, so convert it in a value
-    const selectedValue = options.filter((option) =>
-      Array.isArray(value) ? value.includes(option.value) : false,
-    );
+  return (
+    <div className="grid w-full max-w-xs items-center gap-1.5">
+      <Label
+        htmlFor={id}
+        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 mb-2"
+      >
+        {label}
+      </Label>
 
-    const handleChange = (selectedOptions) => {
-      // to send only value => ['sat', 'sun']
-      onChange(selectedOptions ? selectedOptions.map((o) => o.value) : []);
-    };
+      <Combobox
+        multiple
+        autoHighlight
+        items={items}
+        value={value}
+        onValueChange={onChange}
 
-    return (
-      <div className="flex flex-col gap-2 w-full">
-        {label && <label className="text-sm">{label}</label>}
-        <Select
-          {...props}
-          ref={ref}
-          isMulti
-          options={options}
-          value={selectedValue}
-          onChange={handleChange}
-          placeholder={placeholder}
-          components={animatedComponents}
-          closeMenuOnSelect={true}
-          // css
-          styles={{
-            control: (base, state) => ({
-              ...base,
-              color: state.isSelected ? "white" : "black",
-              backgroundColor: 'transparent',
-              border: '1px solid black',
-              borderRadius: '7px',
-              "&:active": {
-                border: "1px solid black",
-              },
-            }),
-            menu: (base) => ({
-              ...base,
-            }),
-            option: (base, state) => ({
-              ...base,
-              backgroundColor: state.isFocused ? "#22c55e22" : "transparent",
-            }),
-            multiValue: (base) => ({
-              ...base,
-              borderRadius: "0.5rem",
-            }),
-            multiValueLabel: (base) => ({
-              ...base,
-              color: "black",
-            }),
-          }}
-        />
-      </div>
-    );
-  },
-);
+        // defaultValue={[items[0]]}
+      >
+        <ComboboxChips ref={anchor} className="w-full">
+          <ComboboxValue>
+            {(values) => (
+              <React.Fragment>
+                {Array.isArray(values) &&
+                  values.map((val) => (
+                    <ComboboxChip key={val}>{val}</ComboboxChip>
+                  ))}
+                <ComboboxChipsInput id={id} placeholder="Select..." />
+              </React.Fragment>
+            )}
+          </ComboboxValue>
+        </ComboboxChips>
 
-MultiSelectField.displayName = "MultiSelectField";
+        <ComboboxContent className={"bg-white"} anchor={anchor}>
+          <ComboboxEmpty>No items found.</ComboboxEmpty>
+          <ComboboxList>
+            {(item) => (
+              <ComboboxItem key={item} value={item}>
+                {item}
+              </ComboboxItem>
+            )}
+          </ComboboxList>
+        </ComboboxContent>
+      </Combobox>
+    </div>
+  );
+}
 
-export default MultiSelectField;
+export default MultiSelect;
