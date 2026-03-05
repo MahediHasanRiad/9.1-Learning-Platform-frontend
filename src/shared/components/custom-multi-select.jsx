@@ -11,14 +11,8 @@ import {
   ComboboxValue,
   useComboboxAnchor,
 } from "@/components/ui/combobox";
-
-import {
-  Item,
-  ItemContent,
-  ItemDescription,
-  ItemTitle,
-} from "@/components/ui/item";
 import { Label } from "@/components/ui/label";
+import { Item, ItemContent, ItemDescription, ItemTitle } from "@/components/UI/item";
 
 function CustomMultiSelect({
   label,
@@ -74,15 +68,27 @@ function CustomMultiSelect({
           <ComboboxList>
             {(item) => (
               <ComboboxItem key={item.id} value={item.value}>
-                <div className="flex items-center gap-2">
-                  <img
-                    src={item.img}
-                    alt={item.label}
-                    className="w-6 h-6 rounded-full object-cover"
-                  />
+                <Item size="xs" className="p-0">
+                  <ItemContent>
+                    <ItemTitle className="whitespace-nowrap">
+                      <div className="flex items-center gap-2">
+                        {item.img && (
+                          <img
+                            src={item.img}
+                            alt={item.label}
+                            className="w-6 h-6 rounded-full object-cover"
+                          />
+                        )}
 
-                  <span>{item.label}</span>
-                </div>
+                        <span>{item.label}</span>
+                      </div>
+                    </ItemTitle>
+
+                    {item.description && (
+                      <ItemDescription className={'text-[12px]'}>{item.description}</ItemDescription>
+                    )}
+                  </ItemContent>
+                </Item>
               </ComboboxItem>
             )}
           </ComboboxList>

@@ -15,6 +15,10 @@ const dayOptions = [
   "Thursday",
   "Friday",
 ];
+const subjectsList = [
+  {id: 1, value: "english", label: 'English', description: 'class 10'},
+  {id: 2, value: "bangla", label: 'Bangla'},
+];
 
 const itemList = [
   {
@@ -22,6 +26,11 @@ const itemList = [
     img: "/public/riad.png",
     value: "mahedi hasan riad",
     label: "Mahedi Hasan Riad",
+  },
+  {
+    id: "1",
+    value: "mahedi hasan",
+    label: "Mahedi Hasan",
   },
 ];
 
@@ -93,9 +102,9 @@ function DemoClass() {
                 required: "Subject Name are required !!!",
               }}
               render={({ field }) => (
-                <MultiSelect
+                <CustomMultiSelect
                   label="Subject Name"
-                  items={dayOptions}
+                  itemList={subjectsList}
                   placeholder="Type subject name..."
                   {...field}
                 />

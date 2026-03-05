@@ -4,6 +4,7 @@ import { UserPen, MonitorPlay, Book, Lock } from "lucide-react";
 import { useTeacherDashboard } from "../hooks/useTeacherDashboard";
 import UpdateProfile from "../components/update-profile";
 import DemoClass from "../components/demo-class";
+import AddNewSubject from "../components/add-new-subject";
 
 function TeacherDashboard() {
   const {
@@ -52,7 +53,7 @@ function TeacherDashboard() {
       <main>
         {updateProfile && <UpdateProfile />}
         {demoClass && <DemoClass />}
-        {addSubject && <h1>this is addSubject</h1>}
+        {addSubject && <AddNewSubject />}
         {resetPassword && <h1>this is resetPassword</h1>}
       </main>
     </DashboardLayout>
