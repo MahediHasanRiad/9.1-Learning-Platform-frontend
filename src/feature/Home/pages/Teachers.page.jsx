@@ -3,7 +3,7 @@ import PaginationItems from "@/shared/utils/Pagination";
 import FilterItems from "@/feature/teacher/utils/filter";
 import InputField from "@/shared/utils/input";
 import Button from "@/shared/utils/button";
-import CardItem from "../../teacher/utils/Card";
+import CardItem from "../components/TeacherCard";
 import MainLayout from "@/layout/Main-Layout";
 
 function TeachersPage() {
@@ -34,23 +34,16 @@ function TeachersPage() {
         </section>
 
         {/* teachers profiles */}
-        <section className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
+        <section className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
           <CardItem
-            path="terachers/teachersProfile"
-            image={"/public/cover-image.jpg"}
+            path="teacher/profile"
+            image={"/public/riad.png"}
             name={"Mahedi Hasan Riad"}
-            subjects={"Math, English, Bangla"}
-            availableTime={"Sun - Fri 5pm to 9pm"}
+            education={"BSc in Computer Science"}
             rating="4.5"
           />
-          <CardItem
-            path="terachers/teachersProfile"
-            image={"/public/cover-image.jpg"}
-            name={"Mahedi Hasan Riad"}
-            subjects={"Math, English, Bangla"}
-            availableTime={"Sun - Fri 5pm to 9pm"}
-            rating="4.5"
-          />
+          
+          
         </section>
 
         {/* Pagination */}
