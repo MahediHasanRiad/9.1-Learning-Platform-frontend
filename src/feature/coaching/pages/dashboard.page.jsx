@@ -52,15 +52,15 @@ function CoachingDashboard() {
           />
           <MenuItem
             Icon={Library}
-            text={"Update Batch info"}
-            onClick={updateBatchInfoHandler}
-            className={`${updateBatchInfo ? "text-secondary-0" : "text-text-0"}`}
-          />
-          <MenuItem
-            Icon={Library}
             text={"Create new Batch"}
             onClick={createBatchHandler}
             className={`${createBatch ? "text-secondary-0" : "text-text-0"}`}
+          />
+          <MenuItem
+            Icon={Library}
+            text={"Update Batch info"}
+            onClick={updateBatchInfoHandler}
+            className={`${updateBatchInfo ? "text-secondary-0" : "text-text-0"}`}
           />
           <MenuItem
             Icon={BriefcaseBusiness}

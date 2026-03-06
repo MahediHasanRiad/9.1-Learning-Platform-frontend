@@ -55,7 +55,7 @@ function CustomMultiSelect({
                     );
                   })}
 
-                <ComboboxChipsInput id={id} placeholder="Search countries..." />
+                <ComboboxChipsInput id={id} placeholder="Add new..." />
               </>
             )}
           </ComboboxValue>

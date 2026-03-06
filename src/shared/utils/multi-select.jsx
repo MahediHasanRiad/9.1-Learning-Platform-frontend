@@ -54,7 +54,7 @@ function MultiSelect({
           </ComboboxValue>
         </ComboboxChips>
 
-        <ComboboxContent className={"bg-white"} anchor={anchor}>
+        <ComboboxContent className={"bg-background-0"} anchor={anchor}>
           <ComboboxEmpty>No items found.</ComboboxEmpty>
           <ComboboxList>
             {(item) => (
