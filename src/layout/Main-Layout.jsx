@@ -54,8 +54,8 @@ function MainLayout({ children }) {
                 profilePath="/coaching/profile"
                 dashboard={true}
                 dashboardPath="/coaching/dashboard"
-                // coachingTeachers={true}
-                // coachingTeachersPath={'/coaching/teachers'}
+                coachingStaff={true}
+                coachingStaffPath={'/coaching/staff'}
                 // coachingBatch={true}
                 // coachingBatchPath='coaching/batches'
               />

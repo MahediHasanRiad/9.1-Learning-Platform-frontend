@@ -8,7 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { UserPen, LayoutDashboard, Library, LogOutIcon, School } from "lucide-react";
+import { UserPen, LayoutDashboard, Library, LogOutIcon, School, ChessQueen } from "lucide-react";
 import { Link } from "react-router";
 
 function ProfileDropdown({
@@ -20,8 +20,8 @@ function ProfileDropdown({
   enrolledBatchPath = '#',
   connectedBatch = false,
   connectedCoachingPath = '#',
-  coachingTeachers= false,
-  coachingTeachersPath= false,
+  coachingStaff= false,
+  coachingStaffPath= false,
   coachingBatch = false,
   coachingBatchPath = false,
 }) {
@@ -66,6 +66,14 @@ function ProfileDropdown({
               <DropdownMenuItem>
                 <School />
                 Connected Coaching
+              </DropdownMenuItem>
+            </Link>
+          )}
+          {coachingStaff && (
+            <Link to={coachingStaffPath}>
+              <DropdownMenuItem>
+                <ChessQueen />
+                Staff
               </DropdownMenuItem>
             </Link>
           )}

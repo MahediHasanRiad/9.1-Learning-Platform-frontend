@@ -13,6 +13,7 @@ import Contact from "@/feature/Home/pages/contact.page";
 import ConnectedCoaching from "@/feature/teacher/pages/connected-coaching.page";
 import TeacherProfile from "@/feature/teacher/pages/profile.page";
 import CoachingDashboard from "@/feature/coaching/pages/dashboard.page";
+import CoachingStaff from "@/feature/coaching/pages/coaching-staff";
                     
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           {/* coaching  */}
           <Route path="/coaching/profile" element={<CoachingProfile />}/>
           <Route path="/coaching/dashboard" element={<CoachingDashboard />}/>
+          <Route path="/coaching/staff" element={<CoachingStaff />}/>
         </Routes>
       </section>
     </div>
