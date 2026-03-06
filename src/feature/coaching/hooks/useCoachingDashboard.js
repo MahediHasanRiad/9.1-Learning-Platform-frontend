@@ -6,29 +6,26 @@ export const useCoachingDashboard = () => {
 
   const updateProfileHandler = () => setOpenTab('updateProfile')
   const adminProfileHandler = () => setOpenTab('updateAdminProfile')
-  const updateBatchInfoHandler = () => setOpenTab('updateBatchInfo')
   const createBatchHandler = () => setOpenTab('createBatch')
   const addNewStaffHandler = () => setOpenTab('addNewStaff')
-  const updateStaffRoleHandler = () => setOpenTab('updateStaffRole')
   const resetPasswordHandler = () => setOpenTab('resetPassword')
+  const addSubjectHandler = () => setOpenTab('addSubject')
 
   return {
 
     updateProfile: openTab === 'updateProfile',
     updateAdminProfile: openTab === 'updateAdminProfile',
-    updateBatchInfo: openTab === 'updateBatchInfo',
     createBatch: openTab === 'createBatch',
     addNewStaff: openTab === 'addNewStaff',
-    updateStaffRole: openTab === 'updateStaffRole',
     resetPassword: openTab === 'resetPassword',
+    addSubject: openTab === 'addSubject',
 
     updateProfileHandler,
     adminProfileHandler,
-    updateBatchInfoHandler,
     createBatchHandler,
     addNewStaffHandler,
-    updateStaffRoleHandler,
-    resetPasswordHandler
+    resetPasswordHandler,
+    addSubjectHandler
 
   }
 }

@@ -13,7 +13,7 @@ import Contact from "@/feature/Home/pages/contact.page";
 import ConnectedCoaching from "@/feature/teacher/pages/connected-coaching.page";
 import TeacherProfile from "@/feature/teacher/pages/profile.page";
 import CoachingDashboard from "@/feature/coaching/pages/dashboard.page";
-
+                    
 function App() {
   return (
     <div className="bg-background m-auto">

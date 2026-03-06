@@ -6,6 +6,7 @@ import {
   Library,
   BriefcaseBusiness,
   Lock,
+  BookA,
 } from "lucide-react";
 import { useCoachingDashboard } from "../hooks/useCoachingDashboard";
 import UpdateProfile from "../components/Dashboard/Update-Profile";
@@ -13,8 +14,9 @@ import UpdateAdminProfile from "../components/Dashboard/Update-Admin-Profile";
 import UpdateBatchInfo from "../components/Dashboard/Update-Batch-Info";
 import CreateBatch from "../components/Dashboard/Create-Batch";
 import AddNewStaff from "../components/Dashboard/Add-New-Staff";
-import UpdateStaffRole from "../components/Dashboard/Update-Staff-Role";
-import ResetPassword from "../components/Dashboard/reset-pasword";
+import ResetPassword from "@/shared/components/reset-password";
+import AddNewSubject from "@/shared/components/add-new-subject";
+
 
 function CoachingDashboard() {
   const {
@@ -22,16 +24,14 @@ function CoachingDashboard() {
     updateProfileHandler,
     updateAdminProfile,
     adminProfileHandler,
-    updateBatchInfo,
-    updateBatchInfoHandler,
     createBatch,
     createBatchHandler,
     addNewStaff,
     addNewStaffHandler,
-    updateStaffRole,
-    updateStaffRoleHandler,
     resetPassword,
     resetPasswordHandler,
+    addSubject,
+    addSubjectHandler
   } = useCoachingDashboard();
 
   return (
@@ -51,28 +51,22 @@ function CoachingDashboard() {
             className={`${updateAdminProfile ? "text-secondary-0" : "text-text-0"}`}
           />
           <MenuItem
+            Icon={BookA}
+            text={"Add Subject"}
+            onClick={addSubjectHandler}
+            className={`${addSubject ? "text-secondary-0" : "text-text-0"}`}
+          />
+          <MenuItem
             Icon={Library}
             text={"Create new Batch"}
             onClick={createBatchHandler}
             className={`${createBatch ? "text-secondary-0" : "text-text-0"}`}
           />
           <MenuItem
-            Icon={Library}
-            text={"Update Batch info"}
-            onClick={updateBatchInfoHandler}
-            className={`${updateBatchInfo ? "text-secondary-0" : "text-text-0"}`}
-          />
-          <MenuItem
             Icon={BriefcaseBusiness}
             text={"Add new Staff"}
             onClick={addNewStaffHandler}
             className={`${addNewStaff ? "text-secondary-0" : "text-text-0"}`}
-          />
-          <MenuItem
-            Icon={BriefcaseBusiness}
-            text={"Update Staff Role"}
-            onClick={updateStaffRoleHandler}
-            className={`${updateStaffRole ? "text-secondary-0" : "text-text-0"}`}
           />
           <MenuItem
             Icon={Lock}
@@ -85,10 +79,9 @@ function CoachingDashboard() {
     >
       {updateProfile && <UpdateProfile />}
       {updateAdminProfile && <UpdateAdminProfile />}
-      {updateBatchInfo && <UpdateBatchInfo />}
+      {addSubject && <AddNewSubject />}
       {createBatch && <CreateBatch />}
       {addNewStaff && <AddNewStaff />}
-      {updateStaffRole && <UpdateStaffRole />}
       {resetPassword && <ResetPassword />}
       
     </DashboardLayout>
