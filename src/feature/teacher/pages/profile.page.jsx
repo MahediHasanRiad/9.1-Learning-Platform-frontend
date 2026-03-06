@@ -1,11 +1,8 @@
-import { Quote } from "lucide-react";
-import React, { useState } from "react";
-import UserInfo from "../components/user-info";
-import CoachingInfo from "../components/coaching-info";
+import TeacherInfo from "@/feature/teacher/components/teacher-info";
 import MainLayout from "@/layout/Main-Layout";
+import { Quote } from "lucide-react";
 
-function Profile() {
-
+function TeacherProfile() {
   return (
     <MainLayout>
       <section className="w-2/3 mx-auto">
@@ -26,11 +23,11 @@ function Profile() {
                 alt="profile"
                 className="rounded-full object-cover w-40 h-40 ring mt-4"
               />
-              {coaching && (
+              
                 <h1 className="mt-2 text-2xl font-semibold">
                   Riad Coaching Center
                 </h1>
-              )}
+              
             </div>
             <div className="p-6">
               <h4 className="text-sm my-6 italic w-4/5 md:w-2/3 mx-auto flex items-start justify-center gap-2 text-gray-600">
@@ -49,7 +46,7 @@ function Profile() {
           </section>
           {/* info  */}
           <section className="mt-4">
-            <UserInfo />
+            <TeacherInfo />
           </section>
         </section>
       </section>
@@ -57,4 +54,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default TeacherProfile;

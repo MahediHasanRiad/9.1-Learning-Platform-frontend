@@ -20,6 +20,10 @@ function ProfileDropdown({
   enrolledBatchPath = '#',
   connectedBatch = false,
   connectedCoachingPath = '#',
+  coachingTeachers= false,
+  coachingTeachersPath= false,
+  coachingBatch = false,
+  coachingBatchPath = false,
 }) {
   return (
     <DropdownMenu>

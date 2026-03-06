@@ -10,9 +10,9 @@ import {
   Calendar1,
   Clock7,
 } from "lucide-react";
-import InfoMenuItem from "../utils/info-menu-item";
-import InfoMenuButton from "../utils/info-menu-btn";
-import { useTeacherInfo } from "../hooks/useTeacherInfo";
+import InfoMenuItem from "../../user/utils/info-menu-item";
+import InfoMenuButton from "../../user/utils/info-menu-btn";
+import { useTeacherInfo } from "../../user/hooks/useTeacherInfo";
 import DemoClass from "@/feature/teacher/utils/DemoClass";
 import Dropdown from "@/feature/teacher/utils/DropDown";
 

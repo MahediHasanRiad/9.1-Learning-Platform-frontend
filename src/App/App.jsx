@@ -11,6 +11,8 @@ import TeacherEnrolledBatch from "@/feature/teacher/pages/enrolled-batch.page";
 import About from "@/feature/Home/pages/about.page";
 import Contact from "@/feature/Home/pages/contact.page";
 import ConnectedCoaching from "@/feature/teacher/pages/connected-coaching.page";
+import TeacherProfile from "@/feature/teacher/pages/profile.page";
+import CoachingDashboard from "@/feature/coaching/pages/dashboard.page";
 
 function App() {
   return (
@@ -29,15 +31,14 @@ function App() {
           <Route path="/user/enrolled" element={<UserEnrolledBatch />} />
 
           {/* teacher  */}
+          <Route path="/teacher/profile" element={<TeacherProfile />} />
           <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
           <Route path="/teacher/enrolled" element={<TeacherEnrolledBatch />} />
           <Route path="/teacher/connected-coaching" element={<ConnectedCoaching />} />
 
           {/* coaching  */}
-          <Route
-            path="/coaching/coachingProfile"
-            element={<CoachingProfile />}
-          />
+          <Route path="/coaching/profile" element={<CoachingProfile />}/>
+          <Route path="/coaching/dashboard" element={<CoachingDashboard />}/>
         </Routes>
       </section>
     </div>

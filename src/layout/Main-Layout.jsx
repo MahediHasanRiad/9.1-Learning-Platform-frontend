@@ -8,8 +8,8 @@ function MainLayout({ children }) {
   const [open, setOpen] = useState(false);
   // role
   const [user, setUser] = useState(false);
-  const [teacher, setTeacher] = useState(true);
-  const [coaching, setCoaching] = useState(false);
+  const [teacher, setTeacher] = useState(false);
+  const [coaching, setCoaching] = useState(true);
 
   return (
     <section>
@@ -29,7 +29,7 @@ function MainLayout({ children }) {
             {user && (
               <ProfileDropdown
                 profile={true}
-                profilePath='/user/profile'
+                profilePath="/user/profile"
                 dashboard={true}
                 dashboardPath="/user/dashboard"
                 enrolledBatch={true}
@@ -39,13 +39,25 @@ function MainLayout({ children }) {
             {teacher && (
               <ProfileDropdown
                 profile={true}
-                profilePath="/user/profile"
+                profilePath="/teacher/profile"
                 dashboard={true}
                 dashboardPath="/teacher/dashboard"
                 enrolledBatch={true}
                 enrolledBatchPath="/teacher/enrolled"
                 connectedBatch={true}
                 connectedCoachingPath="/teacher/connected-coaching"
+              />
+            )}
+            {coaching && (
+              <ProfileDropdown
+                profile={true}
+                profilePath="/coaching/profile"
+                dashboard={true}
+                dashboardPath="/coaching/dashboard"
+                // coachingTeachers={true}
+                // coachingTeachersPath={'/coaching/teachers'}
+                // coachingBatch={true}
+                // coachingBatchPath='coaching/batches'
               />
             )}
           </div>
@@ -65,18 +77,26 @@ function MainLayout({ children }) {
               {user && (
                 <ProfileDropdown
                   profile={true}
+                  profilePath="/user/profile"
                   dashboard={true}
+                  dashboardPath="/user/dashboard"
                   enrolledBatch={true}
+                  enrolledBatchPath="/user/enrolled"
                 />
               )}
               {teacher && (
                 <ProfileDropdown
                   profile={true}
+                  profilePath="/user/profile"
                   dashboard={true}
+                  dashboardPath="/teacher/dashboard"
                   enrolledBatch={true}
+                  enrolledBatchPath="/teacher/enrolled"
                   connectedBatch={true}
+                  connectedCoachingPath="/teacher/connected-coaching"
                 />
               )}
+              
             </div>
           )}
         </section>
