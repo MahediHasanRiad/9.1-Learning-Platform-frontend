@@ -10,6 +10,7 @@ export const useCoachingDashboard = () => {
   const addNewStaffHandler = () => setOpenTab('addNewStaff')
   const resetPasswordHandler = () => setOpenTab('resetPassword')
   const addSubjectHandler = () => setOpenTab('addSubject')
+  const enrolledHandler = () => setOpenTab('enrolled')
 
   return {
 
@@ -19,13 +20,16 @@ export const useCoachingDashboard = () => {
     addNewStaff: openTab === 'addNewStaff',
     resetPassword: openTab === 'resetPassword',
     addSubject: openTab === 'addSubject',
+    enrolled: openTab === 'enrolled',
 
     updateProfileHandler,
     adminProfileHandler,
     createBatchHandler,
     addNewStaffHandler,
     resetPasswordHandler,
-    addSubjectHandler
-
+    addSubjectHandler,
+    enrolledHandler,
+    
+    
   }
 }

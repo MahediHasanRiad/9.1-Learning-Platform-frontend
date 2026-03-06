@@ -14,36 +14,39 @@ import ConnectedCoaching from "@/feature/teacher/pages/connected-coaching.page";
 import TeacherProfile from "@/feature/teacher/pages/profile.page";
 import CoachingDashboard from "@/feature/coaching/pages/dashboard.page";
 import CoachingStaff from "@/feature/coaching/pages/coaching-staff";
-                    
+
+
+
 function App() {
   return (
-    <div className="bg-background m-auto">
-      <section className="w-5/6 m-auto">
-        <Routes>
-          {/* Home pages  */}
-          <Route path="/teachers" element={<TeachersPage />} />
-          <Route path="/coaching" element={<CoachingPage />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
+    <section className="w-5/6 m-auto">
+      <Routes>
+        {/* auth  */}
+        <Route path="/register" element={<TeachersPage />} />
 
-          {/* user  */}
-          <Route path="/user/profile" element={<Profile />} />
-          <Route path="/user/dashboard" element={<UserDashboard />} />
-          <Route path="/user/enrolled" element={<UserEnrolledBatch />} />
+        {/* Home pages  */}
+        <Route path="/teachers" element={<TeachersPage />} />
+        <Route path="/coaching" element={<CoachingPage />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
 
-          {/* teacher  */}
-          <Route path="/teacher/profile" element={<TeacherProfile />} />
-          <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
-          <Route path="/teacher/enrolled" element={<TeacherEnrolledBatch />} />
-          <Route path="/teacher/connected-coaching" element={<ConnectedCoaching />} />
+        {/* user  */}
+        <Route path="/user/profile" element={<Profile />} />
+        <Route path="/user/dashboard" element={<UserDashboard />} />
+        <Route path="/user/enrolled" element={<UserEnrolledBatch />} />
 
-          {/* coaching  */}
-          <Route path="/coaching/profile" element={<CoachingProfile />}/>
-          <Route path="/coaching/dashboard" element={<CoachingDashboard />}/>
-          <Route path="/coaching/staff" element={<CoachingStaff />}/>
-        </Routes>
-      </section>
-    </div>
+        {/* teacher  */}
+        <Route path="/teacher/profile" element={<TeacherProfile />} />
+        <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
+        <Route path="/teacher/enrolled" element={<TeacherEnrolledBatch />} />
+        <Route path="/teacher/connected-coaching" element={<ConnectedCoaching />}/>
+
+        {/* coaching  */}
+        <Route path="/coaching/profile" element={<CoachingProfile />} />
+        <Route path="/coaching/dashboard" element={<CoachingDashboard />} />
+        <Route path="/coaching/staff" element={<CoachingStaff />} />
+      </Routes>
+    </section>
   );
 }
 
