@@ -1,4 +1,4 @@
-import CoachingBatchCard from "@/feature/coaching/components/CoachingBatchCard";
+import CoachingBatchCard from "@/feature/coaching/components/Coaching-Batch-Card";
 import MainLayout from "@/layout/Main-Layout";
 import React from "react";
 

@@ -1,5 +1,5 @@
-import CoverImage from '@/feature/coaching/components/cover-img'
-import ProfileImage from '@/feature/coaching/components/profile-img'
+import CoverImage from '@/feature/coaching/utils/cover-img'
+import ProfileImage from '@/feature/coaching/utils/profile-img'
 import React from 'react'
 
 function TopImagees() {

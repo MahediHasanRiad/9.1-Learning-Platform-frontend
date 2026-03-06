@@ -3,7 +3,7 @@ import FilterItems from "@/feature/teacher/utils/filter";
 import Button from "@/shared/utils/button";
 import InputField from "@/shared/utils/input";
 import Dropdown from "@/feature/teacher/utils/DropDown";
-import CoachingBatchCard from "@/feature/coaching/components/CoachingBatchCard";
+import CoachingBatchCard from "@/feature/coaching/components/Coaching-Batch-Card";
 import PaginationItems from "@/shared/utils/Pagination";
 import MainLayout from "@/layout/Main-Layout";
 

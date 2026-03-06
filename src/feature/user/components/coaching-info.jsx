@@ -10,7 +10,7 @@ import {
 import InfoMenuButton from "../utils/info-menu-btn";
 import { useCoachingInfo } from "../hooks/useCoachingInfo";
 import InfoMenuItem from "../utils/info-menu-item";
-import CoachingBatchCard from "@/feature/coaching/components/CoachingBatchCard";
+import CoachingBatchCard from "@/feature/coaching/components/Coaching-Batch-Card";
 import TeacherCard from "./teachersCard";
 
 function CoachingInfo() {

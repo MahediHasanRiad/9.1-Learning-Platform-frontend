@@ -11,7 +11,7 @@ function DashboardLayout({ menu, children }) {
 
   return (
     <MainLayout>
-      <section>
+      <section className="">
         {/* menu btn  */}
         <section onClick={handleMenu} className="md:hidden w-full h-10">
           {open ? <X /> : <Menu />}

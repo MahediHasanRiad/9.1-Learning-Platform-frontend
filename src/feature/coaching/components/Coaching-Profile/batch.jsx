@@ -1,4 +1,4 @@
-import CoachingBatchCard from "@/feature/coaching/components/CoachingBatchCard";
+import CoachingBatchCard from "@/feature/coaching/components/Coaching-Batch-Card";
 import React from "react";
 
 function Batch() {
