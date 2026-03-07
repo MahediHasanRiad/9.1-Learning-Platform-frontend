@@ -8,23 +8,34 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { UserPen, LayoutDashboard, Library, LogOutIcon, School, ChessQueen } from "lucide-react";
-import { Link } from "react-router";
+import { logoutAsyncThunk } from "@/feature/auth/redux/logout.thunk";
+import {
+  UserPen,
+  LayoutDashboard,
+  Library,
+  LogOutIcon,
+  School,
+  ChessQueen,
+} from "lucide-react";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router";
 
 function ProfileDropdown({
   profile = false,
-  profilePath = '#',
+  profilePath = "#",
   dashboard = false,
-  dashboardPath = '#',
+  dashboardPath = "#",
   enrolledBatch = false,
-  enrolledBatchPath = '#',
+  enrolledBatchPath = "#",
   connectedBatch = false,
-  connectedCoachingPath = '#',
-  coachingStaff= false,
-  coachingStaffPath= false,
+  connectedCoachingPath = "#",
+  coachingStaff = false,
+  coachingStaffPath = false,
   coachingBatch = false,
   coachingBatchPath = false,
 }) {
+  const dispatch = useDispatch();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -79,10 +90,12 @@ function ProfileDropdown({
           )}
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <LogOutIcon />
-          Sign Out
-        </DropdownMenuItem>
+        <Link to={"/teachers"} onClick={() => dispatch(logoutAsyncThunk())}>
+          <DropdownMenuItem>
+            <LogOutIcon />
+            Sign Out
+          </DropdownMenuItem>
+        </Link>
       </DropdownMenuContent>
     </DropdownMenu>
   );

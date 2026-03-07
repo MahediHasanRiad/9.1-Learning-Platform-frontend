@@ -3,6 +3,8 @@ import Menu from "./components/nav-menu.jsx";
 import { useState } from "react";
 import { Menu as MenuIcon, X } from "lucide-react";
 import { Link } from "react-router";
+import { useSelector } from "react-redux";
+import Button from "@/shared/utils/button.jsx";
 
 function MainLayout({ children }) {
   const [open, setOpen] = useState(false);
@@ -10,6 +12,8 @@ function MainLayout({ children }) {
   const [user, setUser] = useState(false);
   const [teacher, setTeacher] = useState(false);
   const [coaching, setCoaching] = useState(true);
+
+  const auth = useSelector((state) => state.auth);
 
   return (
     <section className="w-5/6 m-auto">
@@ -26,39 +30,47 @@ function MainLayout({ children }) {
             <Menu text="Coaching" path={"coaching"} />
             <Menu text="About" path="about" />
             <Menu text="Contact" path="contact" />
-            {user && (
-              <ProfileDropdown
-                profile={true}
-                profilePath="/user/profile"
-                dashboard={true}
-                dashboardPath="/user/dashboard"
-                enrolledBatch={true}
-                enrolledBatchPath="/user/enrolled"
-              />
-            )}
-            {teacher && (
-              <ProfileDropdown
-                profile={true}
-                profilePath="/teacher/profile"
-                dashboard={true}
-                dashboardPath="/teacher/dashboard"
-                enrolledBatch={true}
-                enrolledBatchPath="/teacher/enrolled"
-                connectedBatch={true}
-                connectedCoachingPath="/teacher/connected-coaching"
-              />
-            )}
-            {coaching && (
-              <ProfileDropdown
-                profile={true}
-                profilePath="/coaching/profile"
-                dashboard={true}
-                dashboardPath="/coaching/dashboard"
-                coachingStaff={true}
-                coachingStaffPath={'/coaching/staff'}
-                // coachingBatch={true}
-                // coachingBatchPath='coaching/batches'
-              />
+            {auth.user ? (
+              <div>
+                {user && (
+                  <ProfileDropdown
+                    profile={true}
+                    profilePath="/user/profile"
+                    dashboard={true}
+                    dashboardPath="/user/dashboard"
+                    enrolledBatch={true}
+                    enrolledBatchPath="/user/enrolled"
+                  />
+                )}
+                {teacher && (
+                  <ProfileDropdown
+                    profile={true}
+                    profilePath="/teacher/profile"
+                    dashboard={true}
+                    dashboardPath="/teacher/dashboard"
+                    enrolledBatch={true}
+                    enrolledBatchPath="/teacher/enrolled"
+                    connectedBatch={true}
+                    connectedCoachingPath="/teacher/connected-coaching"
+                  />
+                )}
+                {coaching && (
+                  <ProfileDropdown
+                    profile={true}
+                    profilePath="/coaching/profile"
+                    dashboard={true}
+                    dashboardPath="/coaching/dashboard"
+                    coachingStaff={true}
+                    coachingStaffPath={"/coaching/staff"}
+                    // coachingBatch={true}
+                    // coachingBatchPath='coaching/batches'
+                  />
+                )}
+              </div>
+            ) : (
+              <Link to={"/signin"}>
+                <Button text={"Log In"} />
+              </Link>
             )}
           </div>
 
@@ -96,7 +108,6 @@ function MainLayout({ children }) {
                   connectedCoachingPath="/teacher/connected-coaching"
                 />
               )}
-              
             </div>
           )}
         </section>

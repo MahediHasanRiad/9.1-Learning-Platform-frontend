@@ -21,6 +21,8 @@ function Register() {
       password: "",
       avatar: "",
       coverImage: "",
+      role: "",
+      bio: ""
     },
   });
 
@@ -39,10 +41,13 @@ function Register() {
       formData.append("mobile", data.mobile);
       formData.append("avatar", data.avatar);
       formData.append("coverImage", data.coverImage);
+      formData.append("role", data.role);
+      formData.append("bio", data.bio);
 
       await dispatch(registrationAsyncThunk(formData)).unwrap()
-      navigate('/teachers')
+      navigate('/signin')
       reset()
+      toast.success('Successfully Registerd')
 
     } catch (error) {
       console.error("Registration failed:", error);
@@ -174,6 +179,20 @@ function Register() {
                 )}
               />
               {<ErrorMsg text={errors.coverImage?.message} />}
+            </div>
+            <div>
+              <Controller
+                name="bio"
+                control={control}
+                render={({ field }) => (
+                  <InputField
+                    label="Bio "
+                    placeholder="what's on your mind 🤔"
+                    {...field}
+                  />
+                )}
+              />
+              {<ErrorMsg text={errors.bio?.message} />}
             </div>
           </section>
 

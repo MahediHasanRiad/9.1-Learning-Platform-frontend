@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { registrationAsyncThunk } from "./register.thunk";
 import { loginAsyncThunk } from "./login.thunk";
+import { logoutAsyncThunk } from "./logout.thunk";
 
 const initialState = {
   user: null,
-  role: null,
-  token: null,
   loading: false,
   error: null,
 };
@@ -17,7 +16,6 @@ const authSlice = createSlice({
     logout: () => {},
     setUser: (state, action) => {
       state.user = action.payload;
-      state.user = action.payload.role;
     },
   },
   extraReducers: (builder) => {
@@ -32,7 +30,6 @@ const authSlice = createSlice({
         state.loading = false;
 
         state.user = action.payload.data;
-        state.role = state.user.getUser.role;
       })
       .addCase(registrationAsyncThunk.rejected, (state, action) => {
         state.loading = false;
@@ -49,12 +46,25 @@ const authSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.user = action.payload.data.user;
-        state.role = action.payload.data.user.role;
-        state.token = action.payload.data.token;
       })
       .addCase(loginAsyncThunk.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      });
+
+    // logout
+    builder
+      .addCase(logoutAsyncThunk.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(logoutAsyncThunk.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.user = null;
+      })
+      .addCase(logoutAsyncThunk.rejected, (state, action) => {
+        state.error = action.payload;
+        state.loading = false;
       });
   },
 });

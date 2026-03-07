@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import TeachersPage from "../feature/Home/pages/Teachers.page";
 import CoachingPage from "../feature/Home/pages/coaching";
 import CoachingProfile from "../feature/coaching/pages/Coaching-Profile";
-import { Route, Routes } from "react-router";
+import { Route, Routes, useLocation } from "react-router";
 import Profile from "@/feature/user/pages/profile.page";
 import UserDashboard from "@/feature/user/pages/dashboard.page";
 import UserEnrolledBatch from "@/feature/user/pages/enrolled-batch.page";
@@ -22,16 +22,21 @@ import { setUser } from "@/feature/auth/redux/auth.slice";
 import { toast } from "sonner";
 
 function App() {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const location = useLocation();
 
   useEffect(() => {
+    const authRouter = ["/register", "/signin"];
+    if (authRouter.includes(location.pathname)) return;
+
     (async () => {
       try {
-        const response = await axios.get("/api/v1/me", {withCredentials: true});
-        dispatch(setUser(response.data.data))
+        const response = await axios.get("/api/v1/me", {
+          withCredentials: true,
+        });
+        dispatch(setUser(response.data.data));
       } catch (error) {
-        toast.error(error)
+        toast.error(error.response?.data?.message || "Authentication failed");
       }
     })();
   }, []);
