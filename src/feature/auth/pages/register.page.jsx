@@ -2,12 +2,16 @@ import ErrorMsg from "@/shared/utils/error-msg";
 import InputField from "@/shared/utils/input";
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
-import { Link } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router";
+import { registrationAsyncThunk } from "../redux/register.thunk";
+import { toast } from "sonner";
 
 function Register() {
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -20,8 +24,29 @@ function Register() {
     },
   });
 
-  const saveData = (data) => {
-    console.log(data);
+  const { loading, error } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+
+  const saveData = async (data) => {
+    try {
+      const formData = new FormData();
+
+      formData.append("name", data.name);
+      formData.append("email", data.email);
+      formData.append("password", data.password);
+      formData.append("mobile", data.mobile);
+      formData.append("avatar", data.avatar);
+      formData.append("coverImage", data.coverImage);
+
+      await dispatch(registrationAsyncThunk(formData)).unwrap()
+      navigate('/teachers')
+      reset()
+
+    } catch (error) {
+      console.error("Registration failed:", error);
+      toast.error(error?.message);
+    }
   };
 
   return (
@@ -155,8 +180,10 @@ function Register() {
             type="submit"
             className="w-full py-3 mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg cursor-pointer transition duration-300"
           >
-            Sign Up
+            {loading ? "Loading..." : " Sign Up"}
           </button>
+          {/* Error  */}
+          <p>{error && <ErrorMsg text={error} />}</p>
           {/* already have account  */}
           <p className="text-center text-sm my-3">
             Already have an account ?{" "}
