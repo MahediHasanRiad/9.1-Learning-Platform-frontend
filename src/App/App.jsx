@@ -55,9 +55,9 @@ function App() {
         <Route path="/contact" element={<Contact />} />
 
         {/* user  */}
-        <Route path="/user/profile" element={<Profile />} />
-        <Route path="/user/dashboard" element={<UserDashboard />} />
-        <Route path="/user/enrolled" element={<UserEnrolledBatch />} />
+        <Route path="/user/profile/:id" element={<Profile />} />
+        <Route path="/user/dashboard/:id" element={<UserDashboard />} />
+        <Route path="/user/enrolled/:id" element={<UserEnrolledBatch />} />
 
         {/* teacher  */}
         <Route path="/teacher/profile" element={<TeacherProfile />} />

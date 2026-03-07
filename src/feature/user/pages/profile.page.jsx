@@ -13,7 +13,7 @@ function Profile() {
         {/* cover-image  */}
         <section>
           <img
-            src={user.coverImage}
+            src={user?.coverImage}
             alt="coverImage"
             className="w-full object-full rounded-md h-55"
           />
@@ -23,7 +23,7 @@ function Profile() {
           <section className="grid md:grid-cols-2">
             <div>
               <img
-                src={user.avatar}
+                src={user?.avatar}
                 alt="profile"
                 className="rounded-full object-cover w-40 h-40 ring mt-4"
               />
@@ -33,7 +33,7 @@ function Profile() {
                 <Quote size={16} className="text-secondary-0 shrink-0" />
 
                 <span className="text-center">
-                  {user.bio}
+                  {user?.bio}
                 </span>
 
                 <Quote

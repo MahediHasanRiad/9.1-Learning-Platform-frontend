@@ -2,6 +2,9 @@ import Button from "@/shared/utils/button";
 import InputField from "@/shared/utils/input";
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "sonner";
+import { updateProfileAsyncThunk } from "../redux/updateProfile.thunk";
 
 function UpdateProfile() {
   const {
@@ -16,14 +19,35 @@ function UpdateProfile() {
       address: "",
       coverImage: "",
       avatar: "",
-      bio: ""
+      bio: "",
     },
   });
 
-  const saveData = (data) => {
-    console.log(data);
-  };
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
 
+  const saveData = async (data) => {
+    try {
+      const formData = new FormData();
+      formData.append("name", data.name);
+      formData.append("mobile", data.mobile);
+      formData.append("address", data.address);
+      formData.append("bio", data.bio);
+      if (data.coverImage?.[0])
+        formData.append("coverImage", data.coverImage[0]);
+      if (data.avatar?.[0]) formData.append("avatar", data.avatar[0]);
+
+
+      await dispatch(
+        updateProfileAsyncThunk({ id: user._id, formData }),
+      ).unwrap();
+
+      reset();
+      toast.success("Profile Updated Successfully!");
+    } catch (error) {
+      toast.error(typeof error === "string" ? error : error.message);
+    }
+  };
   return (
     <section>
       <form onSubmit={handleSubmit(saveData)}>
@@ -31,23 +55,45 @@ function UpdateProfile() {
           <Controller
             name="name"
             control={control}
-            render={({ field }) => <InputField label="Name" placeholder="Mahedi Hasan Riad" {...field} />}
+            render={({ field }) => (
+              <InputField
+                label="Name"
+                placeholder="Mahedi Hasan Riad"
+                {...field}
+              />
+            )}
           />
           <Controller
             name="mobile"
             control={control}
-            render={({ field }) => <InputField label="Mobile" placeholder="015**********" {...field} />}
+            render={({ field }) => (
+              <InputField
+                label="Mobile"
+                placeholder="015**********"
+                {...field}
+              />
+            )}
           />
           <Controller
             name="address"
             control={control}
-            render={({ field }) => <InputField label="Address" placeholder="mirpur 12, AJ avanue 56/A" {...field} />}
+            render={({ field }) => (
+              <InputField
+                label="Address"
+                placeholder="mirpur 12, AJ avanue 56/A"
+                {...field}
+              />
+            )}
           />
           <Controller
             name="bio"
             control={control}
             render={({ field }) => (
-              <InputField label="Bio" placeholder="what's on your mind 🤔" {...field} />
+              <InputField
+                label="Bio"
+                placeholder="what's on your mind 🤔"
+                {...field}
+              />
             )}
           />
           <Controller

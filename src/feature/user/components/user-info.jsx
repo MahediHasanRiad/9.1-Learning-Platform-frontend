@@ -8,10 +8,10 @@ function UserInfo({user}) {
         <span className="px-4 py-2 text-secondary-0 rounded">About</span>
       </section>
       <section className='mt-4'>
-        <InfoMenuItem Icon={UserRoundPen} text={user.name} />
-        <InfoMenuItem Icon={BookUser} text={user.address} />
-        <InfoMenuItem Icon={Contact} text={user.mobile} />
-        <InfoMenuItem Icon={Mail} text={user.email} />
+        <InfoMenuItem Icon={UserRoundPen} text={user?.name} />
+        <InfoMenuItem Icon={BookUser} text={user?.address} />
+        <InfoMenuItem Icon={Contact} text={user?.mobile} />
+        <InfoMenuItem Icon={Mail} text={user?.email} />
         {/* <InfoMenuItem Icon={Linkedin} text={user.linkedIn} />
         <InfoMenuItem Icon={Facebook} text={user.facebook} /> */}
       </section>

@@ -31,11 +31,11 @@ console.log('user', user)
                 {user.role === "User" && (
                   <ProfileDropdown
                     profile={true}
-                    profilePath="/user/profile"
+                    profilePath={`/user/profile/${user._id}`}
                     dashboard={true}
-                    dashboardPath="/user/dashboard"
+                    dashboardPath={`/user/dashboard/${user._id}`}
                     enrolledBatch={true}
-                    enrolledBatchPath="/user/teacher"
+                    enrolledBatchPath={`/user/enrolled/${user._id}`}
                     // becomeTeacherBatch={true}
                     // becomeTeacherPath="/user/teacher"
                   />
