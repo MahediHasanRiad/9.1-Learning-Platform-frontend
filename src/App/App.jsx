@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TeachersPage from "../feature/Home/pages/Teachers.page";
 import CoachingPage from "../feature/Home/pages/coaching";
 import CoachingProfile from "../feature/coaching/pages/Coaching-Profile";
@@ -16,12 +16,28 @@ import CoachingDashboard from "@/feature/coaching/pages/dashboard.page";
 import CoachingStaff from "@/feature/coaching/pages/coaching-staff";
 import Register from "@/feature/auth/pages/register.page";
 import LogIn from "@/feature/auth/pages/login.page";
-
-
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setUser } from "@/feature/auth/redux/auth.slice";
+import { toast } from "sonner";
 
 function App() {
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await axios.get("/api/v1/me", {withCredentials: true});
+        dispatch(setUser(response.data.data))
+      } catch (error) {
+        toast.error(error)
+      }
+    })();
+  }, []);
+
   return (
-    <section className="">
+    <section>
       <Routes>
         {/* auth  */}
         <Route path="/register" element={<Register />} />
@@ -42,7 +58,10 @@ function App() {
         <Route path="/teacher/profile" element={<TeacherProfile />} />
         <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
         <Route path="/teacher/enrolled" element={<TeacherEnrolledBatch />} />
-        <Route path="/teacher/connected-coaching" element={<ConnectedCoaching />}/>
+        <Route
+          path="/teacher/connected-coaching"
+          element={<ConnectedCoaching />}
+        />
 
         {/* coaching  */}
         <Route path="/coaching/profile" element={<CoachingProfile />} />

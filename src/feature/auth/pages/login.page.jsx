@@ -2,12 +2,16 @@ import ErrorMsg from "@/shared/utils/error-msg";
 import InputField from "@/shared/utils/input";
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
-import { Link } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router";
+import { loginAsyncThunk } from "../redux/login.thunk";
+import { toast } from "sonner";
 
 function LogIn() {
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -16,8 +20,23 @@ function LogIn() {
     },
   });
 
-  const saveData = (data) => {
-    console.log(data);
+  const { loading, error } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const saveData = async (data) => {
+    try {
+      await dispatch(loginAsyncThunk(data))
+        .unwrap()
+        .then(() => {
+          navigate("/teachers");
+          toast.success("Successfully Login");
+          reset;
+        });
+        toast.error(error)
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -80,7 +99,7 @@ function LogIn() {
             type="submit"
             className="w-full py-3 mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg cursor-pointer transition duration-300"
           >
-            Sign In 
+            {loading ? 'Loading...' : 'Sign In'}
           </button>
           {/* already have account  */}
           <p className="text-center text-sm my-3">
