@@ -12,8 +12,8 @@ function MainLayout({ children }) {
   const [coaching, setCoaching] = useState(true);
 
   return (
-    <section>
-      <nav className="w-full my-4 bg-secondary-0/10 flex justify-center">
+    <section className="w-5/6 m-auto">
+      <nav className="w-full my-4 flex justify-center">
         <section className="w-5/6 p-3 flex items-center justify-between ">
           {/* Logo */}
           <div className="text-xl font-bold">

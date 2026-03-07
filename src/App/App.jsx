@@ -14,15 +14,18 @@ import ConnectedCoaching from "@/feature/teacher/pages/connected-coaching.page";
 import TeacherProfile from "@/feature/teacher/pages/profile.page";
 import CoachingDashboard from "@/feature/coaching/pages/dashboard.page";
 import CoachingStaff from "@/feature/coaching/pages/coaching-staff";
+import Register from "@/feature/auth/pages/register.page";
+import LogIn from "@/feature/auth/pages/login.page";
 
 
 
 function App() {
   return (
-    <section className="w-5/6 m-auto">
+    <section className="">
       <Routes>
         {/* auth  */}
-        <Route path="/register" element={<TeachersPage />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/signin" element={<LogIn />} />
 
         {/* Home pages  */}
         <Route path="/teachers" element={<TeachersPage />} />

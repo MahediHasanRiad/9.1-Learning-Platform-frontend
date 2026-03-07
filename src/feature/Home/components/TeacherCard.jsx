@@ -36,7 +36,7 @@ function CardItem({
             </p>
             
             {/* Rating */}
-            <p className="text-xs text-yellow-600 font-semibold flex items-center gap-1">
+            <p className="text-xs text-primary-0 font-semibold flex items-center gap-1">
               ⭐ {rating} <span className="text-gray-400 font-normal">Rating</span>
             </p>
           </div>
