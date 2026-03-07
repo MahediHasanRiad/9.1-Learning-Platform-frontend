@@ -9,12 +9,8 @@ import Button from "@/shared/utils/button.jsx";
 function MainLayout({ children }) {
   const [open, setOpen] = useState(false);
   // role
-  const [user, setUser] = useState(false);
-  const [teacher, setTeacher] = useState(false);
-  const [coaching, setCoaching] = useState(true);
-
-  const auth = useSelector((state) => state.auth);
-
+  const { user } = useSelector((state) => state.auth);
+console.log('user', user)
   return (
     <section className="w-5/6 m-auto">
       <nav className="w-full my-4 flex justify-center">
@@ -30,19 +26,21 @@ function MainLayout({ children }) {
             <Menu text="Coaching" path={"coaching"} />
             <Menu text="About" path="about" />
             <Menu text="Contact" path="contact" />
-            {auth.user ? (
+            {user ? (
               <div>
-                {user && (
+                {user.role === "User" && (
                   <ProfileDropdown
                     profile={true}
                     profilePath="/user/profile"
                     dashboard={true}
                     dashboardPath="/user/dashboard"
                     enrolledBatch={true}
-                    enrolledBatchPath="/user/enrolled"
+                    enrolledBatchPath="/user/teacher"
+                    // becomeTeacherBatch={true}
+                    // becomeTeacherPath="/user/teacher"
                   />
                 )}
-                {teacher && (
+                {user.role === "Teacher" && (
                   <ProfileDropdown
                     profile={true}
                     profilePath="/teacher/profile"
@@ -52,9 +50,11 @@ function MainLayout({ children }) {
                     enrolledBatchPath="/teacher/enrolled"
                     connectedBatch={true}
                     connectedCoachingPath="/teacher/connected-coaching"
+                    // becomeUser="/teacher/user"
+                    // becomeUserPath="/teacher/user"
                   />
                 )}
-                {coaching && (
+                {user.role === "Coaching" && (
                   <ProfileDropdown
                     profile={true}
                     profilePath="/coaching/profile"

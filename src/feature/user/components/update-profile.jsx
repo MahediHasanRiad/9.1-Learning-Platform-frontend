@@ -13,10 +13,10 @@ function UpdateProfile() {
     defaultValues: {
       name: "",
       mobile: "",
-      class: "",
-      subjectOfInterest: "",
+      address: "",
       coverImage: "",
       avatar: "",
+      bio: ""
     },
   });
 
@@ -31,23 +31,23 @@ function UpdateProfile() {
           <Controller
             name="name"
             control={control}
-            render={({ field }) => <InputField label="Name" {...field} />}
+            render={({ field }) => <InputField label="Name" placeholder="Mahedi Hasan Riad" {...field} />}
           />
           <Controller
             name="mobile"
             control={control}
-            render={({ field }) => <InputField label="Mobile" {...field} />}
+            render={({ field }) => <InputField label="Mobile" placeholder="015**********" {...field} />}
           />
           <Controller
-            name="class"
+            name="address"
             control={control}
-            render={({ field }) => <InputField label="Class" {...field} />}
+            render={({ field }) => <InputField label="Address" placeholder="mirpur 12, AJ avanue 56/A" {...field} />}
           />
           <Controller
-            name="subjectOfInterest"
+            name="bio"
             control={control}
             render={({ field }) => (
-              <InputField label="Subject Of Interest" {...field} />
+              <InputField label="Bio" placeholder="what's on your mind 🤔" {...field} />
             )}
           />
           <Controller

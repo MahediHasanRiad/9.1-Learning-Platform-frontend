@@ -1,10 +1,11 @@
 import { Quote } from "lucide-react";
-import React, { useState } from "react";
 import UserInfo from "../components/user-info";
-import CoachingInfo from "../components/coaching-info";
 import MainLayout from "@/layout/Main-Layout";
+import { useSelector } from "react-redux";
 
 function Profile() {
+
+  const {user} = useSelector((state) => state.auth)
 
   return (
     <MainLayout>
@@ -12,7 +13,7 @@ function Profile() {
         {/* cover-image  */}
         <section>
           <img
-            src="/public/cover-image.jpg"
+            src={user.coverImage}
             alt="coverImage"
             className="w-full object-full rounded-md h-55"
           />
@@ -22,22 +23,17 @@ function Profile() {
           <section className="grid md:grid-cols-2">
             <div>
               <img
-                src="/public/riad.png"
+                src={user.avatar}
                 alt="profile"
                 className="rounded-full object-cover w-40 h-40 ring mt-4"
               />
-              {coaching && (
-                <h1 className="mt-2 text-2xl font-semibold">
-                  Riad Coaching Center
-                </h1>
-              )}
             </div>
             <div className="p-6">
               <h4 className="text-sm my-6 italic w-4/5 md:w-2/3 mx-auto flex items-start justify-center gap-2 text-gray-600">
                 <Quote size={16} className="text-secondary-0 shrink-0" />
 
                 <span className="text-center">
-                  The only way to do great work is to love what you do
+                  {user.bio}
                 </span>
 
                 <Quote
@@ -49,7 +45,7 @@ function Profile() {
           </section>
           {/* info  */}
           <section className="mt-4">
-            <UserInfo />
+            <UserInfo user={user} />
           </section>
         </section>
       </section>
