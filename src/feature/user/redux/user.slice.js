@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { updateProfileAsyncThunk } from "./updateProfile.thunk";
+import { resetPasswordAsyncThunk } from "./resetPassword.thunk";
 
 const initialState = {
   user: null,
@@ -12,6 +13,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    // update profile
     builder
       .addCase(updateProfileAsyncThunk.pending, (state) => {
         state.loading = true;
@@ -26,6 +28,21 @@ const userSlice = createSlice({
       .addCase(updateProfileAsyncThunk.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      });
+
+    // reset password
+    builder
+      .addCase(resetPasswordAsyncThunk.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(resetPasswordAsyncThunk.fulfilled, (state, action) => {
+        state.error = null;
+        state.loading = true;
+        state.user = action.payload.data;
+      })
+      .addCase(resetPasswordAsyncThunk.rejected, (state, action) => {
+        state.error = action.payload;
+        state.loading = false;
       });
   },
 });
