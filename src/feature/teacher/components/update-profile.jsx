@@ -4,38 +4,14 @@ import InputField from "@/shared/utils/input";
 import MultiSelect from "@/shared/utils/multi-select";
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
-
-const items = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"];
-
-const dayOptions = [
-  "Saturday",
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-];
-const timeOptions = [
-  "6am - 7am",
-  "7am - 8am",
-  "8am - 9am",
-  "9am - 10am",
-  "10am - 11am",
-  "11am - 12pm",
-  "12pm - 1pm",
-  "1pm - 2pm",
-  "2pm - 3pm",
-  "3pm - 4pm",
-  "4pm - 5pm",
-  "5pm - 6pm",
-  "6pm - 7pm",
-  "7pm - 8pm",
-  "8pm - 9pm",
-  "9pm - 10pm",
-  "10pm - 11pm",
-  "11pm - 12am",
-];
+import { items } from "./data";
+import { dayOptions } from "./data";
+import { timeOptions } from "./data";
+import { useDispatch, useSelector } from "react-redux";
+import { updateProfileAsyncThunk } from "@/feature/user/redux/updateProfile.thunk";
+import { updateTeacherProfileAsyncThunk } from "../redux/profileUpdate.thunk";
+import { toast } from "sonner";
+import { useParams } from "react-router";
 
 function UpdateProfile() {
   const {
@@ -52,18 +28,49 @@ function UpdateProfile() {
       coverImage: "",
       education: "",
       experience: "",
-      certificates: "",
-      expartIn: "",
+      certificate: "",
+      // expartIn: "",
       availableDay: "",
       availableTime: "",
-      facebookLink: "",
-      linkedInLink: "",
+      facebook: "",
+      linkedIn: "",
       bio: "",
     },
   });
 
-  const saveData = (data) => {
-    console.log(data);
+  const dispatch = useDispatch();
+  const { id } = useParams();
+
+  const saveData = async (data) => {
+    try {
+      const formData = new FormData();
+      formData.append("name", data.name);
+      formData.append("address", data.address);
+      formData.append("mobile", data.mobile);
+      if (data.avatar?.[0]) formData.append("avatar", data.avatar[0]);
+      if (data.coverImage?.[0])
+        formData.append("coverImage", data.coverImage[0]);
+      formData.append("bio", data.bio);
+      formData.append("facebook", data.facebook);
+      formData.append("linkedIn", data.linkedIn);
+      formData.append("education", data.education);
+      formData.append("experience", data.experience);
+      if (data.certificate) {
+        Array.from(data.certificate).forEach((file) =>
+          formData.append("certificate", file),
+        );
+      }
+      formData.append("availableDay", data.availableDay);
+      formData.append("availableTime", data.availableTime);
+
+      (await dispatch(
+        updateTeacherProfileAsyncThunk({ id: id, formData }),
+      ).unwrap(),
+        toast.success("Successfully Updated"));
+      reset();
+    } catch (error) {
+      toast.error(error);
+    }
   };
 
   return (
@@ -163,14 +170,14 @@ function UpdateProfile() {
             )}
           />
           <Controller
-            name="certificates"
+            name="certificate"
             control={control}
             render={({ field: { onChange, value, ...field } }) => (
               <CustomInput
                 type="file"
-                labelText={"Certificates"}
+                labelText={"Certificate"}
                 multiple={true}
-                label="Certificates"
+                label="Certificate"
                 {...field}
                 onChange={(e) => {
                   // convet in array
@@ -180,7 +187,7 @@ function UpdateProfile() {
               />
             )}
           />
-          <Controller
+          {/* <Controller
             name="expartIn"
             control={control}
             defaultValue={[]}
@@ -192,9 +199,9 @@ function UpdateProfile() {
                 {...field}
               />
             )}
-          />
+          /> */}
           <Controller
-            name="availableDays"
+            name="availableDay"
             control={control}
             defaultValue={[]}
             render={({ field }) => (
@@ -220,7 +227,7 @@ function UpdateProfile() {
             )}
           />
           <Controller
-            name="facebookLink"
+            name="facebook"
             control={control}
             render={({ field }) => (
               <InputField
@@ -231,7 +238,7 @@ function UpdateProfile() {
             )}
           />
           <Controller
-            name="linkedInLink"
+            name="linkedIn"
             control={control}
             render={({ field }) => (
               <InputField

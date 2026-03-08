@@ -9,7 +9,7 @@ import Button from "@/shared/utils/button.jsx";
 function MainLayout({ children }) {
   const [open, setOpen] = useState(false);
   // role
-  const { user } = useSelector((state) => state.auth);
+  const { user, teacher } = useSelector((state) => state.auth);
 
   return (
     <section className="w-5/6 m-auto">
@@ -43,13 +43,13 @@ function MainLayout({ children }) {
                 {user.role === "Teacher" && (
                   <ProfileDropdown
                     profile={true}
-                    profilePath={`/teacher/profile/${user._id}`}
+                    profilePath={`/teacher/profile/${teacher._id}`}
                     dashboard={true}
-                    dashboardPath={`/teacher/dashboard/${user._id}`}
+                    dashboardPath={`/teacher/dashboard/${teacher._id}`}
                     enrolledBatch={true}
-                    enrolledBatchPath={`/teacher/enrolled/${user._id}`}
+                    enrolledBatchPath={`/teacher/enrolled/${teacher._id}`}
                     connectedBatch={true}
-                    connectedCoachingPath={`/teacher/connected-coaching/${user._id}`}
+                    connectedCoachingPath={`/teacher/connected-coaching/${teacher._id}`}
                     // becomeUser="/teacher/user"
                     // becomeUserPath="/teacher/user"
                   />
