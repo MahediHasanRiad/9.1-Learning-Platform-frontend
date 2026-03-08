@@ -10,7 +10,7 @@ function MainLayout({ children }) {
   const [open, setOpen] = useState(false);
   // role
   const { user } = useSelector((state) => state.auth);
-console.log('user', user)
+
   return (
     <section className="w-5/6 m-auto">
       <nav className="w-full my-4 flex justify-center">
@@ -36,8 +36,8 @@ console.log('user', user)
                     dashboardPath={`/user/dashboard/${user._id}`}
                     enrolledBatch={true}
                     enrolledBatchPath={`/user/enrolled/${user._id}`}
-                    // becomeTeacherBatch={true}
-                    // becomeTeacherPath="/user/teacher"
+                    becomeTeacher={true}
+                    becomeTeacherPath="/becomeTeacher"
                   />
                 )}
                 {user.role === "Teacher" && (
@@ -50,8 +50,8 @@ console.log('user', user)
                     enrolledBatchPath="/teacher/enrolled"
                     connectedBatch={true}
                     connectedCoachingPath="/teacher/connected-coaching"
-                    // becomeUser="/teacher/user"
-                    // becomeUserPath="/teacher/user"
+                    becomeUser="/teacher/user"
+                    becomeUserPath="/teacher/user"
                   />
                 )}
                 {user.role === "Coaching" && (

@@ -16,6 +16,7 @@ import {
   LogOutIcon,
   School,
   ChessQueen,
+  TypeOutline,
 } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router";
@@ -31,8 +32,10 @@ function ProfileDropdown({
   connectedCoachingPath = "#",
   coachingStaff = false,
   coachingStaffPath = false,
-  coachingBatch = false,
-  coachingBatchPath = false,
+  becomeTeacher = false,
+  becomeTeacherPath = '#',
+  becomeUser = false,
+  becomeUserPath = '#'
 }) {
   const dispatch = useDispatch();
 
@@ -64,11 +67,27 @@ function ProfileDropdown({
               </DropdownMenuItem>
             </Link>
           )}
+          {becomeTeacher && (
+            <Link to={becomeTeacherPath}>
+              <DropdownMenuItem>
+                <TypeOutline />
+                Become A Teacher
+              </DropdownMenuItem>
+            </Link>
+          )}
           {enrolledBatch && (
             <Link to={enrolledBatchPath}>
               <DropdownMenuItem>
                 <Library />
                 Enrolled Batch
+              </DropdownMenuItem>
+            </Link>
+          )}
+          {becomeUser && (
+            <Link to={becomeUserPath}>
+              <DropdownMenuItem>
+                <UserPen />
+                Become A User
               </DropdownMenuItem>
             </Link>
           )}

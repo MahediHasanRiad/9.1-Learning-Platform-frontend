@@ -20,6 +20,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setUser } from "@/feature/auth/redux/auth.slice";
 import { toast } from "sonner";
+import BecomeATeacher from "@/feature/teacher/pages/become-teacher.page";
 
 function App() {
   const dispatch = useDispatch();
@@ -53,6 +54,7 @@ function App() {
         <Route path="/coaching" element={<CoachingPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/becomeTeacher" element={<BecomeATeacher />} />
 
         {/* user  */}
         <Route path="/user/profile/:id" element={<Profile />} />
@@ -63,10 +65,7 @@ function App() {
         <Route path="/teacher/profile" element={<TeacherProfile />} />
         <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
         <Route path="/teacher/enrolled" element={<TeacherEnrolledBatch />} />
-        <Route
-          path="/teacher/connected-coaching"
-          element={<ConnectedCoaching />}
-        />
+        <Route path="/teacher/connected-coaching" element={<ConnectedCoaching />}/>
 
         {/* coaching  */}
         <Route path="/coaching/profile" element={<CoachingProfile />} />
