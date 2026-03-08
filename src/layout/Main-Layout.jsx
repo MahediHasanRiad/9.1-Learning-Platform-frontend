@@ -43,13 +43,13 @@ function MainLayout({ children }) {
                 {user.role === "Teacher" && (
                   <ProfileDropdown
                     profile={true}
-                    profilePath={`/teacher/profile/${teacher._id}`}
+                    profilePath={`/teacher/profile/${user._id}`}
                     dashboard={true}
-                    dashboardPath={`/teacher/dashboard/${teacher._id}`}
+                    dashboardPath={`/teacher/dashboard/${user._id}`}
                     enrolledBatch={true}
-                    enrolledBatchPath={`/teacher/enrolled/${teacher._id}`}
+                    enrolledBatchPath={`/teacher/enrolled/${user._id}`}
                     connectedBatch={true}
-                    connectedCoachingPath={`/teacher/connected-coaching/${teacher._id}`}
+                    connectedCoachingPath={`/teacher/connected-coaching/${user._id}`}
                     // becomeUser="/teacher/user"
                     // becomeUserPath="/teacher/user"
                   />

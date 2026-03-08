@@ -1,8 +1,12 @@
+import { createSubjectAsyncThunk } from "@/feature/teacher/redux/createSubject.thunk";
 import Button from "@/shared/utils/button";
 import ErrorMsg from "@/shared/utils/error-msg";
 import InputField from "@/shared/utils/input";
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router";
+import { toast } from "sonner";
 
 function AddNewSubject() {
   const {
@@ -13,12 +17,22 @@ function AddNewSubject() {
   } = useForm({
     defaultValues: {
       name: "",
-      class: "",
+      className: "",
     },
   });
 
-  const saveData = (data) => {
-    console.log(data)
+  const {id} = useParams()
+  const dispatch = useDispatch()
+
+  const saveData = async (data) => {
+    try {
+      console.log(data)
+      await dispatch(createSubjectAsyncThunk(data)).unwrap()
+      reset()
+      toast.success('Suject Created Successfully')
+    } catch (error) {
+      toast.error(error)
+    }
   }
 
   return (
@@ -40,7 +54,7 @@ function AddNewSubject() {
           </div>
           <div>
             <Controller
-              name="class"
+              name="className"
               control={control}
               rules={{
                 required: "Class Name are required !",
