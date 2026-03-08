@@ -23,6 +23,7 @@ import { toast } from "sonner";
 import BecomeATeacher from "@/feature/teacher/pages/become-teacher.page";
 
 function App() {
+
   const dispatch = useDispatch();
   const location = useLocation();
 
@@ -30,7 +31,7 @@ function App() {
     const authRouter = ["/register", "/signin"];
     if (authRouter.includes(location.pathname)) return;
 
-    (async () => {
+    ;(async () => {
       try {
         const response = await axios.get("/api/v1/me", {
           withCredentials: true,

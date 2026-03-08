@@ -43,9 +43,9 @@ function MainLayout({ children }) {
                 {user.role === "Teacher" && (
                   <ProfileDropdown
                     profile={true}
-                    profilePath={`/teacher/profile/${user._id}`}
+                    profilePath={`/teacher/profile/${teacher._id}`}
                     dashboard={true}
-                    dashboardPath={`/teacher/dashboard/${user._id}`}
+                    dashboardPath={`/teacher/dashboard/${teacher._id}`}
                     enrolledBatch={true}
                     enrolledBatchPath={`/teacher/enrolled/${user._id}`}
                     connectedBatch={true}
