@@ -18,6 +18,7 @@ function CustomMultiSelect({
   label,
   value = [],
   itemList = [],
+  multiple = true,
   onChange,
   id = "customSelect",
 }) {
@@ -32,7 +33,7 @@ function CustomMultiSelect({
       </Label>
 
       <Combobox
-        multiple
+        multiple = {multiple}
         items={itemList}
         value={value}
         onValueChange={onChange}
@@ -50,7 +51,7 @@ function CustomMultiSelect({
 
                     return (
                       <ComboboxChip key={val} value={val}>
-                        {item.label}
+                        {item.value}
                       </ComboboxChip>
                     );
                   })}
@@ -67,7 +68,7 @@ function CustomMultiSelect({
 
           <ComboboxList>
             {(item) => (
-              <ComboboxItem key={item.id} value={item.value}>
+              <ComboboxItem key={item.id} value={item.id}>
                 <Item size="xs" className="p-0">
                   <ItemContent>
                     <ItemTitle className="whitespace-nowrap">
@@ -80,7 +81,7 @@ function CustomMultiSelect({
                           />
                         )}
 
-                        <span>{item.label}</span>
+                        <span>{item.value}</span>
                       </div>
                     </ItemTitle>
 
