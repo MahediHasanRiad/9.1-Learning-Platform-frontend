@@ -62,10 +62,10 @@ function App() {
         <Route path="/user/enrolled/:id" element={<UserEnrolledBatch />} />
 
         {/* teacher  */}
-        <Route path="/teacher/profile" element={<TeacherProfile />} />
-        <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
-        <Route path="/teacher/enrolled" element={<TeacherEnrolledBatch />} />
-        <Route path="/teacher/connected-coaching" element={<ConnectedCoaching />}/>
+        <Route path="/teacher/profile/:id" element={<TeacherProfile />} />
+        <Route path="/teacher/dashboard/:id" element={<TeacherDashboard />} />
+        <Route path="/teacher/enrolled/:id" element={<TeacherEnrolledBatch />} />
+        <Route path="/teacher/connected-coaching/:id" element={<ConnectedCoaching />}/>
 
         {/* coaching  */}
         <Route path="/coaching/profile" element={<CoachingProfile />} />

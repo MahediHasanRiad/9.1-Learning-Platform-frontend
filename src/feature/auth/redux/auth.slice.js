@@ -5,6 +5,7 @@ import { logoutAsyncThunk } from "./logout.thunk";
 
 const initialState = {
   user: null,
+  teacher: null,
   loading: false,
   error: null,
 };
@@ -15,7 +16,8 @@ const authSlice = createSlice({
   reducers: {
     logout: () => {},
     setUser: (state, action) => {
-      state.user = action.payload;
+      state.user = action.payload.user;
+      state.teacher = action.payload.teacher;
     },
   },
   extraReducers: (builder) => {

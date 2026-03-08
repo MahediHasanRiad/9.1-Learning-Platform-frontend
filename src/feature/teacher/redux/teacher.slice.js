@@ -20,7 +20,7 @@ const teacherSlice = createSlice({
       .addCase(createTeacherAsyncThunk.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        console.log("asy", action.payload);
+        state.user = action.payload.data;
       })
       .addCase(createTeacherAsyncThunk.rejected, (state, action) => {
         state.loading = false;

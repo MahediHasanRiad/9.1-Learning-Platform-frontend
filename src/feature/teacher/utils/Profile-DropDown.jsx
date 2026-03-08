@@ -38,6 +38,7 @@ function ProfileDropdown({
   becomeUserPath = '#'
 }) {
   const dispatch = useDispatch();
+  
 
   return (
     <DropdownMenu>
