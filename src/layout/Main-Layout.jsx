@@ -1,4 +1,4 @@
-import ProfileDropdown from "@/feature/teacher/utils/Profile-DropDown.jsx";
+import ProfileDropdown from "@/layout/components/Profile-DropDown.jsx";
 import Menu from "./components/nav-menu.jsx";
 import { useState } from "react";
 import { Menu as MenuIcon, X } from "lucide-react";
@@ -31,11 +31,11 @@ function MainLayout({ children }) {
                 {user.role === "User" && (
                   <ProfileDropdown
                     profile={true}
-                    profilePath={`/user/profile/${user._id}`}
+                    profilePath={`/user/profile/${user?._id}`}
                     dashboard={true}
-                    dashboardPath={`/user/dashboard/${user._id}`}
+                    dashboardPath={`/user/dashboard/${user?._id}`}
                     enrolledBatch={true}
-                    enrolledBatchPath={`/user/enrolled/${user._id}`}
+                    enrolledBatchPath={`/user/enrolled/${user?._id}`}
                     becomeTeacher={true}
                     becomeTeacherPath="/becomeTeacher"
                     coachingPage={true}
@@ -45,13 +45,13 @@ function MainLayout({ children }) {
                 {user.role === "Teacher" && (
                   <ProfileDropdown
                     profile={true}
-                    profilePath={`/teacher/profile/${teacher._id}`}
+                    profilePath={`/teacher/profile/${teacher?._id}`}
                     dashboard={true}
-                    dashboardPath={`/teacher/dashboard/${teacher._id}`}
+                    dashboardPath={`/teacher/dashboard/${teacher?._id}`}
                     enrolledBatch={true}
-                    enrolledBatchPath={`/teacher/enrolled/${user._id}`}
+                    enrolledBatchPath={`/teacher/enrolled/${user?._id}`}
                     connectedBatch={true}
-                    connectedCoachingPath={`/teacher/connected-coaching/${user._id}`}
+                    connectedCoachingPath={`/teacher/connected-coaching/${user?._id}`}
                     coachingPage={true}
                     coachingPagePath="/coaching"
                   />
@@ -64,8 +64,8 @@ function MainLayout({ children }) {
                     dashboardPath="/coaching/dashboard"
                     coachingStaff={true}
                     coachingStaffPath={"/coaching/staff"}
-                    // coachingBatch={true}
-                    // coachingBatchPath='coaching/batches'
+                    coachingBatch={true}
+                    coachingBatchPath='coaching/batches'
                   />
                 )}
               </div>

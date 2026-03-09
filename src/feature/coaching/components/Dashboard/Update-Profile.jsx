@@ -4,6 +4,10 @@ import InputField from "@/shared/utils/input";
 import Time from "@/shared/utils/time";
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "sonner";
+import { updateCoachingProfileAsynkThunk } from "../../redux/updateCoachingProfile.thunk";
+import { useParams } from "react-router";
 
 function UpdateProfile() {
   const {
@@ -14,10 +18,8 @@ function UpdateProfile() {
   } = useForm({
     defaultValues: {
       email: "",
-      name: "",
+      CcName: "",
       address: "",
-      city: "",
-      country: "",
       contact: "",
       avatar: "",
       coverImage: "",
@@ -29,16 +31,41 @@ function UpdateProfile() {
     },
   });
 
-  const saveData = (data) => {
-    const formatted = data.officeTime?.map((t) => t.format("HH:mm"));
+  const dispatch = useDispatch()
+  const {coaching} = useSelector((state) => state.auth)
 
-    const finalData = {
-      ...data,
-      officeTime: formatted,
-    };
+  const saveData = async (data) => {
+    try {
+      // const formattedTime = data.officeTime?.map((t) => t.format("HH:mm"));
 
-    console.log(finalData);
-  };
+      const formData = new FormData();
+      formData.append("CcName", data.CcName);
+      formData.append("email", data.email);
+      formData.append("address", data.address);
+      formData.append("contact", data.contact);
+      formData.append("bio", data.bio || "");
+      formData.append("website", data.website || "");
+      formData.append("linkedIn", data.linkedIn || "");
+      formData.append("facebook", data.facebook || "");
+
+      // if (formattedTime) {
+        // formattedTime.forEach(time => formData.append("officeTime", time));
+      // }
+      if (data.avatar) formData.append("avatar", data.avatar);
+      if (data.coverImage) formData.append("coverImage", data.coverImage);
+
+      await dispatch(updateCoachingProfileAsynkThunk({
+        id: coaching._id, 
+        formData
+      })).unwrap();
+
+      reset();
+      toast.success('Successfully Updated');
+
+    } catch (error) {
+      toast.error(error);
+    }
+};
 
   return (
     <section>
@@ -58,12 +85,12 @@ function UpdateProfile() {
             )}
           />
           <Controller
-            name="name"
+            name="CcName"
             control={control}
             render={({ field }) => (
               <InputField
                 label="Name"
-                placeholder="mahedi hasan riad"
+                placeholder="RST institute..."
                 {...field}
               />
             )}
@@ -77,20 +104,6 @@ function UpdateProfile() {
                 placeholder="mirpur 10, JB/156B.."
                 {...field}
               />
-            )}
-          />
-          <Controller
-            name="city"
-            control={control}
-            render={({ field }) => (
-              <InputField label="City" placeholder="Dhaka" {...field} />
-            )}
-          />
-          <Controller
-            name="country"
-            control={control}
-            render={({ field }) => (
-              <InputField label="Country" placeholder="Bangladesh" {...field} />
             )}
           />
           <div>

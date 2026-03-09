@@ -17,15 +17,14 @@ import CoachingStaff from "@/feature/coaching/pages/coaching-staff";
 import Register from "@/feature/auth/pages/register.page";
 import LogIn from "@/feature/auth/pages/login.page";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { setUser } from "@/feature/auth/redux/auth.slice";
+import { useDispatch, useSelector } from "react-redux";
+import { setCoaching, setUser } from "@/feature/auth/redux/auth.slice";
 import { toast } from "sonner";
 import BecomeATeacher from "@/feature/teacher/pages/become-teacher.page";
 import CreateCoaching from "@/feature/coaching/pages/create-coaching.page";
 import Home from "@/feature/Home/pages/home.page";
 
 function App() {
-
   const dispatch = useDispatch();
   const location = useLocation();
 
@@ -33,17 +32,32 @@ function App() {
     const authRouter = ["/register", "/signin"];
     if (authRouter.includes(location.pathname)) return;
 
-    ;(async () => {
+    const fetchUserData = async () => {
       try {
-        const response = await axios.get("/api/v1/me", {
+        // user
+        const userRes = await axios.get("/api/v1/me", {
           withCredentials: true,
         });
-        dispatch(setUser(response.data.data));
+        dispatch(setUser(userRes.data.data));
+
+        // coaching
+        if (userRes) {
+          const coachingRes = await axios.get(
+            `/api/v1/coaching-center-by-user`,
+          );
+          dispatch(setCoaching(coachingRes.data));
+        }
       } catch (error) {
-        toast.error(error.response?.data?.message || "Authentication failed");
+        const message =
+          error.response?.data?.message || "Authentication failed";
+        toast.error(typeof message === "string" ? message : "Error occurred");
       }
-    })();
-  }, []);
+    };
+
+    fetchUserData();
+  }, [dispatch, location.pathname]);
+
+
 
   return (
     <section>
@@ -64,15 +78,21 @@ function App() {
         <Route path="/user/profile/:id" element={<Profile />} />
         <Route path="/user/dashboard/:id" element={<UserDashboard />} />
         <Route path="/user/enrolled/:id" element={<UserEnrolledBatch />} />
-        <Route path="/coaching" element={<CreateCoaching />} />
 
         {/* teacher  */}
         <Route path="/teacher/profile/:id" element={<TeacherProfile />} />
         <Route path="/teacher/dashboard/:id" element={<TeacherDashboard />} />
-        <Route path="/teacher/enrolled/:id" element={<TeacherEnrolledBatch />} />
-        <Route path="/teacher/connected-coaching/:id" element={<ConnectedCoaching />}/>
+        <Route
+          path="/teacher/enrolled/:id"
+          element={<TeacherEnrolledBatch />}
+        />
+        <Route
+          path="/teacher/connected-coaching/:id"
+          element={<ConnectedCoaching />}
+        />
 
         {/* coaching  */}
+        <Route path="/coaching" element={<CreateCoaching />} />
         <Route path="/coaching/profile" element={<CoachingProfile />} />
         <Route path="/coaching/dashboard" element={<CoachingDashboard />} />
         <Route path="/coaching/staff" element={<CoachingStaff />} />

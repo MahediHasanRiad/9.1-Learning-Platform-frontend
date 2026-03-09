@@ -19,8 +19,9 @@ import {
   TypeOutline,
   AlignEndVertical,
 } from "lucide-react";
-import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate, useParams } from "react-router";
+import { useProfileDropDown } from "../hook/userProfile";
 
 function ProfileDropdown({
   profile = false,
@@ -41,6 +42,8 @@ function ProfileDropdown({
   coachingPagePath = "#",
 }) {
   const dispatch = useDispatch();
+  const {user} = useSelector((state) => state.auth)
+  const {updateInTeacherRole} = useProfileDropDown({id: user._id})
 
   return (
     <DropdownMenu>

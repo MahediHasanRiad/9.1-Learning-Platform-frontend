@@ -35,10 +35,10 @@ function CreateCoaching() {
       })).unwrap();
 
       toast.success("Success");
-      navigate("/teachers");
+      navigate("/");
       reset();
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error);
     }
   };
 

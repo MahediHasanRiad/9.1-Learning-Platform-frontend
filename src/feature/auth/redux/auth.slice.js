@@ -6,6 +6,8 @@ import { logoutAsyncThunk } from "./logout.thunk";
 const initialState = {
   user: null,
   teacher: null,
+  coaching: null,
+  role: null,
   loading: false,
   error: null,
 };
@@ -19,6 +21,9 @@ const authSlice = createSlice({
       state.user = action.payload.user;
       state.teacher = action.payload.teacher;
     },
+    setCoaching: (state, action) => {
+      state.coaching = action.payload.data;
+    }
   },
   extraReducers: (builder) => {
     // registration
@@ -71,5 +76,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { logout, setUser } = authSlice.actions;
+export const { logout, setUser, setCoaching } = authSlice.actions;
 export default authSlice.reducer;
