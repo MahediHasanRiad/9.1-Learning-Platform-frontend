@@ -20,7 +20,7 @@ function UpdateProfile() {
       email: "",
       CcName: "",
       address: "",
-      contact: "",
+      mobile: "",
       avatar: "",
       coverImage: "",
       bio: "",
@@ -42,7 +42,7 @@ function UpdateProfile() {
       formData.append("CcName", data.CcName);
       formData.append("email", data.email);
       formData.append("address", data.address);
-      formData.append("contact", data.contact);
+      formData.append("mobile", data.mobile);
       formData.append("bio", data.bio || "");
       formData.append("website", data.website || "");
       formData.append("linkedIn", data.linkedIn || "");
@@ -78,9 +78,7 @@ function UpdateProfile() {
               <InputField
                 label="Email"
                 placeholder="riad@gmail.com"
-                readOnly
                 {...field}
-                className="border border-gray-300"
               />
             )}
           />
@@ -108,7 +106,7 @@ function UpdateProfile() {
           />
           <div>
             <Controller
-            name="contact"
+            name="mobile"
             control={control}
             rules={{
               pattern: {

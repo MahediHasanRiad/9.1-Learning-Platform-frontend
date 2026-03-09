@@ -1,22 +1,22 @@
 import React from "react";
-import Info from "@/feature/coaching/components/Coaching-Profile/info";
-import TopImagees from "@/feature/coaching/components/Coaching-Profile/top-image";
-import Teachers from "@/feature/coaching/components/Coaching-Profile/teachers";
-import Batch from "@/feature/coaching/components/Coaching-Profile/batch";
 import MainLayout from "@/layout/Main-Layout";
 import CoachingInfo from "@/feature/user/components/coaching-info";
 import { Quote } from "lucide-react";
+import { useSelector } from "react-redux";
 
 
 
 function CoachingProfile() {
+
+  const {coaching} = useSelector((state) => state.auth)
+
   return (
    <MainLayout>
       <section className="w-2/3 mx-auto">
         {/* cover-image  */}
         <section>
           <img
-            src="/public/cover-image.jpg"
+            src={coaching?.coverImage}
             alt="coverImage"
             className="w-full object-full rounded-md h-55"
           />
@@ -26,13 +26,13 @@ function CoachingProfile() {
           <section className="grid md:grid-cols-2">
             <div>
               <img
-                src="/public/riad.png"
+                src={coaching?.avatar}
                 alt="profile"
                 className="rounded-full object-cover w-40 h-40 ring mt-4"
               />
               
                 <h1 className="mt-2 text-2xl font-semibold">
-                  Riad Coaching Center
+                  {coaching?.CcName}
                 </h1>
               
             </div>
@@ -41,7 +41,7 @@ function CoachingProfile() {
                 <Quote size={16} className="text-secondary-0 shrink-0" />
 
                 <span className="text-center">
-                  The only way to do great work is to love what you do
+                  {coaching?.bio}
                 </span>
 
                 <Quote
@@ -53,7 +53,7 @@ function CoachingProfile() {
           </section>
           {/* info  */}
           <section className="mt-4">
-            <CoachingInfo />
+            <CoachingInfo coaching = {coaching} />
           </section>
         </section>
       </section>

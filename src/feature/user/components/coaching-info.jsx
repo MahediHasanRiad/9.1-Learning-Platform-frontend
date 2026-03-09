@@ -13,7 +13,7 @@ import InfoMenuItem from "../utils/info-menu-item";
 import CoachingBatchCard from "@/feature/coaching/components/Coaching-Batch-Card";
 import TeacherCard from "./teachersCard";
 
-function CoachingInfo() {
+function CoachingInfo({coaching}) {
   const {
     about,
     handleAbout,
@@ -24,7 +24,7 @@ function CoachingInfo() {
     admin,
     handleAdmin,
   } = useCoachingInfo();
-
+console.log('d', coaching)
   return (
     <section>
       <section className="h-15 w-full mx-auto flex items-center border-b">
@@ -41,12 +41,12 @@ function CoachingInfo() {
       {/* about  */}
       {about && (
         <section className="mt-4">
-          <InfoMenuItem Icon={BookUser} text={"Uttora, Dhaka 1208"} />
-          <InfoMenuItem Icon={Contact} text={"01518949131"} />
-          <InfoMenuItem Icon={Clock7} text={"10am - 8pm"} />
-          <InfoMenuItem Icon={Mail} text={"riad@gmail.com"} />
-          <InfoMenuItem Icon={Linkedin} text={"rst/abc.com"} />
-          <InfoMenuItem Icon={Facebook} text={"rst/abc.com"} />
+          <InfoMenuItem Icon={BookUser} text={coaching?.address} />
+          <InfoMenuItem Icon={Contact} text={coaching?.mobile} />
+          <InfoMenuItem Icon={Clock7} text={coaching?.officeTime} />
+          <InfoMenuItem Icon={Mail} text={coaching?.email} />
+          <InfoMenuItem Icon={Linkedin} text={coaching?.linkedIn} />
+          <InfoMenuItem Icon={Facebook} text={coaching?.facebook} />
         </section>
       )}
 
