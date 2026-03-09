@@ -22,6 +22,7 @@ import { setUser } from "@/feature/auth/redux/auth.slice";
 import { toast } from "sonner";
 import BecomeATeacher from "@/feature/teacher/pages/become-teacher.page";
 import CreateCoaching from "@/feature/coaching/pages/create-coaching.page";
+import Home from "@/feature/Home/pages/home.page";
 
 function App() {
 
@@ -52,6 +53,7 @@ function App() {
         <Route path="/signin" element={<LogIn />} />
 
         {/* Home pages  */}
+        <Route path="/" element={<Home />} />
         <Route path="/teachers" element={<TeachersPage />} />
         <Route path="/coaching-centers" element={<CoachingPage />} />
         <Route path="/about" element={<About />} />

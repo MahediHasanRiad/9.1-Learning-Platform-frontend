@@ -17,7 +17,7 @@ function MainLayout({ children }) {
         <section className="w-5/6 p-3 flex items-center justify-between ">
           {/* Logo */}
           <div className="text-xl font-bold">
-            <Link to={"/teachers"}>Logo</Link>
+            <Link to={"/"}>Logo</Link>
           </div>
 
           {/* Desktop Menu */}
