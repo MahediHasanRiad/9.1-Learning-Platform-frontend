@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 import { createTeacherAsyncThunk } from "../redux/createTeacher.thunk";
 import { useNavigate } from "react-router";
-import { updateProfileAsyncThunk } from "@/feature/user/redux/updateProfile.thunk";
+import ErrorMsg from "@/shared/utils/error-msg";
 
 function BecomeATeacher() {
   const {
@@ -41,7 +41,7 @@ function BecomeATeacher() {
       }
 
       // unwrap => convert in promise for proper working pending/fullfill/reject
-      await dispatch(createTeacherAsyncThunk(formData)).unwrap(); 
+      await dispatch(createTeacherAsyncThunk(formData)).unwrap();
 
       toast.success("Success");
       navigate("/teachers");
@@ -64,46 +64,58 @@ function BecomeATeacher() {
         <div className="">
           <form onSubmit={handleSubmit(saveData)}>
             <section className="md:w-2/4 mx-auto space-y-4">
-              <Controller
-                name="education"
-                control={control}
-                render={({ field }) => (
-                  <InputField
-                    label="Education"
-                    placeholder="BSc in Computer Science at BRACK"
-                    {...field}
-                  />
-                )}
-              />
-              <Controller
-                name="experienceOfYears"
-                control={control}
-                render={({ field }) => (
-                  <InputField
-                    label="Experience"
-                    placeholder="6 years of experience in IT"
-                    {...field}
-                  />
-                )}
-              />
-              <Controller
-                name="certificates"
-                control={control}
-                render={({ field: { onChange, value, ...field } }) => (
-                  <CustomInput
-                    type="file"
-                    labelText={"Certificates"}
-                    multiple={true}
-                    label="Certificates"
-                    {...field}
-                    onChange={(e) => {
-                      // convet in array
-                      const files = Array.from(e.target.files);
-                      onChange(files);
-                    }}
-                  />
-                )}
-              />
+              <div>
+                <Controller
+                  name="education"
+                  rules={{
+                    required: "Education field are required !!!",
+                  }}
+                  control={control}
+                  render={({ field }) => (
+                    <InputField
+                      label="Education *"
+                      placeholder="BSc in Computer Science at BRACK"
+                      {...field}
+                    />
+                  )}
+                />
+                {<ErrorMsg text={errors.education?.message} />}
+              </div>
+              <div>
+                <Controller
+                  name="experience"
+                  control={control}
+                  render={({ field }) => (
+                    <InputField
+                      label="Experience"
+                      placeholder="6 years of experience in IT"
+                      {...field}
+                    />
+                  )}
+                />
+                {<ErrorMsg text={errors.experience?.message} />}
+              </div>
+              <div>
+                <Controller
+                  name="certificates"
+                  control={control}
+                  render={({ field: { onChange, value, ...field } }) => (
+                    <CustomInput
+                      type="file"
+                      labelText={"Certificates"}
+                      multiple={true}
+                      label="Certificates"
+                      {...field}
+                      onChange={(e) => {
+                        // convet in array
+                        const files = Array.from(e.target.files);
+                        onChange(files);
+                      }}
+                    />
+                  )}
+                />
+                {<ErrorMsg text={errors.certificates?.message} />}
+              </div>
               {/* submit btn  */}
               <Button text={"Create"} className={"w-full mt-5"} />
             </section>

@@ -23,7 +23,7 @@ function MainLayout({ children }) {
           {/* Desktop Menu */}
           <div className="hidden lg:flex gap-6 items-center">
             <Menu text="Teacher" path={"teachers"} />
-            <Menu text="Coaching" path={"coaching"} />
+            <Menu text="Coaching" path={"coaching-centers"} />
             <Menu text="About" path="about" />
             <Menu text="Contact" path="contact" />
             {user ? (
@@ -38,6 +38,8 @@ function MainLayout({ children }) {
                     enrolledBatchPath={`/user/enrolled/${user._id}`}
                     becomeTeacher={true}
                     becomeTeacherPath="/becomeTeacher"
+                    coachingPage={true}
+                    coachingPagePath="/coaching"
                   />
                 )}
                 {user.role === "Teacher" && (
@@ -50,8 +52,8 @@ function MainLayout({ children }) {
                     enrolledBatchPath={`/teacher/enrolled/${user._id}`}
                     connectedBatch={true}
                     connectedCoachingPath={`/teacher/connected-coaching/${user._id}`}
-                    // becomeUser="/teacher/user"
-                    // becomeUserPath="/teacher/user"
+                    coachingPage={true}
+                    coachingPagePath="/coaching"
                   />
                 )}
                 {user.role === "Coaching" && (

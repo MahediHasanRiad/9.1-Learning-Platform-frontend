@@ -26,7 +26,7 @@ function TeacherInfo({ user, teacher }) {
     demoClass,
     handleDemoClass,
   } = useTeacherInfo();
-
+console.log('t', teacher)
   return (
     <section>
       <section className="h-15 flex items-center border-b">

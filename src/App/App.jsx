@@ -21,6 +21,7 @@ import { useDispatch } from "react-redux";
 import { setUser } from "@/feature/auth/redux/auth.slice";
 import { toast } from "sonner";
 import BecomeATeacher from "@/feature/teacher/pages/become-teacher.page";
+import CreateCoaching from "@/feature/coaching/pages/create-coaching.page";
 
 function App() {
 
@@ -52,7 +53,7 @@ function App() {
 
         {/* Home pages  */}
         <Route path="/teachers" element={<TeachersPage />} />
-        <Route path="/coaching" element={<CoachingPage />} />
+        <Route path="/coaching-centers" element={<CoachingPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/becomeTeacher" element={<BecomeATeacher />} />
@@ -61,6 +62,7 @@ function App() {
         <Route path="/user/profile/:id" element={<Profile />} />
         <Route path="/user/dashboard/:id" element={<UserDashboard />} />
         <Route path="/user/enrolled/:id" element={<UserEnrolledBatch />} />
+        <Route path="/coaching" element={<CreateCoaching />} />
 
         {/* teacher  */}
         <Route path="/teacher/profile/:id" element={<TeacherProfile />} />

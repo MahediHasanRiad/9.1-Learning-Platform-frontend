@@ -6,8 +6,7 @@ import { useSelector } from "react-redux";
 function TeacherProfile() {
 
   const {teacher, user} = useSelector((state) => state.auth)
-console.log('t', teacher)
-console.log('u', user)
+
   return (
     <MainLayout>
       <section className="w-2/3 mx-auto">

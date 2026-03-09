@@ -17,6 +17,7 @@ import {
   School,
   ChessQueen,
   TypeOutline,
+  AlignEndVertical,
 } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router";
@@ -33,12 +34,13 @@ function ProfileDropdown({
   coachingStaff = false,
   coachingStaffPath = false,
   becomeTeacher = false,
-  becomeTeacherPath = '#',
+  becomeTeacherPath = "#",
   becomeUser = false,
-  becomeUserPath = '#'
+  becomeUserPath = "#",
+  coachingPage = true,
+  coachingPagePath = "#",
 }) {
   const dispatch = useDispatch();
-  
 
   return (
     <DropdownMenu>
@@ -89,6 +91,14 @@ function ProfileDropdown({
               <DropdownMenuItem>
                 <UserPen />
                 Become A User
+              </DropdownMenuItem>
+            </Link>
+          )}
+          {coachingPage && (
+            <Link to={coachingPagePath}>
+              <DropdownMenuItem>
+                <AlignEndVertical />
+                Coaching Page
               </DropdownMenuItem>
             </Link>
           )}
