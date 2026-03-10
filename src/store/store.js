@@ -5,6 +5,10 @@ import teacherReducer from '../feature/teacher/redux/teacher.slice';
 import subjectReducer from '../feature/teacher/redux/subject.slice';
 import demoClassReducer from '../feature/teacher/redux/demoClass.slice';
 import coachingReducer from '../feature/coaching/redux/coaching.slice';
+import coachingStaffReducer from '../feature/coaching/redux/coaching-staff.slice';
+import coachingBatchReducer from '../feature/coaching/redux/coaching-batch.slice'
+
+
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +18,9 @@ export const store = configureStore({
     coaching: coachingReducer,
     subject: subjectReducer,
     demoClass: demoClassReducer,
+    coachingStaff: coachingStaffReducer,
+    batch: coachingBatchReducer,
+
+    
   }
 })

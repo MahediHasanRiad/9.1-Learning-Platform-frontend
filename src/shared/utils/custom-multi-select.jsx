@@ -34,10 +34,10 @@ function CustomMultiSelect({
 
       <Combobox
         multiple = {multiple}
-        items={itemList}
-        value={value}
-        onValueChange={onChange}
-        itemToStringValue={(item) => item?.label ?? ""}
+        items = {itemList}
+        value = {value}
+        onValueChange = {onChange}
+        itemToStringValue ={(item) => item?.label ?? ""}
       >
         {/* Selected Chips */}
         <ComboboxChips ref={anchor} className="w-full border rounded-md p-1">

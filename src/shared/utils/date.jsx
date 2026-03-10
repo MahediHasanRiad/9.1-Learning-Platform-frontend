@@ -1,9 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { format } from "date-fns";
 import { ChevronDownIcon } from "lucide-react";
-
 
 export function DatePicker({ label, value, onChange }) {
   return (
@@ -25,8 +28,12 @@ export function DatePicker({ label, value, onChange }) {
         <PopoverContent className="w-auto p-0" align="start">
           <Calendar
             mode="single"
-            selected={value}      // Controlled by Hook Form
-            onSelect={onChange}   // Updates Hook Form state
+            selected={value} // Controlled by Hook Form
+            onSelect={(date) => {
+              // convert in str format 
+              const dateString = date ? format(date,  "yyyy-MM-dd") : "";
+              onChange(dateString);
+            }}
             initialFocus
           />
         </PopoverContent>

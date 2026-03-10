@@ -1,15 +1,20 @@
 import Button from "@/shared/utils/button";
+import CustomMultiSelect from "@/shared/utils/custom-multi-select";
 import ErrorMsg from "@/shared/utils/error-msg";
-import InputField from "@/shared/utils/input";
 import SelectField from "@/shared/utils/select";
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { toast } from "sonner";
+import { createCoachingStaffAsyncThunk } from "../../redux/create-staff.thunk";
 
-const users = [
-  {id: 1, name: 'riad'},
-  {id: 2, name: 'shamim'},
-  {id: 3, name: 'tamim'},
-  {id: 4, name: 'nilo'},
+
+const roles = [
+  {id: 1, name: 'Admin'},
+  {id: 2, name: 'Manager'},
+  {id: 3, name: 'Teacher'},
+  {id: 4, name: 'Other'},
 ]
 
 function AddNewStaff() {
@@ -19,12 +24,37 @@ function AddNewStaff() {
     reset,
     formState: { errors },
   } = useForm({ defaultValues: {
-    name: '',
+    staffId: '',
     role: ''
   } });
 
-  const saveData = (data) => {
-    console.log(data)
+  const dispatch = useDispatch()
+  const [allUsers, setAllUsers] = useState([])
+
+  useEffect(() => {
+    ;(async () => {
+      // get all users
+      const users = await axios.get('/api/v1/users/all', {withCredentials: true})
+      setAllUsers(users.data.data.users)
+    })()
+  }, [])
+
+  // user formated
+  const formatedUser = allUsers.map(user => ({
+    id: user._id,
+    label: user.name,
+    value: user.name,
+    img: user.avatar,
+  }))
+
+  const saveData = async (data) => {
+    try {
+      await dispatch(createCoachingStaffAsyncThunk(data)).unwrap();
+      toast.success('New Staff Added')
+      reset()
+    } catch (error) {
+      toast.error(error)
+    }
   }
 
   return (
@@ -33,17 +63,19 @@ function AddNewStaff() {
         <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           <div>
             <Controller
-            name="name"
+            name="staffId"
             control={control}
             render={({ field }) => (
-              <InputField
+              <CustomMultiSelect
                 label="Name"
+                itemList={formatedUser}
                 placeholder="mahedi hasan riad"
+                multiple= {false}
                 {...field}
               />
             )}
           />
-          {<ErrorMsg text={errors.name?.message} />}
+          {<ErrorMsg text={errors.staffId?.message} />}
           </div>
           <div>
             <Controller
@@ -54,7 +86,7 @@ function AddNewStaff() {
               <SelectField
                 label="Rule"
                 placeholder="staff"
-                items={users}
+                items={roles}
                 {...field}
               />
             )}
