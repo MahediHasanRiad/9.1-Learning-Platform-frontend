@@ -11,7 +11,7 @@ function CoachingStaff() {
     (async () => {
       try {
         // all staffs
-        const staff = await axios.get("/api/v1/coaching-all-staff", {
+        const staff = await axios.get("/api/v1/coaching-staffs", {
           withCredentials: true,
         });
         setStaffs(staff.data.data);
@@ -21,15 +21,15 @@ function CoachingStaff() {
       }
     })();
   }, []);
-
+console.log('ss', staffs)
   return (
     <MainLayout>
       <section className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-        {staffs?.map((staff) => (
+        {staffs?.staff?.map((staff) => (
           <StaffCard
-            path={`/user/profile/${staff?.staffId?._id}`}
-            img={staff?.staffId?.avatar}
-            name={staff?.staffId?.name}
+            path={`/user/profile/${staff?.userId}`}
+            img={staff?.avatar}
+            name={staff?.name}
             role={staff?.role}
           />
         ))}

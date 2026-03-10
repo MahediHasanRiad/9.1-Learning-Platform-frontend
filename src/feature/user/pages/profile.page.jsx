@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { findUserByIdAsyncThunk } from "../redux/find-by-id.thunk";
 import { useParams } from "react-router";
+import { toast } from "sonner";
 
 function Profile() {
 
@@ -14,7 +15,11 @@ function Profile() {
 
   useEffect(() => {
     ;(async () => {
-      await dispatch(findUserByIdAsyncThunk(id)).unwrap()
+      try {
+        await dispatch(findUserByIdAsyncThunk(id)).unwrap()
+      } catch (error) {
+        toast.error(error)
+      }
     })()
   }, [])
 

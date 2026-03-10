@@ -55,6 +55,7 @@ const userSlice = createSlice({
       .addCase(findUserByIdAsyncThunk.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
+        console.log('asy', action.payload.data)
         state.user = action.payload.data;
       })
       .addCase(findUserByIdAsyncThunk.rejected, (state, action) => {

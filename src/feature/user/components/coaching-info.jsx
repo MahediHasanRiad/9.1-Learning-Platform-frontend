@@ -12,8 +12,10 @@ import { useCoachingInfo } from "../hooks/useCoachingInfo";
 import InfoMenuItem from "../utils/info-menu-item";
 import CoachingBatchCard from "@/feature/coaching/components/Coaching-Batch-Card";
 import TeacherCard from "./teachersCard";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-function CoachingInfo({coaching}) {
+function CoachingInfo({ coaching }) {
   const {
     about,
     handleAbout,
@@ -24,7 +26,27 @@ function CoachingInfo({coaching}) {
     admin,
     handleAdmin,
   } = useCoachingInfo();
-console.log('d', coaching)
+
+  const [allBatch, setAllBatch] = useState([]);
+  const [teachers, setTeachers] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      // all batch
+      const allBatch = await axios.get(`/api/v1/allBatches`, {
+        withCredentials: true,
+      });
+      setAllBatch(allBatch.data.data);
+
+      // all teachers
+      const allTeachers = await axios.get(
+        `/api/v1/coaching-staffs?role=Teacher`,
+        { withCredentials: true },
+      );
+      setTeachers(allTeachers.data.data);
+    })();
+  }, []);
+  console.log("tt", teachers.staff);
   return (
     <section>
       <section className="h-15 w-full mx-auto flex items-center border-b">
@@ -54,33 +76,31 @@ console.log('d', coaching)
         {/* batches  */}
         {batch && (
           <section className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <CoachingBatchCard
-              image={"/public/cover-image.jpg"}
-              name={"Batch Alfa new"}
-              classes={"Class-8"}
-              subjects={["Math, English, Bangla"]}
-              rating={"4.5"}
-            />
-            <CoachingBatchCard
-              image={"/public/cover-image.jpg"}
-              name={"Batch Alfa new"}
-              classes={"Class-8"}
-              subjects={["Math, English, Bangla"]}
-              rating={"4.5"}
-            />
+            {allBatch?.batch?.map((batch) => (
+              <CoachingBatchCard
+                key={batch?._id}
+                path={batch?.Batch_link}
+                image={batch?.coverImage}
+                name={batch?.name}
+                subjects={batch?.subjects}
+                start={batch?.start_date}
+                end={batch.end_date}
+              />
+            ))}
           </section>
         )}
 
         {/* teachers  */}
         {teacher && (
           <section className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            <TeacherCard image={"/public/riad.png"} name={"Mahedi Hasan"} />
-            <TeacherCard image={"/public/riad.png"} name={"Hasan Hossain"} />
-            <TeacherCard image={"/public/riad.png"} name={"Hasan Hossain"} />
-            <TeacherCard image={"/public/riad.png"} name={"Hasan Hossain"} />
-            <TeacherCard image={"/public/riad.png"} name={"Hasan Hossain"} />
-            <TeacherCard image={"/public/riad.png"} name={"Hasan Hossain"} />
-            <TeacherCard image={"/public/riad.png"} name={"Riad"} />
+            {teachers?.staff?.map((teacher) => (
+              <TeacherCard
+                key={teacher._id}
+                path={`/user/profile/${teacher.userId}`}
+                image={teacher.avatar}
+                name={teacher.name}
+              />
+            ))}
           </section>
         )}
 

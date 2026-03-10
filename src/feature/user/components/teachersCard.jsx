@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router";
 
-function TeacherCard({ image, name }) {
+function TeacherCard({ image, name, path = '#' }) {
   return (
     <section className="flex flex-col items-center">
       <img
@@ -9,7 +9,7 @@ function TeacherCard({ image, name }) {
         alt="image"
         className="rounded-full w-15 h-15 border object-cover"
       />
-      <Link to={"#"}>
+      <Link to={path}>
         <p className="hover:text-secondary-0">{name}</p>
       </Link>
     </section>
