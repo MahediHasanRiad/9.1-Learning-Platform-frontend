@@ -65,7 +65,7 @@ function MainLayout({ children }) {
                     coachingStaff={true}
                     coachingStaffPath={"/coaching/staff"}
                     coachingBatch={true}
-                    coachingBatchPath='/coaching/batches'
+                    coachingBatchPath='/coaching/batch'
                     enrolled={true}
                     enrolledPath = '/coaching/enrolled'
                   />
