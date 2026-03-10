@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { updateProfileAsyncThunk } from "./updateProfile.thunk";
 import { resetPasswordAsyncThunk } from "./resetPassword.thunk";
+import { findUserByIdAsyncThunk } from "./find-by-id.thunk";
 
 const initialState = {
   user: null,
@@ -43,6 +44,22 @@ const userSlice = createSlice({
       .addCase(resetPasswordAsyncThunk.rejected, (state, action) => {
         state.error = action.payload;
         state.loading = false;
+      });
+
+    // find user by id
+    builder
+      .addCase(findUserByIdAsyncThunk.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(findUserByIdAsyncThunk.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.user = action.payload.data;
+      })
+      .addCase(findUserByIdAsyncThunk.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });

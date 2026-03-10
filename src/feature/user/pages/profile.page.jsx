@@ -1,11 +1,22 @@
 import { Quote } from "lucide-react";
 import UserInfo from "../components/user-info";
 import MainLayout from "@/layout/Main-Layout";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { findUserByIdAsyncThunk } from "../redux/find-by-id.thunk";
+import { useParams } from "react-router";
 
 function Profile() {
 
-  const {user} = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
+  const {id} = useParams()
+  const {user} = useSelector((state) => state.user)
+
+  useEffect(() => {
+    ;(async () => {
+      await dispatch(findUserByIdAsyncThunk(id)).unwrap()
+    })()
+  }, [])
 
   return (
     <MainLayout>
