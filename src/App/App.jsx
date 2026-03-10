@@ -23,6 +23,7 @@ import { toast } from "sonner";
 import BecomeATeacher from "@/feature/teacher/pages/become-teacher.page";
 import CreateCoaching from "@/feature/coaching/pages/create-coaching.page";
 import Home from "@/feature/Home/pages/home.page";
+import EnrolledStudent from "@/feature/coaching/components/Dashboard/enrolled";
 
 function App() {
   const dispatch = useDispatch();
@@ -96,6 +97,7 @@ function App() {
         <Route path="/coaching/profile" element={<CoachingProfile />} />
         <Route path="/coaching/dashboard" element={<CoachingDashboard />} />
         <Route path="/coaching/staff" element={<CoachingStaff />} />
+        <Route path="/coaching/enrolled" element={<EnrolledStudent />} />
       </Routes>
     </section>
   );

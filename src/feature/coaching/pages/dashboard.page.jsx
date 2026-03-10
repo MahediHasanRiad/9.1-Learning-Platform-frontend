@@ -14,7 +14,6 @@ import UpdateProfile from "../components/Dashboard/Update-Profile";
 import UpdateAdminProfile from "../components/Dashboard/Update-Admin-Profile";
 import CreateBatch from "../components/Dashboard/Create-Batch";
 import AddNewStaff from "../components/Dashboard/Add-New-Staff";
-import ResetPassword from "@/shared/components/reset-password";
 import AddNewSubject from "@/shared/components/add-new-subject";
 import EnrolledStudent from "../components/Dashboard/enrolled";
 
@@ -29,8 +28,6 @@ function CoachingDashboard() {
     createBatchHandler,
     addNewStaff,
     addNewStaffHandler,
-    resetPassword,
-    resetPasswordHandler,
     addSubject,
     addSubjectHandler,
     enrolled,
@@ -71,18 +68,6 @@ function CoachingDashboard() {
             onClick={addNewStaffHandler}
             className={`${addNewStaff ? "text-secondary-0" : "text-text-0"}`}
           />
-          <MenuItem
-            Icon={Ticket}
-            text={"Enrolled"}
-            onClick={enrolledHandler}
-            className={`${enrolled ? "text-secondary-0" : "text-text-0"}`}
-          />
-          <MenuItem
-            Icon={Lock}
-            text={"Reset Password"}
-            onClick={resetPasswordHandler}
-            className={`${resetPassword ? "text-secondary-0" : "text-text-0"}`}
-          />
         </>
       }
     >
@@ -91,8 +76,6 @@ function CoachingDashboard() {
       {addSubject && <AddNewSubject />}
       {createBatch && <CreateBatch />}
       {addNewStaff && <AddNewStaff />}
-      {enrolled && <EnrolledStudent />}
-      {resetPassword && <ResetPassword />}
       
     </DashboardLayout>
   );
