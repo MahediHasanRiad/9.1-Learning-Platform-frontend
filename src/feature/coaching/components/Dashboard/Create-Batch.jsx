@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import { useFormatedValue } from "../../hooks/useFormatedValue";
 import { useDispatch, useSelector } from "react-redux";
 import { createBatchAsyncThunk } from "../../redux/create-batch.thunk";
+import TextareaField from "@/shared/utils/textarea";
 
 function CreateBatch() {
   const {
@@ -27,6 +28,7 @@ function CreateBatch() {
       end_date: "",
       capacity: "",
       price: "",
+      bio: "",
       assignedTeachers: "",
       recurringRule: "",
     },
@@ -238,6 +240,19 @@ function CreateBatch() {
               )}
             />
             {<ErrorMsg text={errors.recurringRule?.message} />}
+          </div>
+          <div>
+            <Controller
+              name="bio"
+              control={control}
+              render={({ field }) => (
+                <TextareaField
+                  label={"Description"}
+                  {...field}
+                />
+              )}
+            />
+            {<ErrorMsg text={errors.bio?.message} />}
           </div>
         </section>
 

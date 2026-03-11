@@ -25,6 +25,7 @@ import CreateCoaching from "@/feature/coaching/pages/create-coaching.page";
 import Home from "@/feature/Home/pages/home.page";
 import EnrolledStudent from "@/feature/coaching/components/Dashboard/enrolled";
 import CoachingBatch from "@/feature/coaching/pages/coaching-batch";
+import BatchDetails from "@/feature/coaching/components/Batch-Details";
 
 function App() {
   const dispatch = useDispatch();
@@ -100,6 +101,7 @@ function App() {
         <Route path="/coaching/staff" element={<CoachingStaff />} />
         <Route path="/coaching/batch" element={<CoachingBatch />} />
         <Route path="/coaching/enrolled" element={<EnrolledStudent />} />
+        <Route path="/coaching/batchDetails" element={<BatchDetails />} />
       </Routes>
     </section>
   );

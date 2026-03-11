@@ -14,7 +14,7 @@ function CoachingBatch() {
       setAllBatch(allBatch.data.data);
     })();
   }, []);
-  console.log("b", allBatch);
+
   return (
     <MainLayout>
       <section className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -27,6 +27,7 @@ function CoachingBatch() {
             subjects={batch.subjects}
             start = {batch.start_date}
             end = {batch.end_date}
+            batch = {batch}
           />
         ))}
       </section>

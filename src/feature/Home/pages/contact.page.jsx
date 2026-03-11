@@ -26,7 +26,7 @@ function Contact() {
 
   return (
     <MainLayout>
-       <section className="grid md:grid-cols-3 items-center justify-center mt-6 gap-6">
+       <section className="grid md:grid-cols-3 items-center justify-center mt-26 gap-6">
         <div className="mx-auto w-2/3">
           <img
             src="/public/contact.svg"
