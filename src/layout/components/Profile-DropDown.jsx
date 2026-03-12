@@ -22,8 +22,9 @@ import {
   Shapes,
 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router";
-import { useProfileDropDown } from "../hook/userProfile";
+import { Link, useNavigate } from "react-router";
+import { updateRole } from "@/feature/auth/redux/auth.slice";
+import { toast } from "sonner";
 
 function ProfileDropdown({
   profile = false,
@@ -42,14 +43,39 @@ function ProfileDropdown({
   becomeUserPath = "#",
   coachingPage = false,
   coachingPagePath = "#",
-  enrolled= false,
-  enrolledPath = '#',
+  enrolled = false,
+  enrolledPath = "#",
   coachingBatch = false,
-  coachingBatchPath = '#'
+  coachingBatchPath = "#",
 }) {
   const dispatch = useDispatch();
-  const {user} = useSelector((state) => state.auth)
-  const {updateInTeacherRole} = useProfileDropDown({id: user._id})
+  const navigate = useNavigate();
+  const { user, teacher, coaching } = useSelector((state) => state.auth);
+
+  const handleCoachingClick = (e) => {
+    e.preventDefault();
+
+    if (coaching) {
+       dispatch(updateRole("Coaching"));
+      navigate("/coaching/profile");
+    } else {
+       dispatch(updateRole("Coaching"));
+      navigate("/coaching");
+    }
+  };
+
+  // become teacher
+  const handleTeacherClick = (e) => {
+    e.preventDefault();
+
+    if (teacher) {
+      dispatch(updateRole("Teacher"));
+      navigate("/teachers");
+    } else {
+      dispatch(updateRole("Teacher"));
+      navigate("/becomeTeacher");
+    }
+  };
 
   return (
     <DropdownMenu>
@@ -80,12 +106,12 @@ function ProfileDropdown({
             </Link>
           )}
           {becomeTeacher && (
-            <Link to={becomeTeacherPath}>
+            <span onClick={handleTeacherClick}>
               <DropdownMenuItem>
                 <TypeOutline />
                 Become A Teacher
               </DropdownMenuItem>
-            </Link>
+            </span>
           )}
           {enrolledBatch && (
             <Link to={enrolledBatchPath}>
@@ -96,7 +122,10 @@ function ProfileDropdown({
             </Link>
           )}
           {becomeUser && (
-            <Link to={becomeUserPath}>
+            <Link
+              to={becomeUserPath}
+              onClick={() => dispatch(updateRole("User"))}
+            >
               <DropdownMenuItem>
                 <UserPen />
                 Become A User
@@ -104,12 +133,12 @@ function ProfileDropdown({
             </Link>
           )}
           {coachingPage && (
-            <Link to={coachingPagePath}>
+            <span onClick={handleCoachingClick}>
               <DropdownMenuItem>
                 <AlignEndVertical />
                 Coaching Page
               </DropdownMenuItem>
-            </Link>
+            </span>
           )}
           {connectedBatch && (
             <Link to={connectedCoachingPath}>

@@ -1,16 +1,176 @@
-# React + Vite
+# Tutor & Coaching Management Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A scalable platform that connects students, guardians, tutors, and coaching centers.
+The system allows guardians to evaluate tutors through demo classes, ratings, and reviews before enrolling their children.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Problem Statement
 
-## React Compiler
+Finding a trustworthy tutor is difficult.
+Guardians usually rely on word-of-mouth recommendations which are often unreliable.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This platform solves the problem by providing:
 
-## Expanding the ESLint configuration
+• Verified tutors
+• Demo classes
+• Transparent rating system
+• Coaching center listings
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+# Key Features
+
+### Student / Guardian
+
+* Browse tutors
+* Watch demo classes
+* Compare tutor ratings
+* Enroll in coaching batches
+
+### Tutor
+
+* Create tutor profile
+* Upload demo classes
+* Manage teaching batches
+* Track enrolled students
+
+### Coaching Center
+
+* Manage teachers
+* Create subjects
+* Create batches
+* Manage students
+
+---
+
+# Tech Stack
+
+Frontend
+
+* React
+* Redux Toolkit
+* React Router
+
+Backend
+
+* Node.js
+* Express.js
+
+Database
+
+* MongoDB
+* Mongoose
+
+Media Storage
+
+* Cloudinary
+
+Authentication
+
+* JWT + Cookies
+
+---
+
+# System Architecture
+
+Client (React)
+
+↓
+
+API Layer (Express)
+
+↓
+
+Business Logic (Services)
+
+↓
+
+Database (MongoDB)
+
+---
+
+# API Example
+
+POST /api/auth/register
+
+Request
+
+{
+"name": "Riad",
+"email": "[riad@gmail.com](mailto:riad@gmail.com)",
+"password": "123456"
+}
+
+Response
+
+{
+"success": true,
+"user": {}
+}
+
+---
+
+# Database Design
+
+User
+
+name
+email
+mobile
+avatar
+role
+
+Teacher
+
+userId
+subjects
+rating
+
+Coaching
+
+name
+teachers
+subjects
+
+Batch
+
+name
+teacher
+students
+
+---
+
+# Installation
+
+Clone repository
+
+git clone https://github.com/username/project.git
+
+Backend
+
+cd backend
+npm install
+npm run dev
+
+Frontend
+
+cd frontend
+npm install
+npm run dev
+
+---
+
+# Future Improvements
+
+• Online live classes
+• Payment gateway
+• AI tutor recommendation
+• Mobile application
+
+---
+
+# Author
+
+Riad
+Full Stack Developer

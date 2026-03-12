@@ -49,6 +49,7 @@ function TeachersPage() {
         <section className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4 min-h-screen">
           {allTeachers?.teachers?.map((teacher) => (
             <CardItem
+              key={teacher?._id}
               path={`/teacher/profile/${teacher?._id}`}
               image={teacher?.userId?.avatar}
               name={teacher?.userId?.name}

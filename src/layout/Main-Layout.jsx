@@ -9,8 +9,8 @@ import Button from "@/shared/utils/button.jsx";
 function MainLayout({ children }) {
   const [open, setOpen] = useState(false);
   // role
-  const { user, teacher } = useSelector((state) => state.auth);
-
+  const { user, teacher, role } = useSelector((state) => state.auth);
+console.log('r', role)
   return (
     <section className="w-5/6 m-auto">
       <nav className="w-full my-4 flex justify-center">
@@ -28,7 +28,7 @@ function MainLayout({ children }) {
             <Menu text="Contact" path="contact" />
             {user ? (
               <div>
-                {user.role === "User" && (
+                {role === "User" && (
                   <ProfileDropdown
                     profile={true}
                     profilePath={`/user/profile/${user?._id}`}
@@ -42,7 +42,7 @@ function MainLayout({ children }) {
                     coachingPagePath="/coaching"
                   />
                 )}
-                {user.role === "Teacher" && (
+                {role === "Teacher" && (
                   <ProfileDropdown
                     profile={true}
                     profilePath={`/teacher/profile/${teacher?._id}`}
@@ -54,9 +54,11 @@ function MainLayout({ children }) {
                     connectedCoachingPath={`/teacher/connected-coaching/${user?._id}`}
                     coachingPage={true}
                     coachingPagePath="/coaching"
+                    becomeUser={true}
+                    becomeUserPath="/teachers"
                   />
                 )}
-                {user.role === "Coaching" && (
+                {role === "Coaching" && (
                   <ProfileDropdown
                     profile={true}
                     profilePath="/coaching/profile"
@@ -68,6 +70,8 @@ function MainLayout({ children }) {
                     coachingBatchPath='/coaching/batch'
                     enrolled={true}
                     enrolledPath = '/coaching/enrolled'
+                    becomeUser={true}
+                    becomeUserPath="/teachers"
                   />
                 )}
               </div>

@@ -60,7 +60,7 @@ function App() {
     fetchUserData();
   }, [dispatch, location.pathname]);
 
-
+// dispatch, location.pathname
 
   return (
     <section>

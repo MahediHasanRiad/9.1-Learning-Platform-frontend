@@ -7,7 +7,7 @@ const initialState = {
   user: null,
   teacher: null,
   coaching: null,
-  role: null,
+  role: 'User',
   loading: false,
   error: null,
 };
@@ -23,6 +23,10 @@ const authSlice = createSlice({
     },
     setCoaching: (state, action) => {
       state.coaching = action.payload.data;
+    },
+    updateRole: (state, action) => {
+      console.log('role', action.payload)
+      state.role = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -76,5 +80,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { logout, setUser, setCoaching } = authSlice.actions;
+export const { logout, setUser, setCoaching, updateRole } = authSlice.actions;
 export default authSlice.reducer;
