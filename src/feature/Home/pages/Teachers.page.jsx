@@ -46,7 +46,7 @@ function TeachersPage() {
         </section>
 
         {/* teachers profiles */}
-        <section className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
+        <section className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4 min-h-screen">
           {allTeachers?.teachers?.map((teacher) => (
             <CardItem
               path={`/teacher/profile/${teacher?._id}`}

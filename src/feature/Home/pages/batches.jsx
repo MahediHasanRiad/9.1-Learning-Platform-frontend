@@ -32,7 +32,7 @@ function BatchesPage() {
       console.error("Error fetching batches:", error);
     }
   };
-  console.log("b", allBatch?.pagination?.totalPage);
+
   useEffect(() => {
     fetchBatches(filterQuery);
   }, [filterQuery]);
@@ -46,7 +46,7 @@ function BatchesPage() {
 
       {/* ------------------------------------ batches ----------------------------------- */}
 
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 my-6">
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 my-6 ">
         {allBatch?.batch?.map((batch) => (
           <CoachingBatchCard
             image={batch?.coverImage}

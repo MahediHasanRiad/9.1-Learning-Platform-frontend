@@ -11,7 +11,7 @@ export default function CoachingBatchCard({
   batch,
 }) {
   return (
-    <section className="group w-full bg-white border border-slate-200/60 rounded-2xl overflow-hidden hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] transition-all duration-500 flex flex-col h-full">
+    <section className="group w-full  bg-white border border-slate-200/60 rounded-2xl overflow-hidden hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] transition-all duration-500 flex flex-col h-full">
       
       {/* Top Section: Image with Badge */}
       <div className="relative aspect-[16/10] overflow-hidden">
