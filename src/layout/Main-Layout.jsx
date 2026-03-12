@@ -23,7 +23,7 @@ function MainLayout({ children }) {
           {/* Desktop Menu */}
           <div className="hidden lg:flex gap-6 items-center">
             <Menu text="Teacher" path={"teachers"} />
-            <Menu text="Coaching" path={"coaching-centers"} />
+            <Menu text="Coaching" path={"batches"} />
             <Menu text="About" path="about" />
             <Menu text="Contact" path="contact" />
             {user ? (

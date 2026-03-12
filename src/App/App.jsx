@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import TeachersPage from "../feature/Home/pages/Teachers.page";
-import CoachingPage from "../feature/Home/pages/coaching";
 import CoachingProfile from "../feature/coaching/pages/Coaching-Profile";
 import { Route, Routes, useLocation } from "react-router";
 import Profile from "@/feature/user/pages/profile.page";
@@ -25,6 +24,7 @@ import CreateCoaching from "@/feature/coaching/pages/create-coaching.page";
 import Home from "@/feature/Home/pages/home.page";
 import EnrolledStudent from "@/feature/coaching/components/Dashboard/enrolled";
 import CoachingBatch from "@/feature/coaching/pages/coaching-batch";
+import BatchesPage from "../feature/Home/pages/batches";
 
 
 function App() {
@@ -72,7 +72,7 @@ function App() {
         {/* Home pages  */}
         <Route path="/" element={<Home />} />
         <Route path="/teachers" element={<TeachersPage />} />
-        <Route path="/coaching-centers" element={<CoachingPage />} />
+        <Route path="/batches" element={<BatchesPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/becomeTeacher" element={<BecomeATeacher />} />

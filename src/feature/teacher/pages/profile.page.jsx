@@ -26,7 +26,7 @@ function TeacherProfile() {
 console.log('teacer', user)
   return (
     <MainLayout>
-      <section className="w-2/3 mx-auto">
+      <section className="md:w-2/3 mx-auto">
         {/* cover-image  */}
         <section>
           <img

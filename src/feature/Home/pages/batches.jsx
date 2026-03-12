@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FilterItems from "@/feature/teacher/utils/filter";
 import Button from "@/shared/utils/button";
 import InputField from "@/shared/utils/input";
@@ -6,8 +6,22 @@ import Dropdown from "@/feature/teacher/utils/DropDown";
 import CoachingBatchCard from "@/feature/coaching/components/Coaching-Batch-Card";
 import PaginationItems from "@/shared/utils/Pagination";
 import MainLayout from "@/layout/Main-Layout";
+import axios from "axios";
 
-function CoachingPage() {
+function BatchesPage() {
+  const [allBatch, setAllBatch] = useState([]);
+
+  // get all coaching centers
+  useEffect(() => {
+    (async () => {
+      const batches = await axios.get(
+        `/api/v1/allBatches?search=&limit=10&page=1&sortBy=updatedAt&sortType`,
+        { withCredentials: true },
+      );
+      setAllBatch(batches.data.data);
+    })();
+  }, []);
+
   return (
     <MainLayout>
       {/* ----------------------- Filter ---------------------- */}
@@ -41,13 +55,17 @@ function CoachingPage() {
       {/* ------------------------------------ batches ----------------------------------- */}
 
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 my-6">
-        <CoachingBatchCard
-          image={'/public/cover-image.jpg'}
-          name={"Batch Alfa new"}
-          classes={"Class-8"}
-          subjects={["Math, English, Bangla"]}
-          rating={"4.5"}
-        />
+        {allBatch?.batch?.map((batch) => (
+          <CoachingBatchCard
+            image={batch?.coverImage}
+            name={batch?.name}
+            subjects={batch?.subjects}
+            start={batch?.start_date}
+            end={batch?.end_date}
+            rating={"4.5"}
+            batch={batch}
+          />
+        ))}
       </section>
 
       {/* -------------------------- Pagination --------------------- */}
@@ -58,4 +76,4 @@ function CoachingPage() {
   );
 }
 
-export default CoachingPage;
+export default BatchesPage;
