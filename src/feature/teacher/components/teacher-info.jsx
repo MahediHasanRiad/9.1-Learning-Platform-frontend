@@ -9,14 +9,18 @@ import {
   ShieldCheck,
   Calendar1,
   Clock7,
+  CalendarCheck,
+  Hourglass,
+  GraduationCap,
 } from "lucide-react";
 import InfoMenuItem from "../../user/utils/info-menu-item";
 import InfoMenuButton from "../../user/utils/info-menu-btn";
 import { useTeacherInfo } from "../../user/hooks/useTeacherInfo";
 import DemoClass from "@/feature/teacher/utils/DemoClass";
 import Dropdown from "@/feature/teacher/utils/DropDown";
+import Achivement from "./achivement";
 
-function TeacherInfo({ user, teacher }) {
+function TeacherInfo({ user }) {
   // custom hook
   const {
     about,
@@ -45,47 +49,18 @@ function TeacherInfo({ user, teacher }) {
       {/* about  */}
       {about && (
         <section className="mt-4">
-          <InfoMenuItem Icon={UserRoundPen} text={user?.name} />
-          <InfoMenuItem Icon={BookUser} text={user?.address} />
-          <InfoMenuItem Icon={Contact} text={user?.mobile} />
-          <InfoMenuItem Icon={Mail} text={user?.email} />
-          <InfoMenuItem Icon={Linkedin} text={user?.linkedIn} />
-          <InfoMenuItem Icon={Facebook} text={user?.facebook} />
+          <InfoMenuItem Icon={UserRoundPen} text={user?.userId?.name} />
+          <InfoMenuItem Icon={BookUser} text={user?.userId?.address} />
+          <InfoMenuItem Icon={Contact} text={user?.userId?.mobile} />
+          <InfoMenuItem Icon={GraduationCap } text={user?.education} />
+          <InfoMenuItem Icon={Mail} text={user?.userId?.email} />
+          <InfoMenuItem Icon={Linkedin} text={user?.userId?.linkedIn} />
+          <InfoMenuItem Icon={Facebook} text={user?.userId?.facebook} />
         </section>
       )}
 
       {/* achivement  */}
-      {achivement && (
-        <section className="space-y-2 mt-4">
-          <div>
-            <span className="flex items-center">
-              <Award className="mx-2" size={18} /> experience or years:{" "}
-              {teacher?.experience}
-            </span>
-          </div>
-          <div>
-            <span className="flex items-center">
-              <ShieldCheck className="mx-2" size={18} /> certificates: 
-              {teacher.certificate.map((item, index) => (
-                <span key={index}>{item}</span>
-              ))}
-              
-            </span>
-          </div>
-          <div>
-            <span className="flex items-center">
-              <Calendar1 className="mx-2" size={18} />
-              Available Day: {teacher?.availableDay}
-            </span>
-          </div>
-          <div>
-            <span className="flex items-center">
-              <Clock7 className="mx-2" size={18} />
-              Available Time: {teacher?.availableTime}
-            </span>
-          </div>
-        </section>
-      )}
+      {achivement && <Achivement user={user} />}
 
       {/* demo class  */}
       {demoClass && (

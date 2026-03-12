@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createTeacherAsyncThunk } from "./createTeacher.thunk";
 import { updateTeacherProfileAsyncThunk } from "./profileUpdate.thunk";
+import { SingleTeacherAsyncThunk } from "./single-teacher.thunk";
 
 const initialState = {
   user: null,
@@ -38,9 +39,25 @@ const teacherSlice = createSlice({
       .addCase(updateTeacherProfileAsyncThunk.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.user = action.payload.data
+        state.user = action.payload.data;
       })
       .addCase(updateTeacherProfileAsyncThunk.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+
+    // single teacher by id
+    builder
+      .addCase(SingleTeacherAsyncThunk.pending, (state, action) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(SingleTeacherAsyncThunk.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.user = action.payload.data;
+      })
+      .addCase(SingleTeacherAsyncThunk.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
