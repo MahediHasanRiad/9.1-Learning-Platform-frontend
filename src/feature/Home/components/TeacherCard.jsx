@@ -2,6 +2,7 @@ import { SingleTeacherAsyncThunk } from "@/feature/teacher/redux/single-teacher.
 import Button from "@/shared/utils/button";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router";
+import { GraduationCap, Star } from "lucide-react";
 
 function CardItem({
   path = "#",
@@ -11,44 +12,47 @@ function CardItem({
   rating,
   btnText = "View Profile...",
 }) {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   return (
     <Link to={`${path}`} className="block w-full max-w-lg">
-      <section className="h-36 flex bg-background-0 border border-gray-200 rounded-2xl overflow-hidden hover:border-primary-0  transition-shadow">
-        {/* Left Side: Image  */}
+      <section className="h-36 flex bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-md transition-all group">
+        {/* Left Side: Image */}
         <div className="w-1/3 h-full">
-          <img src={image} alt={name} className="h-full w-full object-cover" />
+          <img
+            src={image}
+            alt={name}
+            className="h-full w-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-500"
+          />
         </div>
 
         {/* Right Side */}
         <div className="w-2/3 p-4 flex flex-col justify-between">
-          <div className="space-y-0.5">
+          <div className="space-y-1">
             {/* Title */}
-            <p className="text-base font-bold text-gray-800 line-clamp-1 leading-tight">
+            <h3 className="text-[15px] font-bold text-gray-900 line-clamp-1 leading-tight">
               {name}
-            </p>
+            </h3>
 
             {/* Education */}
-            <p className="text-xs text-gray-500 font-medium truncate">
-              🎓 {education}
-            </p>
+            <div className="flex items-center gap-1.5 text-gray-500">
+              <GraduationCap size={13} />
+              <p className="text-[11px] font-medium truncate">{education}</p>
+            </div>
 
             {/* Rating */}
-            <p className="text-xs text-primary-0 font-semibold flex items-center gap-1">
-              ⭐ {rating}{" "}
-              <span className="text-gray-400 font-normal">Rating</span>
-            </p>
+            <div className="flex items-center gap-1 text-[11px]">
+              <Star size={12} className="fill-yellow-400 text-yellow-400" />
+              <span className="font-bold text-gray-800">{rating}</span>
+              <span className="text-gray-400">Rating</span>
+            </div>
           </div>
 
+          {/* Simple Modern Button */}
           <div className="flex justify-end">
-            <Button
-              text={btnText}
-              bg="background-0"
-              textColor="secondary-0"
-              className="text-xs py-1.5 px-3 bg-gray-50 hover:bg-primary-50 hover:text-primary-600 transition-all rounded-lg border border-gray-100 active:scale-95"
-            />
+            <button className="bg-primary-0 text-white text-[11px] font-semibold px-5 py-1.5 rounded-lg hover:bg-secondary-0 active:scale-95 transition-all shadow-sm">
+              {btnText}
+            </button>
           </div>
         </div>
       </section>
