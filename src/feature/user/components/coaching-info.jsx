@@ -30,6 +30,7 @@ function CoachingInfo({ coaching }) {
   const [allBatch, setAllBatch] = useState([]);
   const [teachers, setTeachers] = useState([]);
 
+
   useEffect(() => {
     (async () => {
       // all batch
@@ -46,7 +47,7 @@ function CoachingInfo({ coaching }) {
       setTeachers(allTeachers.data.data);
     })();
   }, []);
-  console.log("tt", teachers.staff);
+
   return (
     <section>
       <section className="h-15 w-full mx-auto flex items-center border-b">
@@ -84,7 +85,8 @@ function CoachingInfo({ coaching }) {
                 name={batch?.name}
                 subjects={batch?.subjects}
                 start={batch?.start_date}
-                end={batch.end_date}
+                end={batch?.end_date}
+                batch={batch}
               />
             ))}
           </section>

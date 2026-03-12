@@ -17,7 +17,7 @@ import CoachingStaff from "@/feature/coaching/pages/coaching-staff";
 import Register from "@/feature/auth/pages/register.page";
 import LogIn from "@/feature/auth/pages/login.page";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setCoaching, setUser } from "@/feature/auth/redux/auth.slice";
 import { toast } from "sonner";
 import BecomeATeacher from "@/feature/teacher/pages/become-teacher.page";
@@ -25,7 +25,7 @@ import CreateCoaching from "@/feature/coaching/pages/create-coaching.page";
 import Home from "@/feature/Home/pages/home.page";
 import EnrolledStudent from "@/feature/coaching/components/Dashboard/enrolled";
 import CoachingBatch from "@/feature/coaching/pages/coaching-batch";
-import BatchDetails from "@/feature/coaching/components/Batch-Details";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -101,7 +101,6 @@ function App() {
         <Route path="/coaching/staff" element={<CoachingStaff />} />
         <Route path="/coaching/batch" element={<CoachingBatch />} />
         <Route path="/coaching/enrolled" element={<EnrolledStudent />} />
-        <Route path="/coaching/batchDetails" element={<BatchDetails />} />
       </Routes>
     </section>
   );

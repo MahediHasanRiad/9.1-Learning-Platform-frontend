@@ -1,7 +1,7 @@
 import React from "react";
 
 function DrawerInstructor({ assignedTeachers }) {
-  console.log("teacher", assignedTeachers);
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
       {assignedTeachers?.map((teacher, index) => (

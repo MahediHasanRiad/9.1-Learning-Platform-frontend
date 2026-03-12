@@ -1,6 +1,4 @@
-import Button from "@/shared/utils/button";
 import DrawerField from "@/shared/utils/Drawer";
-import { Link } from "react-router";
 
 export default function CoachingBatchCard({
   path,
@@ -54,11 +52,9 @@ export default function CoachingBatchCard({
           {start} – {end}
         </p>
 
-        {/* Action Button - Bottom Aligned */}
+        {/* Action Button - To open Batch Details */}
         <div className="pt-2 mt-auto">
-          {/* <Link to={'#'} className="block"> */}
-            <DrawerField btnText={btnText} batch={batch} />
-          {/* </Link> */}
+          <DrawerField btnText={btnText} batch={batch} />
         </div>
       </div>
     </section>

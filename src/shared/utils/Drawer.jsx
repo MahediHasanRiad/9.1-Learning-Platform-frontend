@@ -21,7 +21,7 @@ import DrawerInstructor from "../components/drawer-instructor";
 import DrawerSubject from "../components/drawer-subject";
 
 export function DrawerField({ btnText, batch }) {
-
+console.log('batch', batch)
   return (
     <Drawer direction="right">
       <DrawerTrigger asChild>
@@ -89,17 +89,17 @@ export function DrawerField({ btnText, batch }) {
                 <DrawerItem
                   Icon={Database}
                   label={"Batch Duration"}
-                  text={"12 May - 05 Sept 2026"}
+                  text={`${batch?.start_date} - ${batch?.end_date}`}
                 />
                 <DrawerItem
                   Icon={StretchHorizontal}
                   label={"Seat Capacity"}
-                  text={"100 Students"}
+                  text={batch?.capacity}
                 />
                 <DrawerItem
                   Icon={CalendarCheck}
                   label={"Schedule"}
-                  text={"Sat, Sun, Mon"}
+                  text={batch?.recurringRule}
                 />
 
                 {/* Highlighted Price Tag */}
@@ -111,7 +111,7 @@ export function DrawerField({ btnText, batch }) {
                     </span>
                   </div>
                   <span className="text-xl font-black text-primary-700">
-                    6,500/-
+                    {batch?.price}
                   </span>
                 </div>
               </div>

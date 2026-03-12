@@ -20,13 +20,13 @@ function CoachingBatch() {
       <section className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
         {allBatch?.batch?.map((batch) => (
           <CoachingBatchCard
-            key={batch._id}
-            path={batch.Batch_link}
-            image={batch.coverImage}
-            name={batch.name}
-            subjects={batch.subjects}
-            start = {batch.start_date}
-            end = {batch.end_date}
+            key={batch?._id}
+            path={batch?.Batch_link}
+            image={batch?.coverImage}
+            name={batch?.name}
+            subjects={batch?.subjects}
+            start = {batch?.start_date}
+            end = {batch?.end_date}
             batch = {batch}
           />
         ))}
