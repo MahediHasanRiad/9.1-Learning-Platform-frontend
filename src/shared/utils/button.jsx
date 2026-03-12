@@ -16,7 +16,7 @@ function Button({
 
   return (
     <button
-      className={`${base} ${sizes[size]} bg-${bg} text-${textColor} active:scale-95`}
+      className={`${base} ${sizes[size]} bg-${bg} text-${textColor} active:scale-95 hover:bg-secondary-0`}
       {...props}
     >
       {text}

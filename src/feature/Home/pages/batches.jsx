@@ -1,55 +1,47 @@
 import React, { useEffect, useState } from "react";
-import FilterItems from "@/feature/teacher/utils/filter";
-import Button from "@/shared/utils/button";
-import InputField from "@/shared/utils/input";
-import Dropdown from "@/feature/teacher/utils/DropDown";
 import CoachingBatchCard from "@/feature/coaching/components/Coaching-Batch-Card";
 import PaginationItems from "@/shared/utils/Pagination";
 import MainLayout from "@/layout/Main-Layout";
 import axios from "axios";
+import FilterSection from "../components/Filter-section";
 
 function BatchesPage() {
   const [allBatch, setAllBatch] = useState([]);
+  const [filterQuery, setFilterQuery] = useState({
+    search: "",
+    sortType: "dec",
+    sortBy: "updatedAt",
+    page: 1,
+    limit: 10,
+  });
+
+  const handlePageChange = (newPage) => {
+    setFilterQuery((prev) => ({ ...prev, page: newPage }));
+  };
 
   // get all coaching centers
-  useEffect(() => {
-    (async () => {
-      const batches = await axios.get(
-        `/api/v1/allBatches?search=&limit=10&page=1&sortBy=updatedAt&sortType`,
+  const fetchBatches = async (query) => {
+    try {
+      const { search, limit, page, sortBy, sortType } = query;
+      const res = await axios.get(
+        `/api/v1/allBatches?search=${search}&limit=${limit}&page=${page}&sortBy=${sortBy}&sortType=${sortType}`,
         { withCredentials: true },
       );
-      setAllBatch(batches.data.data);
-    })();
-  }, []);
+      setAllBatch(res.data.data);
+    } catch (error) {
+      console.error("Error fetching batches:", error);
+    }
+  };
+  console.log("b", allBatch?.pagination?.totalPage);
+  useEffect(() => {
+    fetchBatches(filterQuery);
+  }, [filterQuery]);
 
   return (
     <MainLayout>
       {/* ----------------------- Filter ---------------------- */}
       <section>
-        {/* search  */}
-        <FilterItems
-          search={
-            <>
-              <InputField placeholder={"search..."} />
-              <Button text={"Submit"} />
-            </>
-          }
-        >
-          {/* children  */}
-          <Dropdown
-            title="Address"
-            items={["Mirput", "Uttora", "Farmgate", "New Market"]}
-          />
-          <Dropdown title="Class" items={["10th", "9th", "11th", "12th"]} />
-          <Dropdown
-            title="Subject"
-            items={["Math", "English", "ICT", "Math 2"]}
-          />
-          <Dropdown title="Rating" items={["4.5+", "4.0+", "3.5+", "3.0+"]} />
-          <Dropdown title="SortType" items={["asc", "desc"]} />
-          <Dropdown title="SortBy" items={["updatedAt"]} />
-          <Dropdown title="Limit" items={["10", "25", "50"]} />
-        </FilterItems>
+        <FilterSection filterChange={setFilterQuery} />
       </section>
 
       {/* ------------------------------------ batches ----------------------------------- */}
@@ -69,9 +61,13 @@ function BatchesPage() {
       </section>
 
       {/* -------------------------- Pagination --------------------- */}
-      <section>
-        <PaginationItems />
-      </section>
+      {allBatch?.pagination && (
+        <PaginationItems
+          totalPage={allBatch?.pagination?.totalPage}
+          currentPage={filterQuery?.page}
+          onPageChange={handlePageChange}
+        />
+      )}
     </MainLayout>
   );
 }

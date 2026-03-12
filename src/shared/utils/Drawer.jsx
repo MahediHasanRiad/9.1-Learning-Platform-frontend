@@ -21,7 +21,7 @@ import DrawerInstructor from "../components/drawer-instructor";
 import DrawerSubject from "../components/drawer-subject";
 
 export function DrawerField({ btnText, batch }) {
-console.log('batch', batch)
+
   return (
     <Drawer direction="right">
       <DrawerTrigger asChild>

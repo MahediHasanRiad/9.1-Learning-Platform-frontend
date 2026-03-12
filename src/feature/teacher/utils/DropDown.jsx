@@ -9,12 +9,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-function Dropdown({ title, label, items = [] }) {
+function Dropdown({ title, label, items = [], value, onChange }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline">
-          {title} <ChevronDown />
+          {value ? value : title} <ChevronDown />
         </Button>
       </DropdownMenuTrigger>
 
@@ -23,7 +23,7 @@ function Dropdown({ title, label, items = [] }) {
           {label && <DropdownMenuLabel>{label}</DropdownMenuLabel>}
 
           {items.map((item, index) => (
-            <DropdownMenuItem key={index}>
+            <DropdownMenuItem key={index} onClick={() => onChange(item)}>
               {item}
             </DropdownMenuItem>
           ))}
