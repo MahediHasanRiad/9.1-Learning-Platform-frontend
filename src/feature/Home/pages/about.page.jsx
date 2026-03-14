@@ -2,7 +2,7 @@ import MainLayout from "@/layout/Main-Layout";
 import { Quote } from "lucide-react";
 import React from "react";
 
-import img1 from '../../../..//public/best-tutor.svg'
+import img1 from '../../../../public/images/best-tutor.svg'
 
 function About() {
   return (
@@ -11,6 +11,7 @@ function About() {
       {/* part 1 */}
         <section className="grid md:grid-cols-2 items-center my-16">
           <div className="">
+            <img src={img1} alt="" className="w-60" />
             <img src={img1} alt="" className="w-60" />
           </div>
           <div>
