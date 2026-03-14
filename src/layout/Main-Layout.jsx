@@ -6,6 +6,8 @@ import { Link } from "react-router";
 import { useSelector } from "react-redux";
 import Button from "@/shared/utils/button.jsx";
 
+import logo from '../../public/images/logo.png'
+
 function MainLayout({ children }) {
   const [open, setOpen] = useState(false);
   // role
@@ -16,8 +18,10 @@ function MainLayout({ children }) {
       <nav className="w-full my-4 flex justify-center">
         <section className="w-5/6 p-3 flex items-center justify-between ">
           {/* Logo */}
-          <div className="text-xl font-bold">
-            <Link to={"/"}>Logo</Link>
+          <div className="text-xl font-bold w-50 h-auto">
+            <Link to={"/"}>
+              <img src={logo} alt="" className="object-cover" />
+            </Link>
           </div>
 
           {/* Desktop Menu */}
