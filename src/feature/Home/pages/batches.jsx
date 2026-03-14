@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import CoachingBatchCard from "@/feature/coaching/components/Coaching-Batch-Card";
 import PaginationItems from "@/shared/utils/Pagination";
 import MainLayout from "@/layout/Main-Layout";
-import axios from "axios";
 import FilterSection from "../components/Filter-section";
+import { api } from "@/API/api-client";
 
 function BatchesPage() {
   const [allBatch, setAllBatch] = useState([]);
@@ -23,7 +23,7 @@ function BatchesPage() {
   const fetchBatches = async (query) => {
     try {
       const { search, limit, page, sortBy, sortType } = query;
-      const res = await axios.get(
+      const res = await api.get(
         `/api/v1/allBatches?search=${search}&limit=${limit}&page=${page}&sortBy=${sortBy}&sortType=${sortType}`,
         { withCredentials: true },
       );

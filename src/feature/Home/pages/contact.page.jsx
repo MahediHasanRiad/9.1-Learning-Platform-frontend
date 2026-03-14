@@ -6,6 +6,8 @@ import TextareaField from '@/shared/utils/textarea';
 import React from 'react'
 import { useForm,Controller } from 'react-hook-form';
 
+import img from '../../../../public/images/contact.svg'
+
 function Contact() {
 
   const {
@@ -29,7 +31,7 @@ function Contact() {
        <section className="grid md:grid-cols-3 items-center justify-center mt-26 gap-6">
         <div className="mx-auto w-2/3">
           <img
-            src="/public/contact.svg"
+            src={img}
             className="bg-background-0 text-secondary-0"
             alt=""
           />

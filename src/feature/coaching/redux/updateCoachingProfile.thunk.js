@@ -1,11 +1,12 @@
+import { api } from "@/API/api-client";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+
 
 export const updateCoachingProfileAsynkThunk = createAsyncThunk(
   "coachingSlice/updateProfile",
   async ({ id, formData }, { rejectWithValue }) => {
     try {
-      const response = await axios.patch(
+      const response = await api.patch(
         `/api/v1/coaching-centers/${id}`,
         formData,
         { withCredentials: true },

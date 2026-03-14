@@ -14,16 +14,15 @@ import CoachingDashboard from "@/feature/coaching/pages/dashboard.page";
 import CoachingStaff from "@/feature/coaching/pages/coaching-staff";
 import Register from "@/feature/auth/pages/register.page";
 import LogIn from "@/feature/auth/pages/login.page";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setCoaching, setUser } from "@/feature/auth/redux/auth.slice";
-import { toast } from "sonner";
 import BecomeATeacher from "@/feature/teacher/pages/become-teacher.page";
 import CreateCoaching from "@/feature/coaching/pages/create-coaching.page";
 import Home from "@/feature/Home/pages/home.page";
 import EnrolledStudent from "@/feature/coaching/components/Dashboard/enrolled";
 import CoachingBatch from "@/feature/coaching/pages/coaching-batch";
 import BatchesPage from "../feature/Home/pages/batches";
+import { api } from "@/API/api-client";
 
 
 function App() {
@@ -37,14 +36,14 @@ function App() {
     const fetchUserData = async () => {
       try {
         // user
-        const userRes = await axios.get("/api/v1/me", {
+        const userRes = await api.get("/api/v1/me", {
           withCredentials: true,
         });
         dispatch(setUser(userRes.data.data));
 
         // coaching
         if (userRes) {
-          const coachingRes = await axios.get(
+          const coachingRes = await api.get(
             `/api/v1/coaching-center-by-user`,
           );
           console.log('cc', coachingRes)

@@ -1,5 +1,5 @@
+import { api } from "@/API/api-client";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 
 /**
  * authSlice/registration --> prefix of asyncThunk (like: authSlice/registration/{pending / fulfill / rejected})
@@ -10,7 +10,7 @@ export const registrationAsyncThunk = createAsyncThunk(
   "authSlice/registration",
   async (data, { rejectWithValue }) => {
     try {
-      const response = await axios.post("/api/v1/register", data);
+      const response = await api.post("/api/v1/register", data);
       return response.data;
     } catch (error) {
       console.log('er', error)

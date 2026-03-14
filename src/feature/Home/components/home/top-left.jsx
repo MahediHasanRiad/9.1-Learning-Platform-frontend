@@ -1,12 +1,14 @@
 import Button from "@/shared/utils/button";
 import React from "react";
+import img from '../../../../../public/images/home-hero.png'
+
 
 function TopHero() {
   return (
     <section className="grid md:grid-cols-2 items-center">
       {/* img  */}
       <section className="w-full md:hidden">
-        <img src="/public/home-hero.png" alt="" className="w-2/3 mx-auto" />
+        <img src={img} alt="" className="w-2/3 mx-auto" />
       </section>
       {/* info  */}
       <section className="w-full p-6 md:p-6 lg:p-12">
@@ -27,7 +29,7 @@ function TopHero() {
 
       {/* img  */}
       <section className="w-full hidden md:block">
-        <img src="/public/home-hero.png" alt="" className="w-2/3 mx-auto" />
+        <img src={img} alt="" className="w-2/3 mx-auto" />
       </section>
     </section>
   );

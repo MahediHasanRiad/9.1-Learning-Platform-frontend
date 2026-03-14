@@ -67,9 +67,9 @@ function MainLayout({ children }) {
                     coachingStaff={true}
                     coachingStaffPath={"/coaching/staff"}
                     coachingBatch={true}
-                    coachingBatchPath='/coaching/batch'
+                    coachingBatchPath="/coaching/batch"
                     enrolled={true}
-                    enrolledPath = '/coaching/enrolled'
+                    enrolledPath="/coaching/enrolled"
                     becomeUser={true}
                     becomeUserPath="/teachers"
                   />
@@ -89,31 +89,55 @@ function MainLayout({ children }) {
 
           {/* Mobile Menu */}
           {open && (
-            <div className="absolute top-16 left-0 w-full bg-white shadow-md flex flex-col gap-4 p-4 lg:hidden">
-              <Menu text="Teacher" />
-              <Menu text="Coaching" />
-              <Menu text="About" />
-              <Menu text="Contact" />
-              {user && (
+            <div className="absolute top-16 left-0 w-full bg-white shadow-md flex flex-col gap-4 p-4 lg:hidden z-50">
+              <Menu text="Teacher" path={"teachers"} />
+              <Menu text="Coaching" path={"batches"} />
+              <Menu text="About" path="about" />
+              <Menu text="Contact" path="contact" />
+              {role === "User" && (
                 <ProfileDropdown
                   profile={true}
-                  profilePath="/user/profile"
+                  profilePath={`/user/profile/${user?._id}`}
                   dashboard={true}
-                  dashboardPath="/user/dashboard"
+                  dashboardPath={`/user/dashboard/${user?._id}`}
                   enrolledBatch={true}
-                  enrolledBatchPath="/user/enrolled"
+                  enrolledBatchPath={`/user/enrolled/${user?._id}`}
+                  becomeTeacher={true}
+                  becomeTeacherPath="/becomeTeacher"
+                  coachingPage={true}
+                  coachingPagePath="/coaching"
                 />
               )}
-              {teacher && (
+              {role === "Teacher" && (
                 <ProfileDropdown
                   profile={true}
-                  profilePath="/user/profile"
+                  profilePath={`/teacher/profile/${teacher?._id}`}
                   dashboard={true}
-                  dashboardPath="/teacher/dashboard"
+                  dashboardPath={`/teacher/dashboard/${teacher?._id}`}
                   enrolledBatch={true}
-                  enrolledBatchPath="/teacher/enrolled"
+                  enrolledBatchPath={`/user/enrolled/${user?._id}`}
                   connectedBatch={true}
-                  connectedCoachingPath="/teacher/connected-coaching"
+                  connectedCoachingPath={`/teacher/connected-coaching/${user?._id}`}
+                  coachingPage={true}
+                  coachingPagePath="/coaching"
+                  becomeUser={true}
+                  becomeUserPath="/teachers"
+                />
+              )}
+              {role === "Coaching" && (
+                <ProfileDropdown
+                  profile={true}
+                  profilePath="/coaching/profile"
+                  dashboard={true}
+                  dashboardPath="/coaching/dashboard"
+                  coachingStaff={true}
+                  coachingStaffPath={"/coaching/staff"}
+                  coachingBatch={true}
+                  coachingBatchPath="/coaching/batch"
+                  enrolled={true}
+                  enrolledPath="/coaching/enrolled"
+                  becomeUser={true}
+                  becomeUserPath="/teachers"
                 />
               )}
             </div>

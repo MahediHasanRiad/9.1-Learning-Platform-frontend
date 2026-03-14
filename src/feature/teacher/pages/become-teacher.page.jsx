@@ -10,6 +10,8 @@ import { createTeacherAsyncThunk } from "../redux/createTeacher.thunk";
 import { useNavigate } from "react-router";
 import ErrorMsg from "@/shared/utils/error-msg";
 
+import img from '../../../../public/images/form-fill.svg'
+
 function BecomeATeacher() {
   const {
     control,
@@ -56,7 +58,7 @@ function BecomeATeacher() {
       <section className="grid md:grid-cols-2 items-center justify-center mt-6">
         <div className="mx-auto">
           <img
-            src="/public/form-fill.svg"
+            src={img}
             className="bg-background-0 text-secondary-0"
             alt=""
           />

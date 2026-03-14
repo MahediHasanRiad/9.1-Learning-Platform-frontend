@@ -3,6 +3,9 @@ import { Quote } from "lucide-react";
 import React from "react";
 
 import img1 from '../../../../public/images/best-tutor.svg'
+import img2 from '../../../../public/images/find-teacher.svg'
+import img3 from '../../../../public/images/find-teacher.svg'
+import img4 from '../../../../public/images/showcase-project.svg'
 
 function About() {
   return (
@@ -11,7 +14,6 @@ function About() {
       {/* part 1 */}
         <section className="grid md:grid-cols-2 items-center my-16">
           <div className="">
-            <img src={img1} alt="" className="w-60" />
             <img src={img1} alt="" className="w-60" />
           </div>
           <div>
@@ -24,7 +26,7 @@ function About() {
         <section className="grid md:grid-cols-2 items-center my-16">
           <div className="md:hidden">
             <img
-              src="/public/find-teacher.svg"
+              src={img2}
               alt=""
               className="w-60 float-right"
             />
@@ -38,7 +40,7 @@ function About() {
           </div>
           <div className="hidden md:block">
             <img
-              src="/public/find-teacher.svg"
+              src={img3}
               alt=""
               className="w-60 float-right"
             />
@@ -47,7 +49,7 @@ function About() {
         {/* part 3  */}
         <section className="grid md:grid-cols-2 items-center my-16">
           <div className="">
-            <img src="/public/showcase-project.svg" alt="" className="w-60" />
+            <img src={img4} alt="" className="w-60" />
           </div>
           <div>
             <p className="italic p-4">

@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
 import { registrationAsyncThunk } from "../redux/register.thunk";
 import { toast } from "sonner";
+import img from '../../../../public/images/background-register.jpg'
+
 
 function Register() {
   const {
@@ -58,7 +60,7 @@ function Register() {
   return (
     <section
       className="min-h-screen w-full flex items-center justify-center bg-cover bg-center bg-no-repeat bg-fixed"
-      style={{ backgroundImage: "url('/background-register.jpg')" }}
+      style={{ backgroundImage: `url(${img})` }}
     >
       {/* Registration Form Box */}
       <section className="p-8 w-full max-w-md">

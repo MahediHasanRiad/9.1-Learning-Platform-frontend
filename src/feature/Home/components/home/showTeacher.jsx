@@ -1,11 +1,12 @@
 import React from "react";
+import img from '../../../../../public/images/teaching-home-page.png'
 
 function ShowTeacherInfo() {
   return (
     <section className="grid md:grid-cols-2 items-center my-10">
       <div className="w-full md:hidden">
         <img
-          src="/public/teaching-home-page.png"
+          src={img}
           alt=""
           className="w-2/3 mx-auto "
         />
@@ -21,7 +22,7 @@ function ShowTeacherInfo() {
       </div>
       <div className="hidden md:block">
         <img
-          src="/public/teaching-home-page.png"
+          src={img}
           alt=""
           className="w-2/3 float-right"
         />

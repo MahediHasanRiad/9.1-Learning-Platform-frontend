@@ -4,10 +4,12 @@ import ErrorMsg from "@/shared/utils/error-msg";
 import InputField from "@/shared/utils/input";
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
 import { createCoachingAsyncThunk } from "../redux/createCoaching.thunk";
+
+import img from '../../../../public/images/coaching.svg'
 
 function CreateCoaching() {
   const {
@@ -47,7 +49,7 @@ function CreateCoaching() {
       <section className="grid md:grid-cols-2 items-center justify-center mt-6 gap-6">
         <div className="mx-auto w-2/3">
           <img
-            src="/public/coaching.svg"
+            src={img}
             className="bg-background-0 text-secondary-0"
             alt=""
           />

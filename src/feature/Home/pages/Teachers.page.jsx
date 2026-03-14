@@ -2,8 +2,8 @@ import PaginationItems from "@/shared/utils/Pagination";
 import CardItem from "../components/TeacherCard";
 import MainLayout from "@/layout/Main-Layout";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import FilterSection from "../components/Filter-section";
+import { api } from "@/API/api-client";
 
 function TeachersPage() {
   const [allTeachers, setAllTeachers] = useState([]);
@@ -23,7 +23,7 @@ function TeachersPage() {
   const fetchTeachers = async (query) => {
     try {
       const { search, limit, page, sortBy, sortType } = query;
-      const res = await axios.get(
+      const res = await api.get(
         `/api/v1/teachers?search=${search}&limit=${limit}&page=${page}&sortBy=${sortBy}&sortType=${sortType}`,
         { withCredentials: true },
       );

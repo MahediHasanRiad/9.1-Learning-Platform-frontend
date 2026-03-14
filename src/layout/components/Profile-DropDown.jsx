@@ -80,7 +80,7 @@ function ProfileDropdown({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="rounded-full">
+        <Button variant="ghost" size="icon" className="border border-gray-300 rounded-full">
           <Avatar>
             <AvatarImage src={"/public/riad.png"} alt="shadcn" />
             <AvatarFallback>LR</AvatarFallback>
