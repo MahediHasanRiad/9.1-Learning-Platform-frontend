@@ -12,7 +12,7 @@ import {
   useComboboxAnchor,
 } from "@/components/ui/combobox";
 import { Label } from "@/components/ui/label";
-import { Item, ItemContent, ItemDescription, ItemTitle } from "@/components/UI/item";
+import { Item, ItemContent, ItemDescription, ItemTitle } from "@/components/ui/item";
 
 function CustomMultiSelect({
   label,
