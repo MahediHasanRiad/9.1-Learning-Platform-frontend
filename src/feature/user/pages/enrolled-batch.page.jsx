@@ -1,8 +1,23 @@
 import CoachingBatchCard from "@/feature/coaching/components/Coaching-Batch-Card";
 import MainLayout from "@/layout/Main-Layout";
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 function UserEnrolledBatch({}) {
+  const [enrolled, setEnrolled] = useState([]);
+
+  useEffect(() => {
+    const getBatch = async () => {
+      const response = await axios.get("/api/v1/user/all-enrolled", {
+        withCredentials: true,
+      });
+      setEnrolled(response.data.data);
+    };
+
+    getBatch();
+  }, []);
+console.log('e', enrolled)
+
   return (
     <MainLayout>
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 my-6">

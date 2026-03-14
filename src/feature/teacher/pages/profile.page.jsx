@@ -23,7 +23,7 @@ function TeacherProfile() {
       }
     })();
   }, []);
-console.log('teacer', user)
+
   return (
     <MainLayout>
       <section className="md:w-2/3 mx-auto">

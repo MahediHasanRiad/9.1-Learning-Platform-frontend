@@ -29,21 +29,21 @@ function UpdateProfile() {
   const saveData = async (data) => {
     try {
       const formData = new FormData();
-      formData.append("name", data.name);
-      formData.append("mobile", data.mobile);
-      formData.append("address", data.address);
-      formData.append("bio", data.bio);
+      if(data.name) formData.append("name", data.name);
+      if(data.mobile) formData.append("mobile", data.mobile);
+      if(data.address) formData.append("address", data.address);
+      if(data.bio) formData.append("bio", data.bio);
+
       if (data.coverImage?.[0])
         formData.append("coverImage", data.coverImage[0]);
       if (data.avatar?.[0]) formData.append("avatar", data.avatar[0]);
 
-
-      await dispatch(
-        updateProfileAsyncThunk({ id: user._id, formData }),
-      ).unwrap();
-
-      reset();
-      toast.success("Profile Updated Successfully!");
+      await dispatch(updateProfileAsyncThunk({ id: user._id, formData }))
+        .unwrap()
+        .then(() => {
+          reset();
+          toast.success("Profile Updated Successfully!");
+        });
     } catch (error) {
       toast.error(typeof error === "string" ? error : error.message);
     }

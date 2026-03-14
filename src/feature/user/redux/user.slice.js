@@ -23,8 +23,7 @@ const userSlice = createSlice({
       .addCase(updateProfileAsyncThunk.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        console.log("updated", action.payload);
-        state.user = action.payload;
+        state.user = action.payload.data;
       })
       .addCase(updateProfileAsyncThunk.rejected, (state, action) => {
         state.loading = false;

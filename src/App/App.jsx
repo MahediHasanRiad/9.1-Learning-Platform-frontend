@@ -6,7 +6,6 @@ import Profile from "@/feature/user/pages/profile.page";
 import UserDashboard from "@/feature/user/pages/dashboard.page";
 import UserEnrolledBatch from "@/feature/user/pages/enrolled-batch.page";
 import TeacherDashboard from "@/feature/teacher/pages/TeacherDashboard.page";
-import TeacherEnrolledBatch from "@/feature/teacher/pages/enrolled-batch.page";
 import About from "@/feature/Home/pages/about.page";
 import Contact from "@/feature/Home/pages/contact.page";
 import ConnectedCoaching from "@/feature/teacher/pages/connected-coaching.page";
@@ -48,12 +47,14 @@ function App() {
           const coachingRes = await axios.get(
             `/api/v1/coaching-center-by-user`,
           );
+          console.log('cc', coachingRes)
           dispatch(setCoaching(coachingRes.data));
         }
       } catch (error) {
         const message =
           error.response?.data?.message || "Authentication failed";
-        toast.error(typeof message === "string" ? message : "Error occurred");
+        // toast.error(typeof message === "string" ? message : "Error occurred");
+        console.log(typeof message === "string" ? message : "Error occurred");
       }
     };
 
@@ -85,10 +86,6 @@ function App() {
         {/* teacher  */}
         <Route path="/teacher/profile/:id" element={<TeacherProfile />} />
         <Route path="/teacher/dashboard/:id" element={<TeacherDashboard />} />
-        <Route
-          path="/teacher/enrolled/:id"
-          element={<TeacherEnrolledBatch />}
-        />
         <Route
           path="/teacher/connected-coaching/:id"
           element={<ConnectedCoaching />}

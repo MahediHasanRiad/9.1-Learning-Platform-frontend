@@ -10,7 +10,7 @@ function MainLayout({ children }) {
   const [open, setOpen] = useState(false);
   // role
   const { user, teacher, role } = useSelector((state) => state.auth);
-console.log('r', role)
+
   return (
     <section className="w-5/6 m-auto">
       <nav className="w-full my-4 flex justify-center">
@@ -49,7 +49,7 @@ console.log('r', role)
                     dashboard={true}
                     dashboardPath={`/teacher/dashboard/${teacher?._id}`}
                     enrolledBatch={true}
-                    enrolledBatchPath={`/teacher/enrolled/${user?._id}`}
+                    enrolledBatchPath={`/user/enrolled/${user?._id}`}
                     connectedBatch={true}
                     connectedCoachingPath={`/teacher/connected-coaching/${user?._id}`}
                     coachingPage={true}

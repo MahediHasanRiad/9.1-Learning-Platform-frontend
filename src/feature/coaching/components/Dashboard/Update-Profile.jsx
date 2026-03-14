@@ -33,6 +33,7 @@ function UpdateProfile() {
 
   const dispatch = useDispatch()
   const {coaching} = useSelector((state) => state.auth)
+  const {loading, error} = useSelector((state) => state.coaching)
 
   const saveData = async (data) => {
     try {
@@ -205,7 +206,8 @@ function UpdateProfile() {
         </section>
 
         {/* submit btn  */}
-        <Button text={"Save"} className={"float-right mt-10"} />
+        {error && <ErrorMsg text={error.message} />}
+        <Button text={`${loading ? 'Loading...' : 'Save'}`} className={"float-right mt-10"} />
       </form>
     </section>
   );

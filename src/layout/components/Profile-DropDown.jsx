@@ -56,10 +56,10 @@ function ProfileDropdown({
     e.preventDefault();
 
     if (coaching) {
-       dispatch(updateRole("Coaching"));
+      dispatch(updateRole("Coaching"));
       navigate("/coaching/profile");
     } else {
-       dispatch(updateRole("Coaching"));
+      dispatch(updateRole("Coaching"));
       navigate("/coaching");
     }
   };
