@@ -32,7 +32,7 @@ function BatchesPage() {
       console.error("Error fetching batches:", error);
     }
   };
-
+console.log('batch', allBatch)
   useEffect(() => {
     fetchBatches(filterQuery);
   }, [filterQuery]);
