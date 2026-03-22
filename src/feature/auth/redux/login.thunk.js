@@ -9,4 +9,4 @@ export const loginAsyncThunk = createAsyncThunk('authSlice/login', async (data, 
   } catch (e) {
     return rejectWithValue(e.response?.data?.message || e.message)
   }
-})
+}) 
