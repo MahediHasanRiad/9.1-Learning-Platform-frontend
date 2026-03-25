@@ -1,6 +1,10 @@
 import React from 'react'
 
-function ErrorMsg({text}) {
+interface textType {
+  text: string;
+}
+
+function ErrorMsg({text}: textType) {
   return (
     <div>
       <span className='text-red-400 text-sm'>{text}</span>

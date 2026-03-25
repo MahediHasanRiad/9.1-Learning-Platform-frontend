@@ -1,6 +1,5 @@
 import ErrorMsg from "@/shared/utils/error-msg";
 import InputField from "@/shared/utils/input";
-import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
