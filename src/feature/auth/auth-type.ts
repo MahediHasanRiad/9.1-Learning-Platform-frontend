@@ -23,7 +23,7 @@ export interface RegisterResponse {
   message: string;
 };
 
- interface User {
+ export interface User {
   name: string;
   email: string;
   password: string;
@@ -68,4 +68,16 @@ export interface AuthSliceType {
   role: 'User' | 'Teacher' | 'Coaching',
   loading: boolean,
   error: string | null | undefined,
+}
+
+
+export interface LoginReturnType {
+  success: boolean;
+  data: User;
+  token: string;
+}
+
+export interface LoginInput {
+  email: string;
+  password: string;
 }

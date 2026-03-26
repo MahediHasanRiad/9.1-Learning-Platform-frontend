@@ -1,11 +1,13 @@
 import ErrorMsg from "@/shared/utils/error-msg";
 import InputField from "@/shared/utils/input";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, type SubmitHandler } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
 import { loginAsyncThunk } from "../redux/login.thunk";
 import { toast } from "sonner";
 import img from '../../../../public/images/background-register.jpg'
+import type { AppDispatch, RootState } from "@/store/store";
+import type { LoginInput } from "../auth-type";
 
 function LogIn() {
   const {
@@ -20,11 +22,12 @@ function LogIn() {
     },
   });
 
-  const { loading, error } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
+  const { loading, error } = useSelector((state: RootState) => state.auth);
+
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
-  const saveData = async (data) => {
+  const saveData: SubmitHandler<LoginInput> = async (data) => {
     try {
       await dispatch(loginAsyncThunk(data))
         .unwrap()
@@ -34,7 +37,7 @@ function LogIn() {
           reset;
         });
         toast.error(error)
-    } catch (error) {
+    } catch (error: any) {
       toast.error(error);
     }
   };

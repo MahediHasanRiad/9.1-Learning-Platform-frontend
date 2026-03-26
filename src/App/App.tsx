@@ -13,7 +13,7 @@ import { Route, Routes, useLocation } from "react-router";
 // import CoachingDashboard from "@/feature/coaching/pages/dashboard.page";
 // import CoachingStaff from "@/feature/coaching/pages/coaching-staff";
 import Register from "@/feature/auth/pages/register.page";
-// import LogIn from "@/feature/auth/pages/login.page";
+import LogIn from "@/feature/auth/pages/login.page";
 import { useDispatch } from "react-redux";
 import { setCoaching, setUser } from "@/feature/auth/redux/auth.slice";
 // import BecomeATeacher from "@/feature/teacher/pages/become-teacher.page";
@@ -46,13 +46,11 @@ function App() {
           const coachingRes = await api.get(
             `/api/v1/coaching-center-by-user`,
           );
-          console.log('cc', coachingRes)
           dispatch(setCoaching(coachingRes.data));
         }
       } catch (error: any) {
         const message =
           error.response?.data?.message || "Authentication failed";
-        // toast.error(typeof message === "string" ? message : "Error occurred");
         console.log(typeof message === "string" ? message : "Error occurred");
       }
     };
@@ -67,7 +65,7 @@ function App() {
       <Routes>
         {/* auth  */}
         <Route path="/register" element={<Register />} />
-        {/* <Route path="/signin" element={<LogIn />} /> */}
+        <Route path="/signin" element={<LogIn />} />
 
         {/* Home pages  */}
         {/* <Route path="/" element={<Home />} /> */}
