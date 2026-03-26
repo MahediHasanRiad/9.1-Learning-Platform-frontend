@@ -2,11 +2,13 @@ import PaginationItems from "@/shared/utils/Pagination";
 import CardItem from "../components/TeacherCard";
 import MainLayout from "@/layout/Main-Layout";
 import { useEffect, useState } from "react";
-import FilterSection from "../components/Filter-section";
+// import FilterSection from "../components/Filter-section";
 import { api } from "@/API/api-client";
+import type { AllTeacherType, QueryParamsType } from "@/feature/auth/auth-type";
+
 
 function TeachersPage() {
-  const [allTeachers, setAllTeachers] = useState([]);
+  const [allTeachers, setAllTeachers] = useState<AllTeacherType>();
   const [filterQuery, setFilterQuery] = useState({
     search: "",
     sortType: "dec",
@@ -15,14 +17,14 @@ function TeachersPage() {
     limit: 10,
   });
 
-  const handlePageChange = (newPage) => {
+  const handlePageChange = (newPage: number) => {
     setFilterQuery((prev) => ({ ...prev, page: newPage }));
   };
 
   // get all teachers
-  const fetchTeachers = async (query) => {
+  const fetchTeachers = async (filterQuery: QueryParamsType) => {
     try {
-      const { search, limit, page, sortBy, sortType } = query;
+      const { search, limit, page, sortBy, sortType } = filterQuery as Partial<QueryParamsType>;
       const res = await api.get(
         `/api/v1/teachers?search=${search}&limit=${limit}&page=${page}&sortBy=${sortBy}&sortType=${sortType}`,
         { withCredentials: true },
@@ -42,7 +44,7 @@ function TeachersPage() {
       <section className="bg-background space-y-6 m-auto">
         {/* filter section */}
         <section>
-          <FilterSection />
+          {/* <FilterSection setFilterQuery={setFilterQuery} /> */}
         </section>
 
         {/* teachers profiles */}
@@ -63,7 +65,7 @@ function TeachersPage() {
         {allTeachers?.pagination && (
           <PaginationItems
             totalPage={allTeachers?.pagination?.totalPage}
-            currentPage={allTeachers?.page}
+            currentPage={allTeachers?.pagination?.page}
             onPageChange={handlePageChange}
           />
         )}

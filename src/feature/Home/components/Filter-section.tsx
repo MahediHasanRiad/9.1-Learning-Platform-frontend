@@ -1,12 +1,14 @@
+import type { QueryParamsType, TeacherFilterType } from "@/feature/auth/auth-type";
 import Dropdown from "@/feature/teacher/utils/DropDown";
 import FilterItems from "@/feature/teacher/utils/filter";
 import Button from "@/shared/utils/button";
 import InputField from "@/shared/utils/input";
-import React from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, type SubmitHandler } from "react-hook-form";
 
-function FilterSection({filterChange}) {
-  const { control, handleSubmit } = useForm({
+
+
+function FilterSection({setFilterQuery}: any) {
+  const { control, handleSubmit } = useForm<TeacherFilterType>({
     defaultValues: {
       search: "",
       sortType: "",
@@ -16,9 +18,9 @@ function FilterSection({filterChange}) {
     },
   });
 
-  const saveData = (data) => {
+  const saveData: SubmitHandler<TeacherFilterType> = (data) => {
     console.log(data);
-    filterChange(data)
+    setFilterQuery(data)
 
   };
 

@@ -34,15 +34,18 @@ export interface RegisterResponse {
   bio: string,
 }
 
- interface Teacher {
+export interface Teacher {
   readonly _id: string;
-  userId: string;
   education: string;
   certificate: string;
   experience: string;
   availableDay: string;
   availableTime: string;
   rating: number;
+  userId: {
+    avatar: string;
+    name: string;
+  }
 }
 
 interface Coaching {
@@ -82,4 +85,43 @@ export interface LoginReturnType {
 export interface LoginInput {
   email: string;
   password: string;
+}
+
+export interface TeacherCardType {
+  path: string;
+  image: string;
+  name: string;
+  education: string;
+  rating: number;
+  btnText?: string;
+}
+
+export interface TeacherFilterType {
+  search: any;
+  sortType: string;
+  sortBy: string;
+  page: string;
+  limit: string;
+}
+
+
+export interface AllTeacherType {
+  teachers: Teacher[] | undefined;
+  links: {
+    self: string;
+  },
+  pagination: {
+    page: number;
+    limit: number;
+    totalItems: number;
+    totalPage: number;
+  }
+}
+
+export interface QueryParamsType {
+  search: string;
+  limit: number;
+  page: number;
+  sortBy: string;
+  sortType: string;
 }

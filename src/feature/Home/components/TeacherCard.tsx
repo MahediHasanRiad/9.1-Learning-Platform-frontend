@@ -1,8 +1,7 @@
-import { SingleTeacherAsyncThunk } from "@/feature/teacher/redux/single-teacher.thunk";
-import Button from "@/shared/utils/button";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router";
 import { GraduationCap, Star } from "lucide-react";
+import type { TeacherCardType } from "@/feature/auth/auth-type";
+
 
 function CardItem({
   path = "#",
@@ -10,9 +9,8 @@ function CardItem({
   name,
   education,
   rating,
-  btnText = "View Profile...",
-}) {
-  const dispatch = useDispatch();
+  btnText = " View Profile...",
+}: TeacherCardType) {
 
   return (
     <Link to={`${path}`} className="block w-full max-w-lg">

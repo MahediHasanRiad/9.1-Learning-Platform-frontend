@@ -7,7 +7,13 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-function PaginationItems({ totalPage = 1, currentPage = 1, onPageChange }) {
+interface PaginationType {
+  totalPage: number;
+  currentPage: number;
+  onPageChange: (page: number) => void 
+}
+
+function PaginationItems({ totalPage = 1, currentPage = 1, onPageChange }: PaginationType) {
   const pages = Array.from({ length: totalPage }, (_, i) => i + 1);
 
   return (

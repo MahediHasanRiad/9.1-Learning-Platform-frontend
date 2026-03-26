@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-// import TeachersPage from "../feature/Home/pages/Teachers.page";
+import TeachersPage from "../feature/Home/pages/Teachers.page";
 // import CoachingProfile from "../feature/coaching/pages/Coaching-Profile";
 import { Route, Routes, useLocation } from "react-router";
 // import Profile from "@/feature/user/pages/profile.page";
@@ -69,24 +69,24 @@ function App() {
 
         {/* Home pages  */}
         <Route path="/" element={<Home />} />
-        {/* <Route path="/teachers" element={<TeachersPage />} />
-        <Route path="/batches" element={<BatchesPage />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/becomeTeacher" element={<BecomeATeacher />} /> */}
+        <Route path="/teachers" element={<TeachersPage />} />
+        {/* <Route path="/batches" element={<BatchesPage />} /> */}
+        {/* <Route path="/about" element={<About />} /> */}
+        {/* <Route path="/contact" element={<Contact />} /> */}
+        {/* <Route path="/becomeTeacher" element={<BecomeATeacher />} /> */}
 
         {/* user  */}
-        {/* <Route path="/user/profile/:id" element={<Profile />} />
-        <Route path="/user/dashboard/:id" element={<UserDashboard />} />
-        <Route path="/user/enrolled/:id" element={<UserEnrolledBatch />} /> */}
+        {/* <Route path="/user/profile/:id" element={<Profile />} /> */}
+        {/* <Route path="/user/dashboard/:id" element={<UserDashboard />} /> */}
+        {/* <Route path="/user/enrolled/:id" element={<UserEnrolledBatch />} /> */}
 
         {/* teacher  */}
-        {/* <Route path="/teacher/profile/:id" element={<TeacherProfile />} />
-        <Route path="/teacher/dashboard/:id" element={<TeacherDashboard />} />
-        <Route
+         {/* <Route path="/teacher/profile/:id" element={<TeacherProfile />} /> */}
+        {/* <Route path="/teacher/dashboard/:id" element={<TeacherDashboard />} /> */}
+        {/* <Route
           path="/teacher/connected-coaching/:id"
           element={<ConnectedCoaching />}
-        /> */}
+        />  */}
 
         {/* coaching  */}
         {/* <Route path="/coaching" element={<CreateCoaching />} />

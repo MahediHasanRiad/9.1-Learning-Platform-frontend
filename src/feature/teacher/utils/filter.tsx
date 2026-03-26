@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { Filter, X } from "lucide-react";
 
-function FilterItems({search, children}) {
+interface FilterItemType {
+  search: string;
+  children: React.ReactNode;
+}
+
+function FilterItems({search, children}: FilterItemType) {
 
   const [open, setOpen] = useState(false);
 

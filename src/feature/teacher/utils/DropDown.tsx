@@ -9,7 +9,15 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-function Dropdown({ title, label, items = [], value, onChange }) {
+interface DropDownType {
+  title: string;
+  label?: string;
+  items: string[];
+  value: string;
+  onChange: (item: string) => void 
+}
+
+function Dropdown({ title, label, items = [], value, onChange }: DropDownType) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
