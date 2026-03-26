@@ -1,21 +1,30 @@
-import { Field, FieldGroup, FieldLabel } from "../../components/ui/field.js";
+import * as React from "react";
+import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 
-function InputField({
-  label = "",
-  type = "text",
-  id = "",
-  placeholder = "",
-  ref,
-  ...props
-}) {
-  return (
-    <FieldGroup className="">
-      <Field>
-        {label && <FieldLabel htmlFor={id}>{label}</FieldLabel>}
-        <Input type={type} ref={ref} id={id} placeholder={placeholder} {...props}/>
-      </Field>
-    </FieldGroup>
-  );
-}
+type InputFieldProps = React.ComponentProps<typeof Input> & {
+  label?: string;
+};
+
+const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
+  ({ label, id, type = "text", placeholder, ...props }, ref) => {
+    return (
+      <FieldGroup>
+        <Field>
+          {label && <FieldLabel htmlFor={id}>{label}</FieldLabel>}
+          <Input
+            ref={ref}
+            id={id}
+            type={type}
+            placeholder={placeholder}
+            {...props}
+          />
+        </Field>
+      </FieldGroup>
+    );
+  }
+);
+
+InputField.displayName = "InputField";
+
 export default InputField;

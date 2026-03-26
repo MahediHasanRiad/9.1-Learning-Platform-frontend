@@ -1,11 +1,13 @@
 import ErrorMsg from "../../../shared/utils/error-msg";
 import InputField from "@/shared/utils/input";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, type SubmitHandler } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
 import { registrationAsyncThunk } from "../redux/register.thunk";
 import { toast } from "sonner";
 import img from '../../../../public/images/background-register.jpg'
+import type { RegisterInput } from "../auth-type";
+import type { AppDispatch, RootState } from "@/store/store";
 
 
 function Register() {
@@ -20,19 +22,19 @@ function Register() {
       email: "",
       mobile: "",
       password: "",
-      avatar: "",
-      coverImage: "",
+      avatar: undefined,
+      coverImage: undefined,
       role: "",
       bio: ""
     },
   });
 
-  const { loading, error } = useSelector((state) => state.auth);
+  const { loading, error } = useSelector((state: RootState) => state.auth);
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate()
 
-  const saveData = async (data) => {
+  const saveData: SubmitHandler<RegisterInput> = async (data) => {
     try {
       const formData = new FormData();
 
@@ -40,10 +42,15 @@ function Register() {
       formData.append("email", data.email);
       formData.append("password", data.password);
       formData.append("mobile", data.mobile);
-      formData.append("avatar", data.avatar);
-      formData.append("coverImage", data.coverImage);
-      formData.append("role", data.role);
-      formData.append("bio", data.bio);
+      if(data.avatar){
+        formData.append("avatar", data.avatar);
+      }
+      if(data.coverImage){
+        formData.append("coverImage", data.coverImage);
+      }
+      if(data.bio){
+        formData.append("bio", data.bio);
+      }
 
       await dispatch(registrationAsyncThunk(formData)).unwrap()
       navigate('/signin')
@@ -161,7 +168,7 @@ function Register() {
                   <InputField
                     type="file"
                     label="Profile Picture *"
-                    onChange={(e) => onChange(e.target.files[0])}
+                    onChange={(e) => onChange(e.target.files?.[0])}
                   />
                 )}
               />
@@ -175,7 +182,7 @@ function Register() {
                   <InputField
                     type="file"
                     label="Cover Image"
-                    onChange={(e) => onChange(e.target.files[0])}
+                    onChange={(e) => onChange(e.target.files?.[0])}
                   />
                 )}
               />

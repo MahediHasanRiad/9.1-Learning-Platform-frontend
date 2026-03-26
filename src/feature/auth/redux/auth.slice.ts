@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { registrationAsyncThunk } from "./register.thunk";
-import { loginAsyncThunk } from "./login.thunk";
-import { logoutAsyncThunk } from "./logout.thunk";
+// import { loginAsyncThunk } from "./login.thunk";
+// import { logoutAsyncThunk } from "./logout.thunk";
+import type { AuthSliceType } from "../auth-type";
 
-const initialState = {
+const initialState: AuthSliceType = {
   user: null,
   teacher: null,
   coaching: null,
@@ -22,7 +23,6 @@ const authSlice = createSlice({
       state.teacher = action.payload.teacher;
     },
     setCoaching: (state, action) => {
-      console.log('dd', action.payload.data)
       state.coaching = action.payload.data;
     },
     updateRole: (state, action) => {
@@ -49,35 +49,35 @@ const authSlice = createSlice({
       });
 
     // login
-    builder
-      .addCase(loginAsyncThunk.pending, (state, action) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(loginAsyncThunk.fulfilled, (state, action) => {
-        state.loading = false;
-        state.error = null;
-        state.user = action.payload.data.user;
-      })
-      .addCase(loginAsyncThunk.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      });
+    // builder
+    //   .addCase(loginAsyncThunk.pending, (state, action) => {
+    //     state.loading = true;
+    //     state.error = null;
+    //   })
+    //   .addCase(loginAsyncThunk.fulfilled, (state, action) => {
+    //     state.loading = false;
+    //     state.error = null;
+    //     state.user = action.payload.data.user;
+    //   })
+    //   .addCase(loginAsyncThunk.rejected, (state, action) => {
+    //     state.loading = false;
+    //     state.error = action.payload;
+    //   });
 
     // logout
-    builder
-      .addCase(logoutAsyncThunk.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(logoutAsyncThunk.fulfilled, (state, action) => {
-        state.loading = false;
-        state.error = null;
-        state.user = null;
-      })
-      .addCase(logoutAsyncThunk.rejected, (state, action) => {
-        state.error = action.payload;
-        state.loading = false;
-      });
+    // builder
+    //   .addCase(logoutAsyncThunk.pending, (state) => {
+    //     state.loading = true;
+    //   })
+    //   .addCase(logoutAsyncThunk.fulfilled, (state, action) => {
+    //     state.loading = false;
+    //     state.error = null;
+    //     state.user = null;
+    //   })
+    //   .addCase(logoutAsyncThunk.rejected, (state, action) => {
+    //     state.error = action.payload;
+    //     state.loading = false;
+    //   });
   },
 });
 

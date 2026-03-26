@@ -1,7 +1,7 @@
 import React from 'react'
 
 interface textType {
-  text: string;
+  text: string | undefined;
 }
 
 function ErrorMsg({text}: textType) {
