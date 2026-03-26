@@ -24,7 +24,8 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
 import { updateRole } from "@/feature/auth/redux/auth.slice";
-import { toast } from "sonner";
+import type { AppDispatch, RootState } from "@/store/store";
+
 
 function ProfileDropdown({
   profile = false,
@@ -36,7 +37,7 @@ function ProfileDropdown({
   connectedBatch = false,
   connectedCoachingPath = "#",
   coachingStaff = false,
-  coachingStaffPath = false,
+  coachingStaffPath = "#",
   becomeTeacher = false,
   becomeTeacherPath = "#",
   becomeUser = false,
@@ -48,11 +49,11 @@ function ProfileDropdown({
   coachingBatch = false,
   coachingBatchPath = "#",
 }) {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const { user, teacher, coaching } = useSelector((state) => state.auth);
+  const { user, teacher, coaching } = useSelector((state: RootState) => state.auth);
 
-  const handleCoachingClick = (e) => {
+  const handleCoachingClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
     e.preventDefault();
 
     if (coaching) {
@@ -65,7 +66,7 @@ function ProfileDropdown({
   };
 
   // become teacher
-  const handleTeacherClick = (e) => {
+  const handleTeacherClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
     e.preventDefault();
 
     if (teacher) {

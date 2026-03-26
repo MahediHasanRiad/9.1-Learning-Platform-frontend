@@ -24,6 +24,7 @@ export interface RegisterResponse {
 };
 
  export interface User {
+  readonly _id: string;
   name: string;
   email: string;
   password: string;
@@ -34,6 +35,7 @@ export interface RegisterResponse {
 }
 
  interface Teacher {
+  readonly _id: string;
   userId: string;
   education: string;
   certificate: string;

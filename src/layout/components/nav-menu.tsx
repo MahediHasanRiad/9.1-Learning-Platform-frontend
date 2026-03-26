@@ -1,7 +1,6 @@
-import React from "react";
 import { NavLink } from "react-router";
 
-function Menu({ text, path = "#" }) {
+function Menu({ text = '', path = "#" }) {
   return (
     <NavLink
       to={`/${path}`}

@@ -1,4 +1,3 @@
-import React from "react";
 import img from '../../../../../public/images/Decision.png'
 
 function FindTeacher() {

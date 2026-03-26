@@ -1,5 +1,4 @@
 import MainLayout from "@/layout/Main-Layout";
-import React from "react";
 import TopHero from "../components/home/top-left";
 import FindTeacher from "../components/home/find-teacher";
 import ShowTeacherInfo from "../components/home/showTeacher";

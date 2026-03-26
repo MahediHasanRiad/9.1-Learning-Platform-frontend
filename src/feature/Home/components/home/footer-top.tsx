@@ -1,5 +1,4 @@
 import { Quote } from "lucide-react";
-import React from "react";
 
 function FooterTop() {
   return (

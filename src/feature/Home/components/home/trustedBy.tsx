@@ -1,5 +1,4 @@
 import TrustedField from '@/shared/utils/trustedField'
-import React from 'react'
 
 function TrustedBy() {
   return (

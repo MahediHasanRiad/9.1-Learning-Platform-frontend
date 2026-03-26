@@ -1,6 +1,11 @@
 import React from 'react'
 
-function TrustedField({name, value}) {
+interface TrustedFieldType {
+  name: string;
+  value: string;
+}
+
+function TrustedField({name, value}: TrustedFieldType) {
   return (
     <div className="p-6 rounded-2xl">
         <h2 className="text-lg font-medium text-gray-600 mb-2">{name}</h2>

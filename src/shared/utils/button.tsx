@@ -1,5 +1,12 @@
+interface sizeType {
+  [key: string]: string;
+  sm: string;
+  md: string;
+  lg: string;
+}
+
 function Button({
-  text,
+  text = 'view ...',
   size = "md",
   bg = "primary-0",
   textColor = "white",
@@ -8,7 +15,7 @@ function Button({
 }) {
   const base = `shrink-0 font-medium rounded-lg transition duration-200 focus:outline-none cursor-pointer whitespace-nowrap ${className}`;
 
-  const sizes = {
+  const sizes: sizeType = {
     sm: "px-2 py-1 text-xs sm:px-3 sm:py-1.5 sm:text-sm",
     md: "px-3 py-2 text-sm md:px-4 md:py-2 md:text-base",
     lg: "px-4 py-2 text-base md:px-6 md:py-3 md:text-lg",

@@ -1,17 +1,22 @@
-import ProfileDropdown from "@/layout/components/Profile-DropDown.jsx";
-import Menu from "./components/nav-menu.jsx";
+import ProfileDropdown from "@/layout/components/Profile-DropDown.js";
+import Menu from "./components/nav-menu.js";
 import { useState } from "react";
 import { Menu as MenuIcon, X } from "lucide-react";
 import { Link } from "react-router";
 import { useSelector } from "react-redux";
-import Button from "@/shared/utils/button.jsx";
-
+import Button from "@/shared/utils/button.js";
 import logo from '../../public/images/logo.png'
+import type { RootState } from "@/store/store.js";
 
-function MainLayout({ children }) {
+interface childrenType {
+  children: React.ReactNode; // ReactNode covers anything that can be render
+}
+
+function MainLayout({ children }: childrenType) {
   const [open, setOpen] = useState(false);
+  
   // role
-  const { user, teacher, role } = useSelector((state) => state.auth);
+  const { user, teacher, role } = useSelector((state: RootState) => state.auth);
 
   return (
     <section className="w-5/6 m-auto">

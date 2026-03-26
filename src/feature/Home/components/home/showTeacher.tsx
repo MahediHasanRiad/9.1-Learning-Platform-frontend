@@ -1,4 +1,3 @@
-import React from "react";
 import img from '../../../../../public/images/teaching-home-page.png'
 
 function ShowTeacherInfo() {
