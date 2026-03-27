@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, type ReactNode } from "react";
 import MainLayout from "./Main-Layout";
 import { Menu, X } from "lucide-react";
 
-function DashboardLayout({ menu, children }) {
+interface DashboardLayoutType {
+  menu: ReactNode;
+  children: ReactNode;
+}
+
+function DashboardLayout({ menu, children }: DashboardLayoutType) {
   const [open, setOpen] = useState(false);
 
   const handleMenu = () => {

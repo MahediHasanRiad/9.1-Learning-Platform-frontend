@@ -48,3 +48,22 @@ export interface initialStateType {
   error: string | null | undefined | unknown;
 }
 
+export interface UpdateTeacherProfileType {
+  name?: string;
+  email?: string;
+  mobile?: string;
+  password?: string;
+  avatar?: File | string;
+  coverImage?: File | string;
+  bio?: string;
+  address?: string;
+  facebook?: string;
+  linkedIn?: string;
+  education?: string;
+  certificate?: string;
+  experience?: string;
+  availableDay?: string[];
+  availableTime?: string[];
+  subjects?: string[];
+  rating?: number;
+}

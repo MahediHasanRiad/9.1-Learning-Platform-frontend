@@ -1,6 +1,6 @@
-export const items = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"];
+export const items: string[] = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"];
 
-export const dayOptions = [
+export const dayOptions: string[] = [
   "Saturday",
   "Sunday",
   "Monday",
@@ -9,7 +9,7 @@ export const dayOptions = [
   "Thursday",
   "Friday",
 ];
-export const timeOptions = [
+export const timeOptions: string[] = [
   "6am - 7am",
   "7am - 8am",
   "8am - 9am",

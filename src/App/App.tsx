@@ -4,8 +4,8 @@ import TeachersPage from "../feature/Home/pages/Teachers.page";
 import { Route, Routes, useLocation } from "react-router";
 import Profile from "@/feature/user/pages/profile.page";
 import UserDashboard from "@/feature/user/pages/dashboard.page";
-// import UserEnrolledBatch from "@/feature/user/pages/enrolled-batch.page";
-// import TeacherDashboard from "@/feature/teacher/pages/TeacherDashboard.page";
+import UserEnrolledBatch from "@/feature/user/pages/enrolled-batch.page";
+import TeacherDashboard from "@/feature/teacher/pages/TeacherDashboard.page";
 import About from "@/feature/Home/pages/about.page";
 import Contact from "@/feature/Home/pages/contact.page";
 // import ConnectedCoaching from "@/feature/teacher/pages/connected-coaching.page";
@@ -79,11 +79,11 @@ function App() {
         {/* user  */}
         <Route path="/user/profile/:id" element={<Profile />} />
         <Route path="/user/dashboard/:id" element={<UserDashboard />} />
-        {/* <Route path="/user/enrolled/:id" element={<UserEnrolledBatch />} /> */}
+        <Route path="/user/enrolled/:id" element={<UserEnrolledBatch />} />
 
         {/* teacher  */}
          <Route path="/teacher/profile/:id" element={<TeacherProfile />} />
-        {/* <Route path="/teacher/dashboard/:id" element={<TeacherDashboard />} /> */}
+        <Route path="/teacher/dashboard/:id" element={<TeacherDashboard />} />
         {/* <Route
           path="/teacher/connected-coaching/:id"
           element={<ConnectedCoaching />}

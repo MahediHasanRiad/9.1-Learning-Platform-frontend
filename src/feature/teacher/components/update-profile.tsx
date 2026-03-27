@@ -2,16 +2,14 @@ import Button from "@/shared/utils/button";
 import CustomInput from "@/shared/utils/custom-input";
 import InputField from "@/shared/utils/input";
 import MultiSelect from "@/shared/utils/multi-select";
-import React from "react";
-import { useForm, Controller } from "react-hook-form";
-import { items } from "./data";
-import { dayOptions } from "./data";
-import { timeOptions } from "./data";
+import { useForm, Controller, type SubmitHandler } from "react-hook-form";
+import { dayOptions, timeOptions } from "./data";
 import { useDispatch, useSelector } from "react-redux";
-import { updateProfileAsyncThunk } from "@/feature/user/redux/updateProfile.thunk";
 import { updateTeacherProfileAsyncThunk } from "../redux/profileUpdate.thunk";
 import { toast } from "sonner";
 import { useParams } from "react-router";
+import type { AppDispatch, RootState } from "@/store/store";
+import type { UpdateTeacherProfileType } from "../teacher-type";
 
 function UpdateProfile() {
   const {
@@ -22,6 +20,7 @@ function UpdateProfile() {
   } = useForm({
     defaultValues: {
       name: "",
+      email: "",
       address: "",
       mobile: "",
       avatar: "",
@@ -29,49 +28,73 @@ function UpdateProfile() {
       education: "",
       experience: "",
       certificate: "",
-      // expartIn: "",
-      availableDay: "",
-      availableTime: "",
+      availableDay: [],
+      availableTime: [],
       facebook: "",
       linkedIn: "",
       bio: "",
     },
   });
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
+  const { user } = useSelector((state: RootState) => state.auth);
   const { id } = useParams();
 
-  const saveData = async (data) => {
-    try {
-      const formData = new FormData();
-      formData.append("name", data.name);
-      formData.append("address", data.address);
-      formData.append("mobile", data.mobile);
-      if (data.avatar?.[0]) formData.append("avatar", data.avatar[0]);
-      if (data.coverImage?.[0])
-        formData.append("coverImage", data.coverImage[0]);
-      formData.append("bio", data.bio);
-      formData.append("facebook", data.facebook);
-      formData.append("linkedIn", data.linkedIn);
-      formData.append("education", data.education);
-      formData.append("experience", data.experience);
-      if (data.certificate) {
-        Array.from(data.certificate).forEach((file) =>
-          formData.append("certificate", file),
-        );
-      }
-      formData.append("availableDay", data.availableDay);
-      formData.append("availableTime", data.availableTime);
+  const saveData: SubmitHandler<UpdateTeacherProfileType> = async (data) => {
+  try {
+    if (!user?._id) throw new Error("User ID missing");
 
-      (await dispatch(
-        updateTeacherProfileAsyncThunk({ id: id, formData }),
-      ).unwrap(),
-        toast.success("Successfully Updated"));
-      reset();
-    } catch (error) {
-      toast.error(error);
+    const formData = new FormData();
+
+    if (data.name) formData.append("name", data.name);
+    if (data.address) formData.append("address", data.address);
+    if (data.mobile) formData.append("mobile", data.mobile);
+    if (data.bio) formData.append("bio", data.bio);
+    if (data.facebook) formData.append("facebook", data.facebook);
+    if (data.linkedIn) formData.append("linkedIn", data.linkedIn);
+
+    if (data.avatar) {
+      formData.append("avatar", data.avatar);
     }
-  };
+
+    if (data.coverImage) {
+      formData.append("coverImage", data.coverImage);
+    }
+
+    if (data.subjects?.length) {
+      data.subjects.forEach((sub) => {
+        formData.append("subjects", sub);
+      });
+    }
+
+    if (data.availableDay?.length) {
+      data.availableDay.forEach((day) => {
+        formData.append("availableDay", day);
+      });
+    }
+
+    if (data.availableTime?.length) {
+      data.availableTime.forEach((time) => {
+        formData.append("availableTime", time);
+      });
+    }
+
+    await dispatch(
+      updateTeacherProfileAsyncThunk({
+        id: user._id,
+        formData,
+      })
+    ).unwrap();
+
+    toast.success("Profile Updated!");
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      toast.error(error.message);
+    } else {
+      toast.error("Update failed");
+    }
+  }
+};
 
   return (
     <section>
@@ -132,7 +155,7 @@ function UpdateProfile() {
               <InputField
                 type="file"
                 label="Profile Picture"
-                onChange={(e) => onChange(e.target.files[0])}
+                onChange={(e) => onChange(e.target.files?.[0])}
               />
             )}
           />
@@ -143,7 +166,7 @@ function UpdateProfile() {
               <InputField
                 type="file"
                 label="Cover Image"
-                onChange={(e) => onChange(e.target.files[0])}
+                onChange={(e) => onChange(e.target.files?.[0])}
               />
             )}
           />
@@ -159,17 +182,6 @@ function UpdateProfile() {
             )}
           />
           <Controller
-            name="experienceOfYears"
-            control={control}
-            render={({ field }) => (
-              <InputField
-                label="Experience"
-                placeholder="6 years of experience in IT"
-                {...field}
-              />
-            )}
-          />
-          <Controller
             name="certificate"
             control={control}
             render={({ field: { onChange, value, ...field } }) => (
@@ -177,29 +189,15 @@ function UpdateProfile() {
                 type="file"
                 labelText={"Certificate"}
                 multiple={true}
-                label="Certificate"
                 {...field}
                 onChange={(e) => {
                   // convet in array
-                  const files = Array.from(e.target.files);
-                  onChange(files);
+                  // const files = Array.from(e.target.files);
+                  onChange(e.target.files?.[0]);
                 }}
               />
             )}
           />
-          {/* <Controller
-            name="expartIn"
-            control={control}
-            defaultValue={[]}
-            render={({ field }) => (
-              <MultiSelect
-                label="Expart In"
-                items={items}
-                placeholder="Subjects..."
-                {...field}
-              />
-            )}
-          /> */}
           <Controller
             name="availableDay"
             control={control}
@@ -208,7 +206,6 @@ function UpdateProfile() {
               <MultiSelect
                 label="Available Days"
                 items={dayOptions}
-                placeholder="Select days..."
                 {...field}
               />
             )}
@@ -221,7 +218,6 @@ function UpdateProfile() {
               <MultiSelect
                 label="Available Times"
                 items={timeOptions}
-                placeholder="Select Free Time..."
                 {...field}
               />
             )}

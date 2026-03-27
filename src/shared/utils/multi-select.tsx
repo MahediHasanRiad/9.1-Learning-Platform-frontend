@@ -13,12 +13,19 @@ import {
 } from "@/components/ui/combobox";
 import { Label } from "@/components/ui/label";
 
+interface MultiSelectProps {
+  label?: string;
+  items: string[];
+  value: string[];
+  onChange: (value: string[]) => void;
+}
+
 function MultiSelect({
   label = "Select Frameworks",
   items = [],
   value = [],
   onChange,
-}) {
+}: MultiSelectProps) {
   const anchor = useComboboxAnchor();
   const id = React.useId();
 
