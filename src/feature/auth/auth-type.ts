@@ -49,6 +49,7 @@ export interface Teacher {
 }
 
 interface Coaching {
+  readonly _id: string;
   CcName: string;
   address: string;
   subjects: string[];

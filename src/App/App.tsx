@@ -10,7 +10,7 @@ import About from "@/feature/Home/pages/about.page";
 import Contact from "@/feature/Home/pages/contact.page";
 import ConnectedCoaching from "@/feature/teacher/pages/connected-coaching.page";
 import TeacherProfile from "@/feature/teacher/pages/profile.page";
-// import CoachingDashboard from "@/feature/coaching/pages/dashboard.page";
+import CoachingDashboard from "@/feature/coaching/pages/dashboard.page";
 import CoachingStaff from "@/feature/coaching/pages/coaching-staff";
 import Register from "@/feature/auth/pages/register.page";
 import LogIn from "@/feature/auth/pages/login.page";
@@ -92,7 +92,7 @@ function App() {
         {/* coaching  */}
         <Route path="/coaching" element={<CreateCoaching />} />
         <Route path="/coaching/profile/:id" element={<CoachingProfile />} />
-        {/* <Route path="/coaching/dashboard/:id" element={<CoachingDashboard />} /> */}
+        <Route path="/coaching/dashboard/:id" element={<CoachingDashboard />} />
         <Route path="/coaching/staff/:id" element={<CoachingStaff />} />
         <Route path="/coaching/batch/:id" element={<CoachingBatch />} />
         {/* <Route path="/coaching/enrolled/:id" element={<EnrolledStudent />} /> */}

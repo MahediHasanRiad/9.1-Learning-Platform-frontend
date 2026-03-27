@@ -2,12 +2,14 @@ import Button from "@/shared/utils/button";
 import ErrorMsg from "@/shared/utils/error-msg";
 import InputField from "@/shared/utils/input";
 import Time from "@/shared/utils/time";
-import React from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, type SubmitHandler } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 import { updateCoachingProfileAsynkThunk } from "../../redux/updateCoachingProfile.thunk";
-import { useParams } from "react-router";
+import type { AppDispatch, RootState } from "@/store/store";
+import type { CoachingType } from "../../coaching-type";
+import dayjs from "dayjs";
+
 
 function UpdateProfile() {
   const {
@@ -31,23 +33,24 @@ function UpdateProfile() {
     },
   });
 
-  const dispatch = useDispatch()
-  const {coaching} = useSelector((state) => state.auth)
-  const {loading, error} = useSelector((state) => state.coaching)
+  const dispatch = useDispatch<AppDispatch>()
+  const {coaching} = useSelector((state: RootState) => state.auth)
+  const {loading, error} = useSelector((state: RootState) => state.coaching)
 
-  const saveData = async (data) => {
+  const saveData: SubmitHandler<Partial<CoachingType>> = async (data) => {
     try {
       // const formattedTime = data.officeTime?.map((t) => t.format("HH:mm"));
 
       const formData = new FormData();
-      formData.append("CcName", data.CcName);
-      formData.append("email", data.email);
-      formData.append("address", data.address);
-      formData.append("mobile", data.mobile);
-      formData.append("bio", data.bio || "");
-      formData.append("website", data.website || "");
-      formData.append("linkedIn", data.linkedIn || "");
-      formData.append("facebook", data.facebook || "");
+      if(data.CcName !== undefined) formData.append("CcName", data.CcName)
+      if(data.email !== undefined) formData.append("address", data.email)
+      if(data.address !== undefined) formData.append("address", data.address)
+      if(data.mobile !== undefined) formData.append("mobile", data.mobile)
+      if(data.bio !== undefined) formData.append("bio", data.bio)
+      if(data.website !== undefined) formData.append("website", data.website)
+      if(data.linkedIn !== undefined) formData.append("linkedIn", data.linkedIn)
+      if(data.facebook !== undefined) formData.append("facebook", data.facebook)
+
 
       // if (formattedTime) {
         // formattedTime.forEach(time => formData.append("officeTime", time));
@@ -56,14 +59,14 @@ function UpdateProfile() {
       if (data.coverImage) formData.append("coverImage", data.coverImage);
 
       await dispatch(updateCoachingProfileAsynkThunk({
-        id: coaching._id, 
+        id: coaching?._id, 
         formData
       })).unwrap();
 
       reset();
       toast.success('Successfully Updated');
 
-    } catch (error) {
+    } catch (error: any) {
       toast.error(error);
     }
 };
@@ -123,7 +126,7 @@ function UpdateProfile() {
               />
             )}
           />
-          {<ErrorMsg text={errors.contact?.message} />}
+          {<ErrorMsg text={errors.mobile?.message} />}
           </div>
           <Controller
             name="avatar"
@@ -132,7 +135,7 @@ function UpdateProfile() {
               <InputField
                 label="Profile Image"
                 type="file"
-                onChange={(e) => onChange(e.target.files[0])}
+                onChange={(e) => onChange(e.target.files?.[0])}
               />
             )}
           />
@@ -143,7 +146,7 @@ function UpdateProfile() {
               <InputField
                 label="Cover Image"
                 type="file"
-                onChange={(e) => onChange(e.target.files[0])}
+                onChange={(e) => onChange(e.target.files?.[0])}
               />
             )}
           />
@@ -165,7 +168,7 @@ function UpdateProfile() {
               <Time
                 type="double"
                 label="Office Time"
-                value={field.value}
+                value={field.value ? dayjs(field.value as string) : null}
                 onChange={field.onChange}
               />
             )}
@@ -205,8 +208,8 @@ function UpdateProfile() {
           />
         </section>
 
-        {/* submit btn  */}
-        {error && <ErrorMsg text={error.message} />}
+
+        {/* {error && <ErrorMsg text={error?.message} />} */}
         <Button text={`${loading ? 'Loading...' : 'Save'}`} className={"float-right mt-10"} />
       </form>
     </section>
