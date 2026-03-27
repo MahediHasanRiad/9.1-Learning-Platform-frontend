@@ -72,7 +72,7 @@ export interface AuthSliceType {
   coaching: Coaching | null;
   role: 'User' | 'Teacher' | 'Coaching',
   loading: boolean,
-  error: string | null | undefined,
+  error: string | null | undefined | unknown,
 }
 
 

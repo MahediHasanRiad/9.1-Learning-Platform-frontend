@@ -7,7 +7,7 @@ interface userType {
 }
 
 function UserInfo({user}: userType) {
-  console.log(user)
+
   return (
     <section>
       <section className="h-15 flex items-center border-b">

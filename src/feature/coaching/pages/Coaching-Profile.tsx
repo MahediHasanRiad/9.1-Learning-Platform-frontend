@@ -1,14 +1,13 @@
-import React from "react";
 import MainLayout from "@/layout/Main-Layout";
 import CoachingInfo from "@/feature/user/components/coaching-info";
 import { Quote } from "lucide-react";
 import { useSelector } from "react-redux";
-
+import type { RootState } from "@/store/store";
 
 
 function CoachingProfile() {
 
-  const {coaching} = useSelector((state) => state.auth)
+  const {coaching} = useSelector((state: RootState) => state.auth)
 
   return (
    <MainLayout>

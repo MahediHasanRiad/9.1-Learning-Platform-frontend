@@ -13,9 +13,21 @@ import InfoMenuItem from "../utils/info-menu-item";
 import CoachingBatchCard from "@/feature/coaching/components/Coaching-Batch-Card";
 import TeacherCard from "./teachersCard";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import type { CoachingType, ShowBatchType, StaffType } from "@/feature/coaching/coaching-type";
+import { api } from "@/API/api-client";
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "@/store/store";
+import { AllBatchByCoachingThunk } from "@/feature/coaching/redux/allbatch.thunk";
 
-function CoachingInfo({ coaching }) {
+interface Coaching {
+  coaching: CoachingType | null;
+}
+interface ShowBatch extends ShowBatchType {
+  _id: string;
+  path: string;
+}
+
+function CoachingInfo({ coaching }: Coaching) {
   const {
     about,
     handleAbout,
@@ -27,24 +39,24 @@ function CoachingInfo({ coaching }) {
     handleAdmin,
   } = useCoachingInfo();
 
-  const [allBatch, setAllBatch] = useState([]);
-  const [teachers, setTeachers] = useState([]);
+  const [allBatch, setAllBatch] = useState<ShowBatch[]>();
+  const [teachers, setTeachers] = useState<StaffType[]>();
 
 
   useEffect(() => {
     (async () => {
       // all batch
-      const allBatch = await axios.get(`/api/v1/allBatches`, {
+      const allBatch = await api.get(`/api/v1/allBatches`, {
         withCredentials: true,
       });
-      setAllBatch(allBatch.data.data);
+      setAllBatch(allBatch.data.data.batch);
 
       // all teachers
-      const allTeachers = await axios.get(
+      const allTeachers = await api.get(
         `/api/v1/coaching-staffs?role=Teacher`,
         { withCredentials: true },
       );
-      setTeachers(allTeachers.data.data);
+      setTeachers(allTeachers.data.data.staff);
     })();
   }, []);
 
@@ -64,12 +76,12 @@ function CoachingInfo({ coaching }) {
       {/* about  */}
       {about && (
         <section className="mt-4">
-          <InfoMenuItem Icon={BookUser} text={coaching?.address} />
-          <InfoMenuItem Icon={Contact} text={coaching?.mobile} />
-          <InfoMenuItem Icon={Clock7} text={coaching?.officeTime} />
-          <InfoMenuItem Icon={Mail} text={coaching?.email} />
-          <InfoMenuItem Icon={Linkedin} text={coaching?.linkedIn} />
-          <InfoMenuItem Icon={Facebook} text={coaching?.facebook} />
+          <InfoMenuItem Icon={BookUser} text={coaching?.address!} />
+          <InfoMenuItem Icon={Contact} text={coaching?.mobile!} />
+          <InfoMenuItem Icon={Clock7} text={coaching?.officeTime!} />
+          <InfoMenuItem Icon={Mail} text={coaching?.email!} />
+          <InfoMenuItem Icon={Linkedin} text={coaching?.linkedIn!} />
+          <InfoMenuItem Icon={Facebook} text={coaching?.facebook!} />
         </section>
       )}
 
@@ -77,10 +89,10 @@ function CoachingInfo({ coaching }) {
         {/* batches  */}
         {batch && (
           <section className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {allBatch?.batch?.map((batch) => (
+            {allBatch?.map((batch) => (
               <CoachingBatchCard
                 key={batch?._id}
-                path={batch?.Batch_link}
+                path={batch?._id}
                 image={batch?.coverImage}
                 name={batch?.name}
                 subjects={batch?.subjects}
@@ -95,7 +107,7 @@ function CoachingInfo({ coaching }) {
         {/* teachers  */}
         {teacher && (
           <section className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {teachers?.staff?.map((teacher) => (
+            {teachers?.map((teacher) => (
               <TeacherCard
                 key={teacher._id}
                 path={`/user/profile/${teacher.userId}`}

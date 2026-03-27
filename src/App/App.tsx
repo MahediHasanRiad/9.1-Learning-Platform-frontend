@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import TeachersPage from "../feature/Home/pages/Teachers.page";
-// import CoachingProfile from "../feature/coaching/pages/Coaching-Profile";
+import CoachingProfile from "../feature/coaching/pages/Coaching-Profile";
 import { Route, Routes, useLocation } from "react-router";
 import Profile from "@/feature/user/pages/profile.page";
 import UserDashboard from "@/feature/user/pages/dashboard.page";
@@ -45,7 +45,7 @@ function App() {
         // coaching
         if (userRes) {
           const coachingRes = await api.get(
-            `/api/v1/coaching-center-by-user`,
+            '/api/v1/coaching-center-by-user', { withCredentials: true }
           );
           dispatch(setCoaching(coachingRes.data));
         }
@@ -91,7 +91,7 @@ function App() {
 
         {/* coaching  */}
         <Route path="/coaching" element={<CreateCoaching />} />
-        {/* <Route path="/coaching/profile" element={<CoachingProfile />} /> */}
+        <Route path="/coaching/profile" element={<CoachingProfile />} />
         {/* <Route path="/coaching/dashboard" element={<CoachingDashboard />} /> */}
         {/* <Route path="/coaching/staff" element={<CoachingStaff />} /> */}
         {/* <Route path="/coaching/batch" element={<CoachingBatch />} /> */}

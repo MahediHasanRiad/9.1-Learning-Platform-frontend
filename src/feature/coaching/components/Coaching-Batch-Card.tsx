@@ -11,6 +11,7 @@ export default function CoachingBatchCard({
   end,
   btnText = "View Details",
   batch,
+  path = '#'
 }: CoachingBatchCardType) {
   return (
     <section className="group w-full  bg-white border border-slate-200/60 rounded-2xl overflow-hidden hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] transition-all duration-500 flex flex-col h-full">

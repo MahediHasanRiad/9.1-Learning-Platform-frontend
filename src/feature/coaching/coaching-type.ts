@@ -32,8 +32,9 @@ export interface CoachingBatchCardType {
   subjects: Subjects[];
   start: string;
   end: string;
-  btnText: string;
+  btnText?: string;
   batch: ShowBatchType;
+  path?: string;
 }
 
 export interface PaginationType {
@@ -56,28 +57,22 @@ export interface CreateCoachingType {
   address: string;
 }
 
-interface StaffType {
-  _id: string;
-  staffId: {
-      _id: string;
-      name: string;
-      mobile: string;
-      avatar: string;
-  },
-  coachingId: {
-      _id: string;
-      CcName: string;
-  },
+export interface StaffType {
+  readonly _id: string;
   role: string;
+  userId: string;
+  name: string;
+  avatar: string;
+  coachingId: string;
+  CcName: string;
+  staffLink: string;
 }
 
 export interface CoachingType {
   userId: string;
   CcName: string;
   address: string;
-  subjects: SubjectType[];
-  staffs: StaffType[];
-  batch: ShowBatchType[];
+  officeTime?: string;
   avatar: string;
   bio: string;
   coverImage: string;

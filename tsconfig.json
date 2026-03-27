@@ -46,6 +46,6 @@
     "moduleDetection": "force",
     "skipLibCheck": true,
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/components/ui/field.tsx", "src/components/ui/accordion.jsx", "src/shared/utils/input.tsx", "src/lib/utils.js", "src/shared/components/drawer-instructor.tsx", "src/feature/user/redux/user.slice.ts", "src/feature/teacher/redux/demoClass.slice.js"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/components/ui/field.tsx", "src/components/ui/accordion.jsx", "src/shared/utils/input.tsx", "src/lib/utils.js", "src/shared/components/drawer-instructor.tsx", "src/feature/user/redux/user.slice.ts", "src/feature/teacher/redux/demoClass.slice.js", "src/feature/coaching/redux/coaching-batch.slice.js"],
   
 }

@@ -1,7 +1,13 @@
 import React from "react";
 import { Link } from "react-router";
 
-function TeacherCard({ image, name, path = '#' }) {
+interface TeacherCardType {
+  image: string;
+  name: string;
+  path: string;
+}
+
+function TeacherCard({ image, name, path = '#' }: TeacherCardType) {
   return (
     <section className="flex flex-col items-center">
       <img
