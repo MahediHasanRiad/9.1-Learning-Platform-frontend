@@ -111,6 +111,11 @@ function LogIn() {
               Registration
             </Link>
           </p>
+          <div>
+            <b>Demo: </b>
+            <p>Email: contact.mahedihasan@gmail.com</p>
+            <p>password: riad123</p>
+          </div>
         </form>
       </section>
     </section>
