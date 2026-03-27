@@ -1,8 +1,8 @@
+import type { ResetPassType } from "@/feature/teacher/teacher-type";
 import Button from "@/shared/utils/button";
 import ErrorMsg from "@/shared/utils/error-msg";
 import InputField from "@/shared/utils/input";
-import React from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, type SubmitHandler } from "react-hook-form";
 
 function ResetPassword() {
 
@@ -18,7 +18,7 @@ function ResetPassword() {
       },
     });
   
-    const saveData = (data) => {
+    const saveData: SubmitHandler<ResetPassType> = (data) => {
       console.log(data)
     }
 
@@ -42,7 +42,7 @@ function ResetPassword() {
           </div>
           <div>
             <Controller
-              name="class"
+              name="newpassword"
               control={control}
               rules={{
                 required: "New Password are required !",

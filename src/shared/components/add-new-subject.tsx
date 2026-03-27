@@ -1,9 +1,10 @@
 import { createSubjectAsyncThunk } from "@/feature/teacher/redux/createSubject.thunk";
+import type { CreateSubjectType } from "@/feature/teacher/teacher-type";
 import Button from "@/shared/utils/button";
 import ErrorMsg from "@/shared/utils/error-msg";
 import InputField from "@/shared/utils/input";
-import React from "react";
-import { useForm, Controller } from "react-hook-form";
+import type { AppDispatch } from "@/store/store";
+import { useForm, Controller, type SubmitHandler } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router";
 import { toast } from "sonner";
@@ -22,15 +23,14 @@ function AddNewSubject() {
   });
 
   const {id} = useParams()
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
 
-  const saveData = async (data) => {
+  const saveData: SubmitHandler<CreateSubjectType> = async (data) => {
     try {
-      console.log(data)
       await dispatch(createSubjectAsyncThunk(data)).unwrap()
       reset()
       toast.success('Suject Created Successfully')
-    } catch (error) {
+    } catch (error: any) {
       toast.error(error)
     }
   }
@@ -63,7 +63,7 @@ function AddNewSubject() {
                 <InputField label="Class Name" {...field} />
               )}
             />
-            {<ErrorMsg text={errors.class?.message} />}
+            {<ErrorMsg text={errors.className?.message} />}
           </div>
         </section>
 

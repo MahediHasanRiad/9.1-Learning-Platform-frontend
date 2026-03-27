@@ -88,3 +88,13 @@ export interface SubjectType {
   name: string;
   className: string,
 }
+
+export interface CreateSubjectType {
+  name: string;
+  className: string;
+}
+
+export interface ResetPassType {
+  oldpassword: string;
+  newpassword: string;
+}
