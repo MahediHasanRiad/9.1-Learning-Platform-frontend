@@ -1,10 +1,21 @@
+import type { Teacher } from "@/feature/auth/auth-type";
 import React from "react";
 
-function DrawerInstructor({ assignedTeachers }) {
+interface AssignedTeacherType {
+  id: string;
+  avatar: string;
+  name: string;
+}
+
+interface InstructorType {
+  assignedTeachers: AssignedTeacherType[]
+}
+
+function DrawerInstructor({ assignedTeachers }: InstructorType) {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-      {assignedTeachers?.map((teacher, index) => (
+      {assignedTeachers?.map((teacher: any, index: number) => (
         <div
           key={index}
           className="flex items-center gap-2 bg-slate-50 p-1.5 pr-3 rounded-full border border-slate-100 hover:border-primary-0/30 transition-all"

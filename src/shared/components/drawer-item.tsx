@@ -1,6 +1,12 @@
-import React from "react";
+import type { LucideIcon } from "lucide-react";
 
-function DrawerItem({ Icon, label, text }) {
+interface DrawerItemType {
+  Icon: LucideIcon;
+  label: string;
+  text: number | string | string[];
+}
+
+function DrawerItem({ Icon, label, text }: DrawerItemType) {
   return (
     <div className="flex items-center gap-4 py-2 group cursor-default">
       <div className="flex shrink-0 items-center justify-center bg-primary-0/5 border border-primary-0/10 p-3 rounded-xl group-hover:bg-primary-0/10 transition-colors duration-200">

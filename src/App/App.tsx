@@ -21,12 +21,13 @@ import { setCoaching, setUser } from "@/feature/auth/redux/auth.slice";
 import Home from "@/feature/Home/pages/home.page";
 // import EnrolledStudent from "@/feature/coaching/components/Dashboard/enrolled";
 // import CoachingBatch from "@/feature/coaching/pages/coaching-batch";
-// import BatchesPage from "../feature/Home/pages/batches";
+import BatchesPage from "../feature/Home/pages/batches";
 import { api } from "@/API/api-client";
+import type { AppDispatch } from "@/store/store";
 
 
 function App() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const location = useLocation();
 
   useEffect(() => {
@@ -70,7 +71,7 @@ function App() {
         {/* Home pages  */}
         <Route path="/" element={<Home />} />
         <Route path="/teachers" element={<TeachersPage />} />
-        {/* <Route path="/batches" element={<BatchesPage />} /> */}
+        <Route path="/batches" element={<BatchesPage />} />
         {/* <Route path="/about" element={<About />} /> */}
         {/* <Route path="/contact" element={<Contact />} /> */}
         {/* <Route path="/becomeTeacher" element={<BecomeATeacher />} /> */}

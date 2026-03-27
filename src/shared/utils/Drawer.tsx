@@ -1,3 +1,4 @@
+import type { FC } from "react";
 import { Button } from "@/components/ui/button";
 import {
   BadgePercent,
@@ -19,8 +20,14 @@ import DrawerItem from "../components/drawer-item";
 import { BookOpen } from "lucide-react";
 import DrawerInstructor from "../components/drawer-instructor";
 import DrawerSubject from "../components/drawer-subject";
+import type { ShowBatchType } from "@/feature/coaching/coaching-type";
 
-export function DrawerField({ btnText, batch }) {
+interface DrawerFieldType {
+  btnText?: string | undefined;
+  batch: ShowBatchType;
+}
+
+export const DrawerField: FC<DrawerFieldType> = ({ btnText, batch }) => {
 
   return (
     <Drawer direction="right">

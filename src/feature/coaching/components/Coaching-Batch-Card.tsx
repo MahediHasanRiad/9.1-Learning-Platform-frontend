@@ -1,5 +1,7 @@
 import { BookOpen, Calendar, ArrowRight } from "lucide-react";
 import DrawerField from "@/shared/utils/Drawer";
+import type { CoachingBatchCardType } from "../coaching-type";
+
 
 export default function CoachingBatchCard({
   image,
@@ -9,7 +11,7 @@ export default function CoachingBatchCard({
   end,
   btnText = "View Details",
   batch,
-}) {
+}: CoachingBatchCardType) {
   return (
     <section className="group w-full  bg-white border border-slate-200/60 rounded-2xl overflow-hidden hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] transition-all duration-500 flex flex-col h-full">
       
@@ -49,7 +51,7 @@ export default function CoachingBatchCard({
             <div className="flex flex-col">
               <span className="text-[10px] text-slate-400 font-medium">Subjects</span>
               <p className="text-xs text-slate-600 font-semibold truncate">
-                {subjects?.length > 0 ? subjects.map(s => s.name).join(", ") : "N/A"}
+                {subjects?.length > 0 ? subjects?.map(s => s.name).join(", ") : "N/A"}
               </p>
             </div>
           </div>
@@ -66,13 +68,12 @@ export default function CoachingBatchCard({
             </div>
           </div>
         </div>
-
         {/* Action: Customizing the feel of DrawerField wrapper */}
         <div className="mt-auto pt-4 border-t border-slate-50">
           <div className="flex items-center justify-between group/btn">
              <DrawerField 
                 btnText={btnText} 
-                batch={batch} 
+                batch={batch}
               />
              <ArrowRight size={16} className="text-slate-300 -translate-x-2 opacity-0 group-hover/btn:translate-x-0 group-hover/btn:opacity-100 transition-all text-blue-600" />
           </div>

@@ -97,7 +97,7 @@ export interface TeacherCardType {
 }
 
 export interface TeacherFilterType {
-  search: any;
+  search: string;
   sortType: string;
   sortBy: string;
   page: string;
@@ -125,3 +125,4 @@ export interface QueryParamsType {
   sortBy: string;
   sortType: string;
 }
+

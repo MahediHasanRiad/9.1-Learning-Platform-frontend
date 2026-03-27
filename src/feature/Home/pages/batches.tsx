@@ -4,9 +4,13 @@ import PaginationItems from "@/shared/utils/Pagination";
 import MainLayout from "@/layout/Main-Layout";
 import FilterSection from "../components/Filter-section";
 import { api } from "@/API/api-client";
+import type { QueryParamsType } from "@/feature/auth/auth-type";
+import type { AllBatchType } from "@/feature/coaching/coaching-type";
+
+
 
 function BatchesPage() {
-  const [allBatch, setAllBatch] = useState([]);
+  const [allBatch, setAllBatch] = useState<AllBatchType>();
   const [filterQuery, setFilterQuery] = useState({
     search: "",
     sortType: "dec",
@@ -14,13 +18,13 @@ function BatchesPage() {
     page: 1,
     limit: 10,
   });
-
-  const handlePageChange = (newPage) => {
+console.log('allbatch', allBatch)
+  const handlePageChange = (newPage: number) => {
     setFilterQuery((prev) => ({ ...prev, page: newPage }));
   };
 
   // get all coaching centers
-  const fetchBatches = async (query) => {
+  const fetchBatches = async (query: QueryParamsType) => {
     try {
       const { search, limit, page, sortBy, sortType } = query;
       const res = await api.get(
@@ -41,7 +45,7 @@ console.log('batch', allBatch)
     <MainLayout>
       {/* ----------------------- Filter ---------------------- */}
       <section>
-        <FilterSection filterChange={setFilterQuery} />
+        {/* <FilterSection filterChange={setFilterQuery} /> */}
       </section>
 
       {/* ------------------------------------ batches ----------------------------------- */}
@@ -54,7 +58,7 @@ console.log('batch', allBatch)
             subjects={batch?.subjects}
             start={batch?.start_date}
             end={batch?.end_date}
-            rating={"4.5"}
+            btnText="view details..."
             batch={batch}
           />
         ))}

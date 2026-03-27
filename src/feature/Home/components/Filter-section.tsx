@@ -1,13 +1,11 @@
-import type { QueryParamsType, TeacherFilterType } from "@/feature/auth/auth-type";
+import type { TeacherFilterType } from "@/feature/auth/auth-type";
 import Dropdown from "@/feature/teacher/utils/DropDown";
 import FilterItems from "@/feature/teacher/utils/filter";
 import Button from "@/shared/utils/button";
 import InputField from "@/shared/utils/input";
 import { useForm, Controller, type SubmitHandler } from "react-hook-form";
 
-
-
-function FilterSection({setFilterQuery}: any) {
+function FilterSection({ filterChange }: any) {
   const { control, handleSubmit } = useForm<TeacherFilterType>({
     defaultValues: {
       search: "",
@@ -20,57 +18,49 @@ function FilterSection({setFilterQuery}: any) {
 
   const saveData: SubmitHandler<TeacherFilterType> = (data) => {
     console.log(data);
-    setFilterQuery(data)
-
+    filterChange(data);
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit(saveData)}>
-        <FilterItems
-          search={
-            <>
-              <Controller
-                name="search"
-                control={control}
-                render={({ field }) => (
-                  <InputField placeholder={"search..."} {...field} />
-                )}
-              />
-              <Button text={"Submit"} />
-            </>
-          }
-        >
-          {/* children  */}
-          <Controller
-            name="sortType"
-            control={control}
-            render={({ field }) => (
-              <Dropdown title="Type" items={["asc", "dec"]} {...field} />
-            )}
-          />
-          <Controller
-            name="sortBy"
-            control={control}
-            render={({ field }) => (
-              <Dropdown
-                title="Sort"
-                items={["updatedAt", "Price"]}
-                {...field}
-              />
-            )}
-          />
-          <Controller
-            name="limit"
-            control={control}
-            render={({ field }) => (
-              <Dropdown title="Limit" items={["10", "25", "50"]} {...field} />
-            )}
-          />
-          <Button text={"Filter"} />
-        </FilterItems>
-      </form>
-    </>
+    <form onSubmit={handleSubmit(saveData)}>
+      <FilterItems
+        search={
+          <>
+            <Controller
+              name="search"
+              control={control}
+              render={({ field }) => (
+                <InputField placeholder={"search..."} {...field} />
+              )}
+            />
+            <Button text={"Submit"} />
+          </>
+        }
+      >
+        <Controller
+          name="sortType"
+          control={control}
+          render={({ field }) => (
+            <Dropdown title="Type" items={["asc", "dec"]} {...field} />
+          )}
+        />
+        <Controller
+          name="sortBy"
+          control={control}
+          render={({ field }) => (
+            <Dropdown title="Sort" items={["updatedAt", "Price"]} {...field} />
+          )}
+        />
+        <Controller
+          name="limit"
+          control={control}
+          render={({ field }) => (
+            <Dropdown title="Limit" items={["10", "25", "50"]} {...field} />
+          )}
+        />
+        <Button text={"Filter"} />
+      </FilterItems>
+    </form>
   );
 }
 
