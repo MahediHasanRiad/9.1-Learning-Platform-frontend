@@ -1,6 +1,7 @@
 import { api } from "@/API/api-client";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import type { TeacherSliceType } from "../teacher-type";
 
 interface UpdateTeacherType {
   id: string | undefined;
@@ -10,6 +11,7 @@ interface UpdateTeacherType {
 interface ReturnUpdateProfileType {
   success: boolean;
   message: string;
+  data: TeacherSliceType;
 }
 
 export const updateTeacherProfileAsyncThunk = createAsyncThunk<

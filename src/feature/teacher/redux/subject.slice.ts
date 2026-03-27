@@ -1,8 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createSubjectAsyncThunk } from "./createSubject.thunk";
 import { subjectListByTeacherAsyncThunk } from "./subjectListByTeacher.thunk";
+import type { SubjectType } from "../teacher-type";
 
-const initialState = {
+interface SubjectSliceType {
+  subject: SubjectType | null;
+  loading: boolean;
+  error: null | undefined | string | unknown
+}
+
+const initialState: SubjectSliceType = {
   subject: null,
   loading: true,
   error: null,

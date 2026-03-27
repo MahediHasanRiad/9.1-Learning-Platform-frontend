@@ -1,5 +1,6 @@
 import { api } from "@/API/api-client";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 
 export const createCoachingAsyncThunk = createAsyncThunk(
@@ -10,8 +11,11 @@ export const createCoachingAsyncThunk = createAsyncThunk(
         withCredentials: true,
       });
       return response.data;
-    } catch (error) {
-      return rejectWithValue(error.response?.data?.message || error.message);
+    } catch (error: unknown) {
+      if(axios.isAxiosError(error)){
+        return rejectWithValue(error.response?.data?.message || error.message);
+      }
+      return rejectWithValue('error during create coaching center');
     }
   },
 );

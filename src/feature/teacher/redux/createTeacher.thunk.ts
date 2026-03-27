@@ -1,10 +1,15 @@
 import { api } from "@/API/api-client";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import type { TeacherType } from "../teacher-type";
+import type { TeacherSliceType, TeacherType } from "../teacher-type";
 import axios from "axios";
 
+interface ReturnTeacherType {
+  success: boolean;
+  message: string;
+  data: TeacherSliceType;
+}
 
-export const createTeacherAsyncThunk = createAsyncThunk<TeacherType, FormData, {rejectValue: string}>('teacherSlice/create', async (formData, {rejectWithValue}) => {
+export const createTeacherAsyncThunk = createAsyncThunk<ReturnTeacherType, FormData, {rejectValue: string}>('teacherSlice/create', async (formData, {rejectWithValue}) => {
   try {
     const response = await api.post('/api/v1/teacher', formData, {withCredentials: true})
     return response.data

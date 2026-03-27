@@ -17,7 +17,7 @@ import LogIn from "@/feature/auth/pages/login.page";
 import { useDispatch } from "react-redux";
 import { setCoaching, setUser } from "@/feature/auth/redux/auth.slice";
 import BecomeATeacher from "@/feature/teacher/pages/become-teacher.page";
-// import CreateCoaching from "@/feature/coaching/pages/create-coaching.page";
+import CreateCoaching from "@/feature/coaching/pages/create-coaching.page";
 import Home from "@/feature/Home/pages/home.page";
 // import EnrolledStudent from "@/feature/coaching/components/Dashboard/enrolled";
 // import CoachingBatch from "@/feature/coaching/pages/coaching-batch";
@@ -90,12 +90,12 @@ function App() {
         /> 
 
         {/* coaching  */}
-        {/* <Route path="/coaching" element={<CreateCoaching />} />
-        <Route path="/coaching/profile" element={<CoachingProfile />} />
-        <Route path="/coaching/dashboard" element={<CoachingDashboard />} />
-        <Route path="/coaching/staff" element={<CoachingStaff />} />
-        <Route path="/coaching/batch" element={<CoachingBatch />} />
-        <Route path="/coaching/enrolled" element={<EnrolledStudent />} /> */}
+        <Route path="/coaching" element={<CreateCoaching />} />
+        {/* <Route path="/coaching/profile" element={<CoachingProfile />} /> */}
+        {/* <Route path="/coaching/dashboard" element={<CoachingDashboard />} /> */}
+        {/* <Route path="/coaching/staff" element={<CoachingStaff />} /> */}
+        {/* <Route path="/coaching/batch" element={<CoachingBatch />} /> */}
+        {/* <Route path="/coaching/enrolled" element={<EnrolledStudent />} /> */}
       </Routes>
     </section>
   );

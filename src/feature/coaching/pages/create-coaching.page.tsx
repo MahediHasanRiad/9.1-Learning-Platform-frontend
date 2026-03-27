@@ -2,14 +2,14 @@ import MainLayout from "@/layout/Main-Layout";
 import Button from "@/shared/utils/button";
 import ErrorMsg from "@/shared/utils/error-msg";
 import InputField from "@/shared/utils/input";
-import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
 import { createCoachingAsyncThunk } from "../redux/createCoaching.thunk";
-
 import img from '../../../../public/images/coaching.svg'
+import type { AppDispatch } from "@/store/store";
+
 
 function CreateCoaching() {
   const {
@@ -25,7 +25,7 @@ function CreateCoaching() {
   });
 
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   const saveData = async (data) => {

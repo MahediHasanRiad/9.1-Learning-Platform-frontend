@@ -31,20 +31,20 @@ const coachingSlice = createSlice({
       });
 
     // update
-    builder
-      .addCase(updateCoachingProfileAsynkThunk.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(updateCoachingProfileAsynkThunk.fulfilled, (state, action) => {
-        state.loading = false;
-        state.error = null;
-        state.coaching = action.payload.data;
-      })
-      .addCase(updateCoachingProfileAsynkThunk.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      });
+    // builder
+    //   .addCase(updateCoachingProfileAsynkThunk.pending, (state) => {
+    //     state.loading = true;
+    //     state.error = null;
+    //   })
+    //   .addCase(updateCoachingProfileAsynkThunk.fulfilled, (state, action) => {
+    //     state.loading = false;
+    //     state.error = null;
+    //     state.coaching = action.payload.data;
+    //   })
+    //   .addCase(updateCoachingProfileAsynkThunk.rejected, (state, action) => {
+    //     state.loading = false;
+    //     state.error = action.payload;
+    //   });
   },
 });
 

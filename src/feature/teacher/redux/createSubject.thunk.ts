@@ -1,11 +1,12 @@
 import { api } from "@/API/api-client";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import type { CreateSubjectType } from "../teacher-type";
+import type { CreateSubjectType, SubjectType } from "../teacher-type";
 
 interface ReturnSubjectType {
   success: boolean;
   message: string;
+  data: SubjectType;
 }
 
 export const createSubjectAsyncThunk = createAsyncThunk<
