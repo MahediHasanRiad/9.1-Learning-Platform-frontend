@@ -24,7 +24,7 @@ export interface RegisterResponse {
 };
 
  export interface User {
-  readonly _id: string;
+  readonly _id?: string;
   name: string;
   email: string;
   password: string;

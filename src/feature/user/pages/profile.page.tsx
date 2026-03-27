@@ -6,18 +6,22 @@ import { useEffect } from "react";
 import { findUserByIdAsyncThunk } from "../redux/find-by-id.thunk";
 import { useParams } from "react-router";
 import { toast } from "sonner";
+import type { AppDispatch, RootState } from "@/store/store";
+
 
 function Profile() {
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const {id} = useParams()
-  const {user} = useSelector((state) => state.user)
+  const {user} = useSelector((state: RootState) => state.user)
 
   useEffect(() => {
     ;(async () => {
       try {
+        if(!id) return
+
         await dispatch(findUserByIdAsyncThunk(id)).unwrap()
-      } catch (error) {
+      } catch (error: any) {
         toast.error(error)
       }
     })()
@@ -61,7 +65,7 @@ function Profile() {
           </section>
           {/* info  */}
           <section className="mt-4">
-            <UserInfo user={user} />
+            <UserInfo user={user!} />
           </section>
         </section>
       </section>

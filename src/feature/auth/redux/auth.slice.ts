@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { registrationAsyncThunk } from "./register.thunk";
-// import { loginAsyncThunk } from "./login.thunk";
+import { loginAsyncThunk } from "./login.thunk";
 // import { logoutAsyncThunk } from "./logout.thunk";
 import type { AuthSliceType } from "../auth-type";
 
@@ -49,20 +49,20 @@ const authSlice = createSlice({
       });
 
     // login
-    // builder
-    //   .addCase(loginAsyncThunk.pending, (state, action) => {
-    //     state.loading = true;
-    //     state.error = null;
-    //   })
-    //   .addCase(loginAsyncThunk.fulfilled, (state, action) => {
-    //     state.loading = false;
-    //     state.error = null;
-    //     state.user = action.payload.data.user;
-    //   })
-    //   .addCase(loginAsyncThunk.rejected, (state, action) => {
-    //     state.loading = false;
-    //     state.error = action.payload;
-    //   });
+    builder
+      .addCase(loginAsyncThunk.pending, (state, action) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(loginAsyncThunk.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.user = action.payload.data;
+      })
+      .addCase(loginAsyncThunk.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
 
     // logout
     // builder
