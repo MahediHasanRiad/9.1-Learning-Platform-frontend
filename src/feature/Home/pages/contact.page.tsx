@@ -3,10 +3,15 @@ import Button from '@/shared/utils/button';
 import ErrorMsg from '@/shared/utils/error-msg';
 import InputField from '@/shared/utils/input';
 import TextareaField from '@/shared/utils/textarea';
-import React from 'react'
 import { useForm,Controller } from 'react-hook-form';
-
 import img from '../../../../public/images/contact.svg'
+
+interface ContactType {
+  name: string;
+  reason: string;
+  mobile: string;
+  message: string;
+}
 
 function Contact() {
 
@@ -15,7 +20,7 @@ function Contact() {
       handleSubmit,
       reset,
       formState: { errors },
-    } = useForm({
+    } = useForm<ContactType>({
       defaultValues: {
         name: "",
         reason: "",
@@ -24,6 +29,9 @@ function Contact() {
       },
     });
 
+    const saveData = (data: ContactType) => {
+      console.log(data)
+    }
 
 
   return (
@@ -37,7 +45,7 @@ function Contact() {
           />
         </div>
         <div className="col-span-2">
-          <form onSubmit={handleSubmit()}>
+          <form onSubmit={handleSubmit(saveData)}>
             <section className="md:w-2/4 mx-auto space-y-4">
               <div>
                 <Controller
