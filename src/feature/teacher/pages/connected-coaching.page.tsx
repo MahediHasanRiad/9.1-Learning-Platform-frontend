@@ -1,5 +1,4 @@
 import MainLayout from '@/layout/Main-Layout'
-import React from 'react'
 import ConnectedCenterCard from '../components/connected-coaching-card'
 
 function ConnectedCoaching() {

@@ -8,7 +8,7 @@ import UserEnrolledBatch from "@/feature/user/pages/enrolled-batch.page";
 import TeacherDashboard from "@/feature/teacher/pages/TeacherDashboard.page";
 import About from "@/feature/Home/pages/about.page";
 import Contact from "@/feature/Home/pages/contact.page";
-// import ConnectedCoaching from "@/feature/teacher/pages/connected-coaching.page";
+import ConnectedCoaching from "@/feature/teacher/pages/connected-coaching.page";
 import TeacherProfile from "@/feature/teacher/pages/profile.page";
 // import CoachingDashboard from "@/feature/coaching/pages/dashboard.page";
 // import CoachingStaff from "@/feature/coaching/pages/coaching-staff";
@@ -84,10 +84,10 @@ function App() {
         {/* teacher  */}
          <Route path="/teacher/profile/:id" element={<TeacherProfile />} />
         <Route path="/teacher/dashboard/:id" element={<TeacherDashboard />} />
-        {/* <Route
+        <Route
           path="/teacher/connected-coaching/:id"
           element={<ConnectedCoaching />}
-        />  */}
+        /> 
 
         {/* coaching  */}
         {/* <Route path="/coaching" element={<CreateCoaching />} />
