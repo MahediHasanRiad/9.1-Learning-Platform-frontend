@@ -1,3 +1,5 @@
+import type { SubjectType } from "../teacher/teacher-type";
+
 interface AssignedTeacherType {
   id: string;
   name: string;
@@ -12,16 +14,16 @@ interface Subjects {
 
 export interface ShowBatchType {
   assignedTeachers: AssignedTeacherType[];
-  bio?: string | undefined;
   capacity: number;
   coachingId: string;
   coverImage: string;
+  start_date: string;
   end_date: string;
   name: string;
   price: number;
   recurringRule: string[];
-  start_date: string;
   subjects: Subjects[];
+  bio?: string | undefined;
 }
 
 export interface CoachingBatchCardType {
@@ -47,4 +49,42 @@ export interface AllBatchType {
     self: string;
   };
   pagination: PaginationType;
+}
+
+export interface CreateCoachingType {
+  CcName: string;
+  address: string;
+}
+
+interface StaffType {
+  _id: string;
+  staffId: {
+      _id: string;
+      name: string;
+      mobile: string;
+      avatar: string;
+  },
+  coachingId: {
+      _id: string;
+      CcName: string;
+  },
+  role: string;
+}
+
+export interface CoachingType {
+  userId: string;
+  CcName: string;
+  address: string;
+  subjects: SubjectType[];
+  staffs: StaffType[];
+  batch: ShowBatchType[];
+  avatar: string;
+  bio: string;
+  coverImage: string;
+  email: string;
+  facebook: string;
+  linkedIn: string;
+  mobile: string;
+  website: string;
+  status: "Pending" | "Approved" | "Suspended ";
 }

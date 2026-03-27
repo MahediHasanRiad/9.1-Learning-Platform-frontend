@@ -17,7 +17,7 @@ export const store = configureStore({
     teacher: teacherReducer,
     coaching: coachingReducer,
     subject: subjectReducer,
-    demoClass: demoClassReducer,
+    // demoClass: demoClassReducer,
     // coachingStaff: coachingStaffReducer,
     // batch: coachingBatchReducer,
 

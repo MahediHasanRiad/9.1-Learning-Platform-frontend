@@ -3,7 +3,7 @@ import { createSubjectAsyncThunk } from "./createSubject.thunk";
 import { subjectListByTeacherAsyncThunk } from "./subjectListByTeacher.thunk";
 import type { SubjectType } from "../teacher-type";
 
-interface SubjectSliceType {
+export interface SubjectSliceType {
   subject: SubjectType | null;
   loading: boolean;
   error: null | undefined | string | unknown

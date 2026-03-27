@@ -2,13 +2,14 @@ import MainLayout from "@/layout/Main-Layout";
 import Button from "@/shared/utils/button";
 import ErrorMsg from "@/shared/utils/error-msg";
 import InputField from "@/shared/utils/input";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, type SubmitHandler } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
 import { createCoachingAsyncThunk } from "../redux/createCoaching.thunk";
 import img from '../../../../public/images/coaching.svg'
 import type { AppDispatch } from "@/store/store";
+import type { CreateCoachingType } from "../coaching-type";
 
 
 function CreateCoaching() {
@@ -28,18 +29,16 @@ function CreateCoaching() {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
-  const saveData = async (data) => {
+  const saveData: SubmitHandler<CreateCoachingType> = async (data) => {
     try {
       // unwrap => convert in promise for proper working pending/fullfill/reject
-      await dispatch(createCoachingAsyncThunk({
-        CcName: data.CcName,
-        address: data.address
-      })).unwrap();
+      await dispatch(createCoachingAsyncThunk(data)).unwrap();
 
       toast.success("Success");
       navigate("/");
       reset();
-    } catch (error) {
+      
+    } catch (error: any) {
       toast.error(error);
     }
   };

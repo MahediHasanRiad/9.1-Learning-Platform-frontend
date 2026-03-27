@@ -1,8 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createCoachingAsyncThunk } from "./createCoaching.thunk";
-import { updateCoachingProfileAsynkThunk } from "./updateCoachingProfile.thunk";
+import type { CreateCoachingType } from "../coaching-type";
+// import { updateCoachingProfileAsynkThunk } from "./updateCoachingProfile.thunk";
 
-const initialState = {
+export interface initialStateType {
+  coaching: CreateCoachingType | null;
+  loading: boolean;
+  error: string | null | undefined | unknown
+}
+
+const initialState: initialStateType = {
   coaching: null,
   loading: false,
   error: null,
