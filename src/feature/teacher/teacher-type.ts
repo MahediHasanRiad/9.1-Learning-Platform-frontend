@@ -32,13 +32,11 @@ export interface TeacherSliceType {
 }
 
 export interface DemoClassType {
-  readonly _id: string;
   title: string;
   videoURL: string;
   subjectId: string;
   batchId?: null | undefined | string,
-  userId: string;
-  status: string;
+  userId?: string | undefined;
 }
 
 export interface initialStateType {
@@ -66,4 +64,27 @@ export interface UpdateTeacherProfileType {
   availableTime?: string[];
   subjects?: string[];
   rating?: number;
+}
+
+export interface SelectItem {
+  _id?: string;
+  value: string;
+  label: string;
+  img?: string;
+  description?: string;
+}
+
+export interface CustomMultiSelectType {
+  label?: string;
+  value: string;
+  itemList: SelectItem[];
+  multiple?: boolean;
+  onChange: (value: string | string[] | null) => void;
+  id?: string;
+}
+
+export interface SubjectType {
+   _id: string;
+  name: string;
+  className: string,
 }

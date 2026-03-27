@@ -16,14 +16,14 @@ import { Label } from "@/components/ui/label";
 interface MultiSelectProps {
   label?: string;
   items: string[];
-  value: string[];
-  onChange: (value: string[]) => void;
+  value: any;
+  onChange: (value: string[] | string) => void;
 }
 
 function MultiSelect({
   label = "Select Frameworks",
-  items = [],
-  value = [],
+  items,
+  value,
   onChange,
 }: MultiSelectProps) {
   const anchor = useComboboxAnchor();

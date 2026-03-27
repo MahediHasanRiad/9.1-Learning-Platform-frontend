@@ -12,19 +12,25 @@ import {
   useComboboxAnchor,
 } from "@/components/ui/combobox";
 import { Label } from "@/components/ui/label";
-import { Item, ItemContent, ItemDescription, ItemTitle } from "@/components/ui/item";
+import {
+  Item,
+  ItemContent,
+  ItemDescription,
+  ItemTitle,
+} from "@/components/ui/item";
+import type { CustomMultiSelectType } from "@/feature/teacher/teacher-type";
 
 function CustomMultiSelect({
-  label,
-  value = [],
+  label = "",
+  value,
   itemList = [],
   multiple = true,
   onChange,
   id = "customSelect",
-}) {
+}: CustomMultiSelectType) {
   const anchor = useComboboxAnchor();
 
-  const getAllItems = (val) => itemList.find((c) => c.value === val);
+  const getAllItems = (val: string) => itemList.find((c) => c?.value === val);
 
   return (
     <div className="grid w-full max-w-sm items-center gap-1.5">
@@ -33,11 +39,19 @@ function CustomMultiSelect({
       </Label>
 
       <Combobox
-        multiple = {multiple}
-        items = {itemList}
-        value = {value}
-        onValueChange = {onChange}
-        itemToStringValue ={(item) => item?.label ?? ""}
+        multiple={multiple}
+        items={itemList}
+        value={value}
+        onValueChange={(val) => {
+          if (Array.isArray(val)) {
+            onChange(val);
+          } else if (typeof val === "string") {
+            onChange([val]);
+          } else {
+            onChange([]);
+          }
+        }}
+        itemToStringValue={(item: any) => item?.label ?? ""}
       >
         {/* Selected Chips */}
         <ComboboxChips ref={anchor} className="w-full border rounded-md p-1">
@@ -48,9 +62,9 @@ function CustomMultiSelect({
                   selectedValues.map((val) => {
                     const item = getAllItems(val);
                     if (!item) return null;
-
                     return (
-                      <ComboboxChip key={val} value={val}>
+                      // <ComboboxChip key={val} value={val}>
+                      <ComboboxChip key={val}>
                         {item.value}
                       </ComboboxChip>
                     );
@@ -86,7 +100,9 @@ function CustomMultiSelect({
                     </ItemTitle>
 
                     {item.description && (
-                      <ItemDescription className={'text-[12px]'}>{item.description}</ItemDescription>
+                      <ItemDescription className={"text-[12px]"}>
+                        {item.description}
+                      </ItemDescription>
                     )}
                   </ItemContent>
                 </Item>

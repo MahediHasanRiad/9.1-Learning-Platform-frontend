@@ -1,14 +1,17 @@
 import Button from "@/shared/utils/button";
 import ErrorMsg from "@/shared/utils/error-msg";
 import InputField from "@/shared/utils/input";
-import React, { useEffect, useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { useForm, Controller, type SubmitHandler } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router";
 import axios from "axios";
 import { toast } from "sonner";
 import { createDemoClassAsyncThunk } from "@/feature/teacher/redux/createDemoClass.thunk";
 import CustomMultiSelect from "../utils/custom-multi-select";
+import type { DemoClassType, SubjectType } from "@/feature/teacher/teacher-type";
+import type { AppDispatch } from "@/store/store";
+import { dayOptions } from "@/feature/teacher/components/data";
+import MultiSelect from "../utils/multi-select";
 
 function DemoClass() {
   const {
@@ -26,16 +29,16 @@ function DemoClass() {
     },
   });
 
-  const [subjectList, setSubjectList] = useState([]);
-  const dispatch = useDispatch();
+  const [subjectList, setSubjectList] = useState<SubjectType[]>();
+  const dispatch = useDispatch<AppDispatch>();
 
   // formated according props
   const formattedSubjects = subjectList?.map((item) => ({
-    id: item._id,
+    _id: item._id as string,
     label: item.name,
     value: item.name,
     description: item.className,
-  }));
+  })) ?? [];
 
   // get subject
   useEffect(() => {
@@ -46,19 +49,15 @@ function DemoClass() {
   }, []);
 
   // handle all data
-  const saveData = async (data) => {
+  const saveData: SubmitHandler<DemoClassType> = async (data) => {
     try {
       await dispatch(
-        createDemoClassAsyncThunk({
-          title: data.title,
-          videoURL: data.videoURL,
-          subjectId: data.subjectId,
-          batchId: data.batchId || null,
-        }),
+        createDemoClassAsyncThunk(data),
       ).unwrap();
       reset();
       toast.success("Demo Class Created");
-    } catch (error) {
+    } 
+    catch (error: any) {
       toast.error(error);
     }
   };
@@ -105,7 +104,7 @@ function DemoClass() {
             <Controller
               name="subjectId"
               control={control}
-              defaultValue={[]}
+              defaultValue={''}
               rules={{
                 required: "Subject Name are required !!!",
               }}
@@ -113,19 +112,18 @@ function DemoClass() {
                 <CustomMultiSelect
                   multiple={false}
                   label="Subject Name *"
-                  itemList={formattedSubjects}
-                  placeholder="Type subject name..."
+                  itemList={formattedSubjects ?? []}
                   {...field}
                 />
               )}
             />
-            {<ErrorMsg text={errors.subjectName?.message} />}
+            {<ErrorMsg text={errors.subjectId?.message} />}
           </div>
-          {/* <div>
+          <div>
             <Controller
               name="batchId"
               control={control}
-              defaultValue={[]}
+              defaultValue={''}
               rules={{
                 required: "Batch Name are required !!!",
               }}
@@ -133,13 +131,12 @@ function DemoClass() {
                 <MultiSelect
                   label="Batch Name"
                   items={dayOptions}
-                  placeholder="Type batch name..."
                   {...field}
                 />
               )}
             />
-            {<ErrorMsg text={errors.batchName?.message} />}
-          </div> */}
+            {<ErrorMsg text={errors.batchId?.message} />}
+          </div>
           {/* <div>
             <Controller
               name="teacherId"
