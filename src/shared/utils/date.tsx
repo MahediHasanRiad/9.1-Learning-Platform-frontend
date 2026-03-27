@@ -8,7 +8,16 @@ import {
 import { format } from "date-fns";
 import { ChevronDownIcon } from "lucide-react";
 
-export function DatePicker({ label, value, onChange }) {
+interface DatePickerProps {
+  label?: string;
+  value?: string;        // stored as "yyyy-MM-dd" string in react-hook-form
+  onChange: (date: string) => void;
+}
+
+export function DatePicker({ label, value, onChange }: DatePickerProps) {
+  // Convert string → Date for Calendar (needs Date object)
+  const selectedDate = value ? new Date(value) : undefined;
+
   return (
     <div className="flex flex-col gap-2 w-full">
       {label && <p className="font-semibold text-sm text-slate-900">{label}</p>}
@@ -16,22 +25,19 @@ export function DatePicker({ label, value, onChange }) {
         <PopoverTrigger asChild>
           <Button
             variant="outline"
-            // Use 'value' instead of 'date' to check if empty
             data-empty={!value}
             className="justify-between text-left font-normal data-[empty=true]:text-muted-foreground"
           >
-            {/* Format the 'value' passed from React Hook Form */}
-            {value ? format(value, "PPP") : <span>Pick a date</span>}
+            {value ? format(new Date(value), "PPP") : <span>Pick a date</span>}
             <ChevronDownIcon className="h-4 w-4 opacity-50" />
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0" align="start">
           <Calendar
             mode="single"
-            selected={value} // Controlled by Hook Form
-            onSelect={(date) => {
-              // convert in str format 
-              const dateString = date ? format(date,  "yyyy-MM-dd") : "";
+            selected={selectedDate}
+            onSelect={(date: Date | undefined) => {
+              const dateString = date ? format(date, "yyyy-MM-dd") : "";
               onChange(dateString);
             }}
             initialFocus

@@ -15,15 +15,29 @@ interface Subjects {
 export interface ShowBatchType {
   readonly _id: string;
   assignedTeachers: AssignedTeacherType[];
-  capacity: number;
+  capacity: string;
   coachingId: string;
-  coverImage: string;
+  coverImage: File;
   start_date: string;
   end_date: string;
   name: string;
-  price: number;
+  price: string;
   recurringRule: string[];
   subjects: Subjects[];
+  bio?: string | undefined;
+}
+
+export interface UpdateBatchType {
+  assignedTeachers: string[];
+  capacity: string;
+  coachingId: string;
+  coverImage: File | string;
+  start_date: string;
+  end_date: string;
+  name: string;
+  price: string;
+  recurringRule: string[];
+  subjects: string[];
   bio?: string | undefined;
 }
 
@@ -83,4 +97,12 @@ export interface CoachingType {
   mobile: string;
   website: string;
   status: "Pending" | "Approved" | "Suspended ";
+}
+
+export interface AdminType {
+  email: string;
+  name: string;
+  contact: string;
+  linkedIn: string;
+  facebook: string;
 }

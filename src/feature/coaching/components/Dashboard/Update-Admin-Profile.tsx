@@ -1,8 +1,8 @@
 import Button from "@/shared/utils/button";
 import ErrorMsg from "@/shared/utils/error-msg";
 import InputField from "@/shared/utils/input";
-import React from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, type SubmitHandler } from "react-hook-form";
+import type { AdminType } from "../../coaching-type";
 
 function UpdateAdminProfile() {
   const {
@@ -20,7 +20,7 @@ function UpdateAdminProfile() {
     },
   });
 
-  const saveData = (data) => {
+  const saveData: SubmitHandler<AdminType> = (data) => {
     console.log(data);
   };
 

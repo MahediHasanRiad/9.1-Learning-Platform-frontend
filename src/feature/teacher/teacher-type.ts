@@ -76,7 +76,7 @@ export interface SelectItem {
 
 export interface CustomMultiSelectType {
   label?: string;
-  value: string;
+  value: string[];
   itemList: SelectItem[];
   multiple?: boolean;
   onChange: (value: string | string[] | null) => void;

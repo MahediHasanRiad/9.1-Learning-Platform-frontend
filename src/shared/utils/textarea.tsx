@@ -3,7 +3,7 @@ import { Textarea } from "@/components/ui/textarea";
 
 interface TextareaType {
   label?: string;
-  placeholder: string;
+  placeholder?: string;
 }
 
 function TextareaField({
