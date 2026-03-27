@@ -24,7 +24,7 @@ function UserDashboard() {
   };
 
   return (
-    <MainLayout className="">
+    <MainLayout>
       {/* top hidden section  */}
       <section onClick={handleMenu} className="md:hidden w-full h-10">
         {open ? <X /> : <Menu />}

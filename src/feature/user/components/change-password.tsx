@@ -1,11 +1,16 @@
 import Button from "@/shared/utils/button";
 import ErrorMsg from "@/shared/utils/error-msg";
 import InputField from "@/shared/utils/input";
-import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { resetPasswordAsyncThunk } from "../redux/resetPassword.thunk";
 import { toast } from "sonner";
+import type { AppDispatch } from "@/store/store";
+
+interface ResetPassType {
+  oldPassword: string;
+  newPassword: string;
+}
 
 function ChangePassword() {
   const {
@@ -19,14 +24,14 @@ function ChangePassword() {
       newPassword: "",
     },
   });
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
 
-  const saveData = async (data) => {
+  const saveData = async (data: ResetPassType) => {
     try {
       await dispatch(resetPasswordAsyncThunk(data)).unwrap()
       toast.success('Update Password')
 
-    } catch (error) {
+    } catch (error: any) {
       toast.error(error)
     }
   };

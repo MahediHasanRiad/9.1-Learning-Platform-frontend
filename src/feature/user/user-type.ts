@@ -3,8 +3,8 @@ export interface UserType {
   name: string;
   email: string;
   mobile: string;
-  avatar: string;
-  coverImage?: string | undefined;
+  avatar: File | string;
+  coverImage?: File | string;
   bio?: string | undefined;
   address?: string | undefined;
   facebook?: string | undefined;

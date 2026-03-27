@@ -3,7 +3,7 @@ import TeachersPage from "../feature/Home/pages/Teachers.page";
 // import CoachingProfile from "../feature/coaching/pages/Coaching-Profile";
 import { Route, Routes, useLocation } from "react-router";
 import Profile from "@/feature/user/pages/profile.page";
-// import UserDashboard from "@/feature/user/pages/dashboard.page";
+import UserDashboard from "@/feature/user/pages/dashboard.page";
 // import UserEnrolledBatch from "@/feature/user/pages/enrolled-batch.page";
 // import TeacherDashboard from "@/feature/teacher/pages/TeacherDashboard.page";
 import About from "@/feature/Home/pages/about.page";
@@ -78,7 +78,7 @@ function App() {
 
         {/* user  */}
         <Route path="/user/profile/:id" element={<Profile />} />
-        {/* <Route path="/user/dashboard/:id" element={<UserDashboard />} /> */}
+        <Route path="/user/dashboard/:id" element={<UserDashboard />} />
         {/* <Route path="/user/enrolled/:id" element={<UserEnrolledBatch />} /> */}
 
         {/* teacher  */}

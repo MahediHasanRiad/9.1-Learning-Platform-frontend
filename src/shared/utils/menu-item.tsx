@@ -1,7 +1,14 @@
-import React from "react";
+import type { LucideIcon } from "lucide-react";
 import { Link } from "react-router";
 
-function MenuItem({ Icon, text, className, ...props }) {
+interface MenuItemType extends React.HTMLAttributes<HTMLDivElement> {
+  Icon: LucideIcon;
+  text: string;
+  className?: string;
+  path?: string;       
+}
+
+function MenuItem({ Icon, text, className, ...props }:MenuItemType) {
   return (
     <Link to={``}>
       <div

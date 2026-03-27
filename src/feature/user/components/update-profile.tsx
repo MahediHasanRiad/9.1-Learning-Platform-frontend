@@ -1,10 +1,11 @@
 import Button from "@/shared/utils/button";
 import InputField from "@/shared/utils/input";
-import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 import { updateProfileAsyncThunk } from "../redux/updateProfile.thunk";
+import type { AppDispatch, RootState } from "@/store/store";
+import type { UserType } from "../user-type";
 
 function UpdateProfile() {
   const {
@@ -20,31 +21,35 @@ function UpdateProfile() {
       coverImage: "",
       avatar: "",
       bio: "",
+      facebook: "",
+      linkedIn: ""
     },
   });
 
-  const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch<AppDispatch>();
+  const { user } = useSelector((state: RootState) => state.auth);
 
-  const saveData = async (data) => {
+  const saveData = async (data: Partial<UserType>) => {
     try {
       const formData = new FormData();
       if(data.name) formData.append("name", data.name);
       if(data.mobile) formData.append("mobile", data.mobile);
       if(data.address) formData.append("address", data.address);
       if(data.bio) formData.append("bio", data.bio);
+      if(data.facebook) formData.append("facebook", data.facebook);
+      if(data.linkedIn) formData.append("linkedIn", data.linkedIn);
 
-      if (data.coverImage?.[0])
-        formData.append("coverImage", data.coverImage[0]);
-      if (data.avatar?.[0]) formData.append("avatar", data.avatar[0]);
+      if (data.coverImage)
+        formData.append("coverImage", data.coverImage);
+      if (data.avatar) formData.append("avatar", data.avatar);
 
-      await dispatch(updateProfileAsyncThunk({ id: user._id, formData }))
+      await dispatch(updateProfileAsyncThunk({ id: user?._id, formData }))
         .unwrap()
         .then(() => {
           reset();
           toast.success("Profile Updated Successfully!");
         });
-    } catch (error) {
+    } catch (error: any) {
       toast.error(typeof error === "string" ? error : error.message);
     }
   };
@@ -104,7 +109,7 @@ function UpdateProfile() {
                 label="Cover Image"
                 type="file"
                 // {...rest}
-                onChange={(e) => onChange(e.target.files[0])}
+                onChange={(e) => onChange(e.target.files?.[0])}
               />
             )}
           />
@@ -115,7 +120,28 @@ function UpdateProfile() {
               <InputField
                 label="Avatar"
                 type="file"
-                onChange={(e) => onChange(e.target.files[0])}
+                onChange={(e) => onChange(e.target.files?.[0])}
+              />
+            )}
+          />
+          <Controller
+            name="facebook"
+            control={control}
+            render={({ field }) => (
+              <InputField
+                label="Facebook"
+                placeholder="https://www.facebook.com"
+                {...field}
+              />
+            )}
+          /><Controller
+            name="linkedIn"
+            control={control}
+            render={({ field }) => (
+              <InputField
+                label="LinkedIn"
+                placeholder="https://www.linkedIn.com"
+                {...field}
               />
             )}
           />
