@@ -1,6 +1,11 @@
 import React from "react";
 
-function InfoMenuButton({ text, active, ...props }) {
+interface InfoMenuButtonType extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  text: string;
+  active: boolean;
+}
+
+function InfoMenuButton({ text, active, ...props }: InfoMenuButtonType) {
   return (
     <span
       {...props}

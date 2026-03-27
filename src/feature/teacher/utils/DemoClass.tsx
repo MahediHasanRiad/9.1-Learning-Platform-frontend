@@ -1,7 +1,11 @@
 import Player from '@/feature/teacher/utils/video-player'
-import React from 'react'
 
-function DemoClass({video, title}) {
+interface DemoClassType {
+  video: string;
+  title: string
+}
+
+function DemoClass({video, title}: DemoClassType) {
   return (
     <section>
       <Player video={video} />

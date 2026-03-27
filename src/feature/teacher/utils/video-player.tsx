@@ -14,7 +14,11 @@ import {
   MediaFullscreenButton,
 } from "media-chrome/react";
 
-function Player({video}) {
+interface VideoType {
+  video: string;
+}
+
+function Player({video}: VideoType) {
   return (
     <MediaController
       style={{
@@ -29,7 +33,7 @@ function Player({video}) {
         style={{
           width: "100%",
           height: "100%",
-          "--controls": "none",
+          ["--controls" as any]: "none",
         }}
       ></ReactPlayer>
       <MediaControlBar>

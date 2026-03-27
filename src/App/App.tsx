@@ -9,7 +9,7 @@ import { Route, Routes, useLocation } from "react-router";
 import About from "@/feature/Home/pages/about.page";
 import Contact from "@/feature/Home/pages/contact.page";
 // import ConnectedCoaching from "@/feature/teacher/pages/connected-coaching.page";
-// import TeacherProfile from "@/feature/teacher/pages/profile.page";
+import TeacherProfile from "@/feature/teacher/pages/profile.page";
 // import CoachingDashboard from "@/feature/coaching/pages/dashboard.page";
 // import CoachingStaff from "@/feature/coaching/pages/coaching-staff";
 import Register from "@/feature/auth/pages/register.page";
@@ -82,7 +82,7 @@ function App() {
         {/* <Route path="/user/enrolled/:id" element={<UserEnrolledBatch />} /> */}
 
         {/* teacher  */}
-         {/* <Route path="/teacher/profile/:id" element={<TeacherProfile />} /> */}
+         <Route path="/teacher/profile/:id" element={<TeacherProfile />} />
         {/* <Route path="/teacher/dashboard/:id" element={<TeacherDashboard />} /> */}
         {/* <Route
           path="/teacher/connected-coaching/:id"

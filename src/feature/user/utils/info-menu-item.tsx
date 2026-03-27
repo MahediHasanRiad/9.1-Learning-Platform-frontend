@@ -1,6 +1,12 @@
-import React from "react";
+import type { LucideIcon } from "lucide-react";
 
-function InfoMenuItem({ Icon, text, onClick }) {
+interface InfoMenuItemType {
+  Icon: LucideIcon;
+  text: string;
+  onClick?: () => void
+}
+
+function InfoMenuItem({ Icon, text, onClick }: InfoMenuItemType) {
   return (
     <div 
       onClick={onClick}

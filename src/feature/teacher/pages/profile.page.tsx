@@ -6,19 +6,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { SingleTeacherAsyncThunk } from "../redux/single-teacher.thunk";
 import { toast } from "sonner";
+import type { AppDispatch, RootState } from "@/store/store";
+import type { TeacherSliceType } from "../teacher-type";
+import ErrorMsg from "@/shared/utils/error-msg";
+
+interface TeacherProfileType {
+  user: TeacherSliceType;
+  loading: boolean;
+  error: any;
+}
 
 function TeacherProfile() {
-  // const { teacher, user } = useSelector((state) => state.auth);
   const { id } = useParams();
 
-  const dispatch = useDispatch();
-  const {user, loading, error} = useSelector((state) => state.teacher)
+  const dispatch = useDispatch<AppDispatch>();
+  const {user, loading, error} = useSelector((state: RootState) => state.teacher as TeacherProfileType)
 
   useEffect(() => {
     ;(async () => {
       try {
+        if(!id) return 
+
         await dispatch(SingleTeacherAsyncThunk(id)).unwrap();
-      } catch (error) {
+      } catch (error: any) {
         toast.error(error);
       }
     })();
@@ -26,6 +36,9 @@ function TeacherProfile() {
 
   return (
     <MainLayout>
+      {error && <ErrorMsg text={error} />}
+      {loading && <h1>Loading...</h1>}
+
       <section className="md:w-2/3 mx-auto">
         {/* cover-image  */}
         <section>

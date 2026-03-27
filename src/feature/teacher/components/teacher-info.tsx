@@ -5,12 +5,6 @@ import {
   Mail,
   Linkedin,
   Facebook,
-  Award,
-  ShieldCheck,
-  Calendar1,
-  Clock7,
-  CalendarCheck,
-  Hourglass,
   GraduationCap,
 } from "lucide-react";
 import InfoMenuItem from "../../user/utils/info-menu-item";
@@ -19,8 +13,13 @@ import { useTeacherInfo } from "../../user/hooks/useTeacherInfo";
 import DemoClass from "@/feature/teacher/utils/DemoClass";
 import Dropdown from "@/feature/teacher/utils/DropDown";
 import Achivement from "./achivement";
+import type { TeacherSliceType } from "../teacher-type";
 
-function TeacherInfo({ user }) {
+interface TeacherInfoType {
+  user: TeacherSliceType
+}
+
+function TeacherInfo({ user }: TeacherInfoType) {
   // custom hook
   const {
     about,

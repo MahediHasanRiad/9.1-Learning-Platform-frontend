@@ -4,8 +4,13 @@ import {
   Calendar1,
   Clock7,
 } from "lucide-react";
+import type { TeacherSliceType } from "../teacher-type";
 
-function Achivement({ user }) {
+interface userType {
+  user: TeacherSliceType;
+}
+
+function Achivement({ user }: userType) {
   return (
     <section className="space-y-3 mt-5 p-4">
       {/* Experience */}
@@ -28,14 +33,13 @@ function Achivement({ user }) {
         />
         <span className="text-gray-500 font-medium">Certificates:</span>
         <div className="ml-2 flex flex-wrap gap-1">
-          {user?.certificate?.map((item, index) => (
+          {/* {user?.certificate?.map((item, index) => ( */}
             <span
-              key={index}
               className="bg-gray-100 text-gray-700 px-2 py-0.5 rounded text-[12px] border border-gray-200"
             >
-              {item}
+              {user?.certificate}
             </span>
-          ))}
+          {/* ))} */}
         </div>
       </div>
 

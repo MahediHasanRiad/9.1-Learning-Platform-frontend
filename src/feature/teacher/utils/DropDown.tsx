@@ -13,8 +13,8 @@ interface DropDownType {
   title: string;
   label?: string;
   items: string[];
-  value: string;
-  onChange: (item: string) => void 
+  value?: string;
+  onChange?: (item: string) => void 
 }
 
 function Dropdown({ title, label, items = [], value, onChange }: DropDownType) {
@@ -31,7 +31,7 @@ function Dropdown({ title, label, items = [], value, onChange }: DropDownType) {
           {label && <DropdownMenuLabel>{label}</DropdownMenuLabel>}
 
           {items.map((item, index) => (
-            <DropdownMenuItem key={index} onClick={() => onChange(item)}>
+            <DropdownMenuItem key={index} onClick={() => onChange?.(item)}>
               {item}
             </DropdownMenuItem>
           ))}
