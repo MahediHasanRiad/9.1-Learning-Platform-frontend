@@ -16,7 +16,7 @@ import Register from "@/feature/auth/pages/register.page";
 import LogIn from "@/feature/auth/pages/login.page";
 import { useDispatch } from "react-redux";
 import { setCoaching, setUser } from "@/feature/auth/redux/auth.slice";
-// import BecomeATeacher from "@/feature/teacher/pages/become-teacher.page";
+import BecomeATeacher from "@/feature/teacher/pages/become-teacher.page";
 // import CreateCoaching from "@/feature/coaching/pages/create-coaching.page";
 import Home from "@/feature/Home/pages/home.page";
 // import EnrolledStudent from "@/feature/coaching/components/Dashboard/enrolled";
@@ -74,7 +74,7 @@ function App() {
         <Route path="/batches" element={<BatchesPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        {/* <Route path="/becomeTeacher" element={<BecomeATeacher />} /> */}
+        <Route path="/becomeTeacher" element={<BecomeATeacher />} />
 
         {/* user  */}
         {/* <Route path="/user/profile/:id" element={<Profile />} /> */}

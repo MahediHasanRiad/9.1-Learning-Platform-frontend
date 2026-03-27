@@ -2,15 +2,16 @@ import MainLayout from "@/layout/Main-Layout";
 import Button from "@/shared/utils/button";
 import CustomInput from "@/shared/utils/custom-input";
 import InputField from "@/shared/utils/input";
-import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 import { createTeacherAsyncThunk } from "../redux/createTeacher.thunk";
 import { useNavigate } from "react-router";
 import ErrorMsg from "@/shared/utils/error-msg";
-
 import img from '../../../../public/images/form-fill.svg'
+import type { AppDispatch, RootState } from "@/store/store";
+import type { TeacherType } from "../teacher-type";
+
 
 function BecomeATeacher() {
   const {
@@ -22,24 +23,24 @@ function BecomeATeacher() {
     defaultValues: {
       education: "",
       experience: "",
-      certificates: "",
+      certificate: "",
     },
   });
 
-  const { user } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
+  const { user } = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
-  const saveData = async (data) => {
+  const saveData = async (data: TeacherType) => {
     try {
       const formData = new FormData();
-      formData.append("userId", user._id);
+      if(user?._id){
+        formData.append("userId", user?._id);
+      }
       formData.append("education", data.education);
       formData.append("experience", data.experience);
-      if (data.certificates) {
-        Array.from(data.certificates).forEach((file) => {
-          formData.append("certificates", file);
-        });
+      if (data.certificate) {
+          formData.append("certificate", data.certificate);
       }
 
       // unwrap => convert in promise for proper working pending/fullfill/reject
@@ -48,7 +49,8 @@ function BecomeATeacher() {
       toast.success("Success");
       navigate("/teachers");
       reset();
-    } catch (error) {
+    } 
+    catch (error: any) {
       toast.error(error);
     }
   };
@@ -99,24 +101,23 @@ function BecomeATeacher() {
               </div>
               <div>
                 <Controller
-                  name="certificates"
+                  name="certificate"
                   control={control}
                   render={({ field: { onChange, value, ...field } }) => (
                     <CustomInput
                       type="file"
-                      labelText={"Certificates"}
-                      multiple={true}
-                      label="Certificates"
+                      labelText={"Certificate"}
+                      // multiple={true}
                       {...field}
                       onChange={(e) => {
                         // convet in array
-                        const files = Array.from(e.target.files);
-                        onChange(files);
+                        // const files = Array.from(e.target.files);
+                        onChange(e.target.files);
                       }}
                     />
                   )}
                 />
-                {<ErrorMsg text={errors.certificates?.message} />}
+                {<ErrorMsg text={errors.certificate?.message} />}
               </div>
               {/* submit btn  */}
               <Button text={"Create"} className={"w-full mt-5"} />
