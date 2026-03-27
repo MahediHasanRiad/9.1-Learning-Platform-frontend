@@ -13,6 +13,7 @@ interface Subjects {
 }
 
 export interface ShowBatchType {
+  readonly _id: string;
   assignedTeachers: AssignedTeacherType[];
   capacity: number;
   coachingId: string;
@@ -59,7 +60,7 @@ export interface CreateCoachingType {
 
 export interface StaffType {
   readonly _id: string;
-  role: string;
+  role: 'Admin' | 'Manager' | 'Teacher' | 'Other';
   userId: string;
   name: string;
   avatar: string;

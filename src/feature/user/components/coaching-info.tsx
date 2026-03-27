@@ -18,6 +18,7 @@ import { api } from "@/API/api-client";
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "@/store/store";
 import { AllBatchByCoachingThunk } from "@/feature/coaching/redux/allbatch.thunk";
+import { useParams } from "react-router";
 
 interface Coaching {
   coaching: CoachingType | null;
@@ -41,14 +42,16 @@ function CoachingInfo({ coaching }: Coaching) {
 
   const [allBatch, setAllBatch] = useState<ShowBatch[]>();
   const [teachers, setTeachers] = useState<StaffType[]>();
+  const {id} = useParams()
 
 
   useEffect(() => {
     (async () => {
       // all batch
-      const allBatch = await api.get(`/api/v1/allBatches`, {
+      const allBatch = await api.get(`/api/v1/all-batch-in-coaching/${id}`, {
         withCredentials: true,
       });
+
       setAllBatch(allBatch.data.data.batch);
 
       // all teachers

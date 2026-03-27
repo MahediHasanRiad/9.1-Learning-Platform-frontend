@@ -11,7 +11,7 @@ import Contact from "@/feature/Home/pages/contact.page";
 import ConnectedCoaching from "@/feature/teacher/pages/connected-coaching.page";
 import TeacherProfile from "@/feature/teacher/pages/profile.page";
 // import CoachingDashboard from "@/feature/coaching/pages/dashboard.page";
-// import CoachingStaff from "@/feature/coaching/pages/coaching-staff";
+import CoachingStaff from "@/feature/coaching/pages/coaching-staff";
 import Register from "@/feature/auth/pages/register.page";
 import LogIn from "@/feature/auth/pages/login.page";
 import { useDispatch } from "react-redux";
@@ -20,7 +20,7 @@ import BecomeATeacher from "@/feature/teacher/pages/become-teacher.page";
 import CreateCoaching from "@/feature/coaching/pages/create-coaching.page";
 import Home from "@/feature/Home/pages/home.page";
 // import EnrolledStudent from "@/feature/coaching/components/Dashboard/enrolled";
-// import CoachingBatch from "@/feature/coaching/pages/coaching-batch";
+import CoachingBatch from "@/feature/coaching/pages/coaching-batch";
 import BatchesPage from "../feature/Home/pages/batches";
 import { api } from "@/API/api-client";
 import type { AppDispatch } from "@/store/store";
@@ -91,11 +91,11 @@ function App() {
 
         {/* coaching  */}
         <Route path="/coaching" element={<CreateCoaching />} />
-        <Route path="/coaching/profile" element={<CoachingProfile />} />
-        {/* <Route path="/coaching/dashboard" element={<CoachingDashboard />} /> */}
-        {/* <Route path="/coaching/staff" element={<CoachingStaff />} /> */}
-        {/* <Route path="/coaching/batch" element={<CoachingBatch />} /> */}
-        {/* <Route path="/coaching/enrolled" element={<EnrolledStudent />} /> */}
+        <Route path="/coaching/profile/:id" element={<CoachingProfile />} />
+        {/* <Route path="/coaching/dashboard/:id" element={<CoachingDashboard />} /> */}
+        <Route path="/coaching/staff/:id" element={<CoachingStaff />} />
+        <Route path="/coaching/batch/:id" element={<CoachingBatch />} />
+        {/* <Route path="/coaching/enrolled/:id" element={<EnrolledStudent />} /> */}
       </Routes>
     </section>
   );

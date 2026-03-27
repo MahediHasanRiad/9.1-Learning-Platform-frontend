@@ -1,27 +1,35 @@
 import MainLayout from "@/layout/Main-Layout";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import StaffCard from "../components/staff-card";
-import axios from "axios";
 import { toast } from "sonner";
+import { api } from "@/API/api-client";
+import type { StaffType } from "../coaching-type";
+
+interface CoachingStaff {
+  links: string[];
+  pagination: string[];
+  staff: StaffType[];
+}
 
 function CoachingStaff() {
-  const [staffs, setStaffs] = useState([]);
+  const [staffs, setStaffs] = useState<CoachingStaff>();
 
   useEffect(() => {
     (async () => {
       try {
         // all staffs
-        const staff = await axios.get("/api/v1/coaching-staffs", {
+        const staff = await api.get("/api/v1/coaching-staffs", {
           withCredentials: true,
         });
         setStaffs(staff.data.data);
-      } catch (error) {
+      } 
+      catch (error: any) {
         console.log(error);
         toast.error(error.message);
       }
     })();
   }, []);
-console.log('ss', staffs)
+
   return (
     <MainLayout>
       <section className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">

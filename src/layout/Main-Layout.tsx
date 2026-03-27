@@ -70,17 +70,17 @@ function MainLayout({ children }: childrenType) {
                 {role === "Coaching" && (
                   <ProfileDropdown
                     profile={true}
-                    profilePath="/coaching/profile"
+                    profilePath={`/coaching/profile/${user._id}`}
                     dashboard={true}
-                    dashboardPath="/coaching/dashboard"
+                    dashboardPath={`/coaching/dashboard/${user._id}`}
                     coachingStaff={true}
-                    coachingStaffPath={"/coaching/staff"}
+                    coachingStaffPath={`/coaching/staff/${user._id}`}
                     coachingBatch={true}
-                    coachingBatchPath="/coaching/batch"
+                    coachingBatchPath={`/coaching/batch/${user._id}`}
                     enrolled={true}
-                    enrolledPath="/coaching/enrolled"
+                    enrolledPath={`/coaching/enrolled/${user._id}`}
                     becomeUser={true}
-                    becomeUserPath="/teachers"
+                    becomeUserPath={`/teachers/${user._id}`}
                   />
                 )}
               </div>

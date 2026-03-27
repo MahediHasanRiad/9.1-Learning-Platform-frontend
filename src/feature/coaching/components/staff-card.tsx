@@ -1,7 +1,14 @@
 import React from "react";
 import { Link } from "react-router";
 
-function StaffCard({ path = "#", img, name, role }) {
+interface StaffCardType {
+  path: string;
+  img: string;
+  name: string;
+  role: 'Admin' | 'Manager' | 'Teacher' | 'Other'
+}
+
+function StaffCard({ path = "#", img, name, role }: StaffCardType) {
   return (
     <Link
       to={`${path}`}
