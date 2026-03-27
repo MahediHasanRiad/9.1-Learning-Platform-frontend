@@ -19,7 +19,7 @@ export default function CoachingBatchCard({
       {/* Top Section: Image with Badge */}
       <div className="relative aspect-[16/10] overflow-hidden">
         <img
-          src={image || "/placeholder-batch.jpg"}
+          src={image}
           alt={name}
           className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
         />

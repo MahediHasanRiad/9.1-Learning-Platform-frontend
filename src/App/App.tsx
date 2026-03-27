@@ -91,7 +91,7 @@ function App() {
 
         {/* coaching  */}
         <Route path="/coaching" element={<CreateCoaching />} />
-        <Route path="/coaching/profile/:id" element={<CoachingProfile />} />
+        <Route path="/coaching/profile" element={<CoachingProfile />} />
         <Route path="/coaching/dashboard/:id" element={<CoachingDashboard />} />
         <Route path="/coaching/staff/:id" element={<CoachingStaff />} />
         <Route path="/coaching/batch/:id" element={<CoachingBatch />} />

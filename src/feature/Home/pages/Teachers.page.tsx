@@ -2,7 +2,7 @@ import PaginationItems from "@/shared/utils/Pagination";
 import CardItem from "../components/TeacherCard";
 import MainLayout from "@/layout/Main-Layout";
 import { useEffect, useState } from "react";
-// import FilterSection from "../components/Filter-section";
+import FilterSection from "../components/Filter-section";
 import { api } from "@/API/api-client";
 import type { AllTeacherType, QueryParamsType } from "@/feature/auth/auth-type";
 
@@ -41,10 +41,10 @@ function TeachersPage() {
 
   return (
     <MainLayout>
-      <section className="bg-background space-y-6 m-auto">
+      <section className="bg-background-0 space-y-6 m-auto">
         {/* filter section */}
         <section>
-          {/* <FilterSection setFilterQuery={setFilterQuery} /> */}
+          <FilterSection setFilterQuery={setFilterQuery} />
         </section>
 
         {/* teachers profiles */}

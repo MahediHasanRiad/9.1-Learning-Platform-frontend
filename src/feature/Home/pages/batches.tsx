@@ -36,7 +36,7 @@ console.log('allbatch', allBatch)
       console.error("Error fetching batches:", error);
     }
   };
-console.log('batch', allBatch)
+
   useEffect(() => {
     fetchBatches(filterQuery);
   }, [filterQuery]);
@@ -45,7 +45,7 @@ console.log('batch', allBatch)
     <MainLayout>
       {/* ----------------------- Filter ---------------------- */}
       <section>
-        {/* <FilterSection filterChange={setFilterQuery} /> */}
+        <FilterSection filterChange={setFilterQuery} />
       </section>
 
       {/* ------------------------------------ batches ----------------------------------- */}

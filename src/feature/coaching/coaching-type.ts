@@ -42,7 +42,7 @@ export interface UpdateBatchType {
 }
 
 export interface CoachingBatchCardType {
-  image: string;
+  image: File | string | any;
   name: string;
   subjects: Subjects[];
   start: string;

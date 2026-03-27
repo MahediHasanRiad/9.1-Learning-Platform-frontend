@@ -13,7 +13,7 @@ function CardItem({
 }: TeacherCardType) {
 
   return (
-    <Link to={`${path}`} className="block w-full max-w-lg">
+    <Link to={`${path}`} className="block w-full h-36">
       <section className="h-36 flex bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-md transition-all group">
         {/* Left Side: Image */}
         <div className="w-1/3 h-full">

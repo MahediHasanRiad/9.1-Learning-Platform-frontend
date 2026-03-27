@@ -14,7 +14,7 @@ import UpdateProfile from "../components/Dashboard/Update-Profile";
 import UpdateAdminProfile from "../components/Dashboard/Update-Admin-Profile";
 import CreateBatch from "../components/Dashboard/Create-Batch";
 import AddNewStaff from "../components/Dashboard/Add-New-Staff";
-// import AddNewSubject from "@/shared/components/add-new-subject";
+import AddNewSubject from "@/shared/components/add-new-subject";
 // import EnrolledStudent from "../components/Dashboard/enrolled";
 
 
@@ -73,7 +73,7 @@ function CoachingDashboard() {
     >
       {updateProfile && <UpdateProfile />}
       {updateAdminProfile && <UpdateAdminProfile />}
-      {/* {addSubject && <AddNewSubject />} */}
+      {addSubject && <AddNewSubject />}
       {createBatch && <CreateBatch />}
       {addNewStaff && <AddNewStaff />}
       

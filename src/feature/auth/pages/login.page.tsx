@@ -22,7 +22,7 @@ function LogIn() {
     },
   });
 
-  const { loading, error } = useSelector((state: RootState) => state.auth);
+  const { loading, error} = useSelector((state: RootState) => state.auth);
 
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ function LogIn() {
           toast.success("Successfully Login");
           reset;
         });
-        toast.error(error)
+        // toast.error(error)
     } catch (error: any) {
       toast.error(error);
     }
