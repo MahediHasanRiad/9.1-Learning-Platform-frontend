@@ -24,7 +24,7 @@ export interface RegisterResponse {
 };
 
  export interface User {
-  readonly _id?: string;
+  readonly id?: string;
   name: string;
   email: string;
   password: string;
@@ -35,14 +35,15 @@ export interface RegisterResponse {
 }
 
 export interface Teacher {
-  readonly _id: string;
+  readonly id: string;
   education: string;
   certificate: string;
   experience: string;
   availableDay: string;
   availableTime: string;
   rating: number;
-  userId: {
+  userId: string;
+  user: {
     avatar: string;
     name: string;
   }
@@ -99,8 +100,7 @@ export interface TeacherCardType {
 
 export interface TeacherFilterType {
   search: string;
-  sortType: string;
-  sortBy: string;
+  sortType: "desc" | "asc";
   page: string;
   limit: string;
 }
@@ -123,7 +123,6 @@ export interface QueryParamsType {
   search: string;
   limit: number;
   page: number;
-  sortBy: string;
-  sortType: string;
+  sortType: "desc" | "asc";
 }
 

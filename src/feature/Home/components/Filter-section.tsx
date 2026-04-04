@@ -5,20 +5,19 @@ import Button from "@/shared/utils/button";
 import InputField from "@/shared/utils/input";
 import { useForm, Controller, type SubmitHandler } from "react-hook-form";
 
-function FilterSection({ filterChange }: any) {
+function FilterSection({ setFilterQuery }: any) {
   const { control, handleSubmit } = useForm<TeacherFilterType>({
     defaultValues: {
       search: "",
-      sortType: "",
-      sortBy: "",
-      page: "",
-      limit: "",
+      sortType: "desc",
+      page: "1",
+      limit: "10",
     },
   });
 
   const saveData: SubmitHandler<TeacherFilterType> = (data) => {
     console.log(data);
-    filterChange(data);
+    setFilterQuery(data);
   };
 
   return (
@@ -41,14 +40,7 @@ function FilterSection({ filterChange }: any) {
           name="sortType"
           control={control}
           render={({ field }) => (
-            <Dropdown title="Type" items={["asc", "dec"]} {...field} />
-          )}
-        />
-        <Controller
-          name="sortBy"
-          control={control}
-          render={({ field }) => (
-            <Dropdown title="Sort" items={["updatedAt", "Price"]} {...field} />
+            <Dropdown title="Type" items={["asc", "desc"]} {...field} />
           )}
         />
         <Controller

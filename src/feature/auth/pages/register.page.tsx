@@ -211,7 +211,7 @@ function Register() {
             {loading ? "Loading..." : " Sign Up"}
           </button>
           {/* Error  */}
-          <p>{error && <ErrorMsg text={error} />}</p>
+          {/* <p>{error && <ErrorMsg text={error} />}</p> */}
           {/* already have account  */}
           <p className="text-center text-sm my-3">
             Already have an account ?{" "}

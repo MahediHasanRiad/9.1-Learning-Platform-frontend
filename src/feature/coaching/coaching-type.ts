@@ -60,7 +60,7 @@ export interface PaginationType {
 }
 
 export interface AllBatchType {
-  batch: ShowBatchType[];
+  batches: ShowBatchType[];
   links: {
     self: string;
   };

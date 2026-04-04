@@ -9,10 +9,9 @@ import type { AllTeacherType, QueryParamsType } from "@/feature/auth/auth-type";
 
 function TeachersPage() {
   const [allTeachers, setAllTeachers] = useState<AllTeacherType>();
-  const [filterQuery, setFilterQuery] = useState({
+  const [filterQuery, setFilterQuery] = useState<QueryParamsType>({
     search: "",
-    sortType: "dec",
-    sortBy: "updatedAt",
+    sortType: "desc",
     page: 1,
     limit: 10,
   });
@@ -24,9 +23,9 @@ function TeachersPage() {
   // get all teachers
   const fetchTeachers = async (filterQuery: QueryParamsType) => {
     try {
-      const { search, limit, page, sortBy, sortType } = filterQuery as Partial<QueryParamsType>;
+      const { search, limit, page, sortType } = filterQuery as Partial<QueryParamsType>;
       const res = await api.get(
-        `/api/v1/teachers?search=${search}&limit=${limit}&page=${page}&sortBy=${sortBy}&sortType=${sortType}`,
+        `/api/v1/teachers?search=${search}&limit=${limit}&page=${page}&sortType=${sortType}`,
         { withCredentials: true },
       );
       setAllTeachers(res.data.data);
@@ -48,13 +47,13 @@ function TeachersPage() {
         </section>
 
         {/* teachers profiles */}
-        <section className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4 min-h-screen">
+        <section className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4 items-start">
           {allTeachers?.teachers?.map((teacher) => (
             <CardItem
-              key={teacher?._id}
-              path={`/teacher/profile/${teacher?._id}`}
-              image={teacher?.userId?.avatar}
-              name={teacher?.userId?.name}
+              key={teacher?.id}
+              path={`/teacher/profile/${teacher?.id}`}
+              image={teacher?.user?.avatar}
+              name={teacher?.user?.name}
               education={teacher?.education}
               rating={teacher?.rating}
             />

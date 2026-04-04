@@ -40,6 +40,7 @@ const teacherSlice = createSlice({
       .addCase(updateTeacherProfileAsyncThunk.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
+        console.log('teacher update', action.payload.data)
         state.user = action.payload.data;
       })
       .addCase(updateTeacherProfileAsyncThunk.rejected, (state, action) => {

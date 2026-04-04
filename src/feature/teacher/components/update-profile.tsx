@@ -42,8 +42,8 @@ function UpdateProfile() {
 
   const saveData: SubmitHandler<UpdateTeacherProfileType> = async (data) => {
   try {
-    if (!user?._id) throw new Error("User ID missing");
 
+    if (!user?.id) throw new Error("User ID missing");
     const formData = new FormData();
 
     if (data.name) formData.append("name", data.name);
@@ -81,7 +81,7 @@ function UpdateProfile() {
 
     await dispatch(
       updateTeacherProfileAsyncThunk({
-        id: user._id,
+        id: user.id,
         formData,
       })
     ).unwrap();

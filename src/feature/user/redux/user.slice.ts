@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { UserType } from "../user-type";
-// import { updateProfileAsyncThunk } from "./updateProfile.thunk";
-// import { resetPasswordAsyncThunk } from "./resetPassword.thunk";
+import { updateProfileAsyncThunk } from "./updateProfile.thunk";
+import { resetPasswordAsyncThunk } from "./resetPassword.thunk";
 import { findUserByIdAsyncThunk } from "./find-by-id.thunk";
 
 
@@ -24,19 +24,19 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     // update profile
     // builder
-      // .addCase(updateProfileAsyncThunk.pending, (state) => {
-      //   state.loading = true;
-      //   state.error = null;
-      // })
-      // .addCase(updateProfileAsyncThunk.fulfilled, (state, action) => {
-      //   state.loading = false;
-      //   state.error = null;
-      //   state.user = action.payload.data;
-      // })
-      // .addCase(updateProfileAsyncThunk.rejected, (state, action) => {
-      //   state.loading = false;
-      //   state.error = action.payload;
-      // });
+    //   .addCase(updateProfileAsyncThunk.pending, (state) => {
+    //     state.loading = true;
+    //     state.error = null;
+    //   })
+    //   .addCase(updateProfileAsyncThunk.fulfilled, (state, action) => {
+    //     state.loading = false;
+    //     state.error = null;
+    //     state.user = action.payload.data;
+    //   })
+    //   .addCase(updateProfileAsyncThunk.rejected, (state, action) => {
+    //     state.loading = false;
+    //     state.error = action.payload;
+    //   });
 
     // reset password
     // builder

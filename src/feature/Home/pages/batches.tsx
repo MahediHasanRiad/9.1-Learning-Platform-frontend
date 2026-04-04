@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CoachingBatchCard from "@/feature/coaching/components/Coaching-Batch-Card";
 import PaginationItems from "@/shared/utils/Pagination";
 import MainLayout from "@/layout/Main-Layout";
@@ -11,14 +11,13 @@ import type { AllBatchType } from "@/feature/coaching/coaching-type";
 
 function BatchesPage() {
   const [allBatch, setAllBatch] = useState<AllBatchType>();
-  const [filterQuery, setFilterQuery] = useState({
+  const [filterQuery, setFilterQuery] = useState<QueryParamsType>({
     search: "",
-    sortType: "dec",
-    sortBy: "updatedAt",
+    sortType: "desc",
     page: 1,
     limit: 10,
   });
-console.log('allbatch', allBatch)
+
   const handlePageChange = (newPage: number) => {
     setFilterQuery((prev) => ({ ...prev, page: newPage }));
   };
@@ -26,13 +25,15 @@ console.log('allbatch', allBatch)
   // get all coaching centers
   const fetchBatches = async (query: QueryParamsType) => {
     try {
-      const { search, limit, page, sortBy, sortType } = query;
+      const { search, limit, page, sortType } = query;
       const res = await api.get(
-        `/api/v1/allBatches?search=${search}&limit=${limit}&page=${page}&sortBy=${sortBy}&sortType=${sortType}`,
+        `/api/v1/all-batches?search=${search}&limit=${limit}&page=${page}&sortType=${sortType}`,
+        // { withCredentials: true , params: { search, limit, page, sortType }},
         { withCredentials: true },
       );
       setAllBatch(res.data.data);
-    } catch (error) {
+    } 
+    catch (error) {
       console.error("Error fetching batches:", error);
     }
   };
@@ -45,13 +46,13 @@ console.log('allbatch', allBatch)
     <MainLayout>
       {/* ----------------------- Filter ---------------------- */}
       <section>
-        <FilterSection filterChange={setFilterQuery} />
+        <FilterSection setFilterQuery={setFilterQuery} />
       </section>
 
       {/* ------------------------------------ batches ----------------------------------- */}
 
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 my-6 ">
-        {allBatch?.batch?.map((batch) => (
+        {allBatch?.batches?.map((batch) => (
           <CoachingBatchCard
             image={batch?.coverImage}
             name={batch?.name}

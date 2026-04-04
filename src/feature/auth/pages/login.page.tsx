@@ -21,12 +21,11 @@ function LogIn() {
       password: "",
     },
   });
-
   const { loading, error} = useSelector((state: RootState) => state.auth);
-
+  
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-
+  
   const saveData: SubmitHandler<LoginInput> = async (data) => {
     try {
       await dispatch(loginAsyncThunk(data))

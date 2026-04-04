@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Filter, X } from "lucide-react";
 
 interface FilterItemType {
-  search: string;
+  search: React.ReactNode;
   children: React.ReactNode;
 }
 

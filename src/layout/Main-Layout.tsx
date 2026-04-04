@@ -32,7 +32,7 @@ function MainLayout({ children }: childrenType) {
           {/* Desktop Menu */}
           <div className="hidden lg:flex gap-6 items-center">
             <Menu text="Teacher" path={"teachers"} />
-            <Menu text="Coaching" path={"batches"} />
+            <Menu text="All Batch" path={"batches"} />
             <Menu text="About" path="about" />
             <Menu text="Contact" path="contact" />
             {user ? (
@@ -40,11 +40,11 @@ function MainLayout({ children }: childrenType) {
                 {role === "User" && (
                   <ProfileDropdown
                     profile={true}
-                    profilePath={`/user/profile/${user?._id}`}
+                    profilePath={`/user/profile/${user?.id}`}
                     dashboard={true}
-                    dashboardPath={`/user/dashboard/${user?._id}`}
+                    dashboardPath={`/user/dashboard/${user?.id}`}
                     enrolledBatch={true}
-                    enrolledBatchPath={`/user/enrolled/${user?._id}`}
+                    enrolledBatchPath={`/user/enrolled/${user?.id}`}
                     becomeTeacher={true}
                     becomeTeacherPath="/becomeTeacher"
                     coachingPage={true}
@@ -54,13 +54,13 @@ function MainLayout({ children }: childrenType) {
                 {role === "Teacher" && (
                   <ProfileDropdown
                     profile={true}
-                    profilePath={`/teacher/profile/${teacher?._id}`}
+                    profilePath={`/teacher/profile/${teacher?.id}`}
                     dashboard={true}
-                    dashboardPath={`/teacher/dashboard/${teacher?._id}`}
+                    dashboardPath={`/teacher/dashboard/${teacher?.id}`}
                     enrolledBatch={true}
-                    enrolledBatchPath={`/user/enrolled/${user?._id}`}
+                    enrolledBatchPath={`/user/enrolled/${user?.id}`}
                     connectedBatch={true}
-                    connectedCoachingPath={`/teacher/connected-coaching/${user?._id}`}
+                    connectedCoachingPath={`/teacher/connected-coaching/${user?.id}`}
                     coachingPage={true}
                     coachingPagePath="/coaching"
                     becomeUser={true}
@@ -72,13 +72,13 @@ function MainLayout({ children }: childrenType) {
                     profile={true}
                     profilePath={`/coaching/profile`}
                     dashboard={true}
-                    dashboardPath={`/coaching/dashboard/${user._id}`}
+                    dashboardPath={`/coaching/dashboard/${user.id}`}
                     coachingStaff={true}
-                    coachingStaffPath={`/coaching/staff/${user._id}`}
+                    coachingStaffPath={`/coaching/staff/${user.id}`}
                     coachingBatch={true}
-                    coachingBatchPath={`/coaching/batch/${user._id}`}
+                    coachingBatchPath={`/coaching/batch/${user.id}`}
                     enrolled={true}
-                    enrolledPath={`/coaching/enrolled/${user._id}`}
+                    enrolledPath={`/coaching/enrolled/${user.id}`}
                     becomeUser={true}
                     becomeUserPath={`/teachers`}
                   />
@@ -106,11 +106,11 @@ function MainLayout({ children }: childrenType) {
               {role === "User" && (
                 <ProfileDropdown
                   profile={true}
-                  profilePath={`/user/profile/${user?._id}`}
+                  profilePath={`/user/profile/${user?.id}`}
                   dashboard={true}
-                  dashboardPath={`/user/dashboard/${user?._id}`}
+                  dashboardPath={`/user/dashboard/${user?.id}`}
                   enrolledBatch={true}
-                  enrolledBatchPath={`/user/enrolled/${user?._id}`}
+                  enrolledBatchPath={`/user/enrolled/${user?.id}`}
                   becomeTeacher={true}
                   becomeTeacherPath="/becomeTeacher"
                   coachingPage={true}
@@ -120,13 +120,13 @@ function MainLayout({ children }: childrenType) {
               {role === "Teacher" && (
                 <ProfileDropdown
                   profile={true}
-                  profilePath={`/teacher/profile/${teacher?._id}`}
+                  profilePath={`/teacher/profile/${teacher?.id}`}
                   dashboard={true}
-                  dashboardPath={`/teacher/dashboard/${teacher?._id}`}
+                  dashboardPath={`/teacher/dashboard/${teacher?.id}`}
                   enrolledBatch={true}
-                  enrolledBatchPath={`/user/enrolled/${user?._id}`}
+                  enrolledBatchPath={`/user/enrolled/${user?.id}`}
                   connectedBatch={true}
-                  connectedCoachingPath={`/teacher/connected-coaching/${user?._id}`}
+                  connectedCoachingPath={`/teacher/connected-coaching/${user?.id}`}
                   coachingPage={true}
                   coachingPagePath="/coaching"
                   becomeUser={true}
