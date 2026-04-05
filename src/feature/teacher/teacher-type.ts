@@ -21,7 +21,7 @@ export interface UserType {
 
 export interface TeacherSliceType {
   readonly _id: string;
-  userId: UserType;
+  userId: string;
   education: string;
   certificate: string;
   experience: string;
@@ -29,6 +29,7 @@ export interface TeacherSliceType {
   availableTime: string[];
   subjects: string[],
   rating?: number;
+  user?: UserType;
 }
 
 export interface DemoClassType {

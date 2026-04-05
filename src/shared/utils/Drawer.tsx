@@ -28,7 +28,6 @@ interface DrawerFieldType {
 }
 
 export const DrawerField: FC<DrawerFieldType> = ({ btnText, batch }) => {
-
   return (
     <Drawer direction="right">
       <DrawerTrigger asChild>
@@ -42,7 +41,11 @@ export const DrawerField: FC<DrawerFieldType> = ({ btnText, batch }) => {
           <DrawerHeader className="p-0 relative group shrink-0">
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10" />
             <img
-              src={batch?.coverImage}
+              src={
+                batch?.coverImage instanceof File
+                  ? URL.createObjectURL(batch.coverImage)
+                  : batch?.coverImage
+              }
               alt={batch?.name}
               className="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-105"
             />
@@ -142,6 +145,6 @@ export const DrawerField: FC<DrawerFieldType> = ({ btnText, batch }) => {
       </DrawerContent>
     </Drawer>
   );
-}
+};
 
 export default DrawerField;

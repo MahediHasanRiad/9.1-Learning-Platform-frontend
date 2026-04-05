@@ -46,20 +46,19 @@ function App() {
         dispatch(setUser(userRes.data.data));
 
         // teacher
-        if (userRes) {
+        // if (userRes) {
           const teacher = await api.get("/api/v1/self-teacher", {
             withCredentials: true,
           });
           dispatch(setTeacher(teacher.data.data));
-          console.log("teacher", teacher);
-        }
+        // }
 
         // coaching
         if (userRes) {
           const coachingRes = await api.get("/api/v1/coaching-center-by-user", {
             withCredentials: true,
           });
-          dispatch(setCoaching(coachingRes.data));
+          dispatch(setCoaching(coachingRes.data.data));
         }
       } catch (error: any) {
         const message =

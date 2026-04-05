@@ -1,3 +1,5 @@
+import type { AllBatchType, ShowBatchType } from "../coaching/coaching-type";
+
 export interface UserType {
   readonly id: string;
   name: string;
@@ -9,4 +11,12 @@ export interface UserType {
   address?: string | undefined;
   facebook?: string | undefined;
   linkedIn?: string | undefined;
+}
+
+export interface EnrolledBatchType {
+  readonly id: string;
+  batch: ShowBatchType;
+  studentId: string;
+  batchId: string;
+  status: string;
 }

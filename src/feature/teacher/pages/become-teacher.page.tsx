@@ -10,7 +10,7 @@ import { useNavigate } from "react-router";
 import ErrorMsg from "@/shared/utils/error-msg";
 import type { AppDispatch, RootState } from "@/store/store";
 import type { TeacherType } from "../teacher-type";
-import img from '../../../../public/images/form-fill.svg'
+import img from "../../../../public/images/form-fill.svg";
 
 
 function BecomeATeacher() {
@@ -27,20 +27,20 @@ function BecomeATeacher() {
     },
   });
 
-  const { user } = useSelector((state: RootState) => state.auth);
+  const { user, teacher } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   const saveData = async (data: TeacherType) => {
     try {
       const formData = new FormData();
-      if(user?.id){
+      if (user?.id) {
         formData.append("userId", user?.id);
       }
       formData.append("education", data.education);
       formData.append("experience", data.experience);
       if (data.certificate) {
-          formData.append("certificate", data.certificate);
+        formData.append("certificate", data.certificate);
       }
 
       // unwrap => convert in promise for proper working pending/fullfill/reject
@@ -51,19 +51,18 @@ function BecomeATeacher() {
       reset();
     } 
     catch (error: any) {
+      console.log(error)
       toast.error(error);
     }
   };
+
+
 
   return (
     <MainLayout>
       <section className="grid md:grid-cols-2 items-center justify-center mt-6">
         <div className="mx-auto">
-          <img
-            src={img}
-            className="bg-background-0 text-secondary-0"
-            alt=""
-          />
+          <img src={img} className="bg-background-0 text-secondary-0" alt="" />
         </div>
         <div className="">
           <form onSubmit={handleSubmit(saveData)}>

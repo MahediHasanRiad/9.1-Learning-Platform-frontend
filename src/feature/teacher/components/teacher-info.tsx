@@ -48,13 +48,13 @@ function TeacherInfo({ user }: TeacherInfoType) {
       {/* about  */}
       {about && (
         <section className="mt-4">
-          <InfoMenuItem Icon={UserRoundPen} text={user?.userId?.name} />
-          <InfoMenuItem Icon={BookUser} text={user?.userId?.address} />
-          <InfoMenuItem Icon={Contact} text={user?.userId?.mobile} />
+          <InfoMenuItem Icon={UserRoundPen} text={user?.user?.name!} />
+          <InfoMenuItem Icon={BookUser} text={user?.user?.address!} />
+          <InfoMenuItem Icon={Contact} text={user?.user?.mobile!} />
           <InfoMenuItem Icon={GraduationCap } text={user?.education} />
-          <InfoMenuItem Icon={Mail} text={user?.userId?.email} />
-          <InfoMenuItem Icon={Linkedin} text={user?.userId?.linkedIn} />
-          <InfoMenuItem Icon={Facebook} text={user?.userId?.facebook} />
+          <InfoMenuItem Icon={Mail} text={user?.user?.email!} />
+          <InfoMenuItem Icon={Linkedin} text={user?.user?.linkedIn!} />
+          <InfoMenuItem Icon={Facebook} text={user?.user?.facebook!} />
         </section>
       )}
 

@@ -21,12 +21,11 @@ function TeacherProfile() {
 
   const dispatch = useDispatch<AppDispatch>();
   const {user, loading, error} = useSelector((state: RootState) => state.teacher as TeacherProfileType)
-
+console.log('single', user)
   useEffect(() => {
     ;(async () => {
       try {
         if(!id) return 
-
         await dispatch(SingleTeacherAsyncThunk(id)).unwrap();
       } catch (error: any) {
         toast.error(error);
@@ -43,7 +42,7 @@ function TeacherProfile() {
         {/* cover-image  */}
         <section>
           <img
-            src={user?.userId?.coverImage}
+            src={user?.user?.coverImage}
             alt="coverImage"
             className="w-full object-full rounded-md h-55"
           />
@@ -53,7 +52,7 @@ function TeacherProfile() {
           <section className="grid md:grid-cols-2">
             <div>
               <img
-                src={user?.userId?.avatar}
+                src={user?.user?.avatar}
                 alt="profile"
                 className="rounded-full object-cover w-40 h-40 ring mt-4"
               />
@@ -62,7 +61,7 @@ function TeacherProfile() {
               <h4 className="text-sm my-6 italic w-4/5 md:w-2/3 mx-auto flex items-start justify-center gap-2 text-gray-600">
                 <Quote size={16} className="text-secondary-0 shrink-0" />
 
-                <span className="text-center">{user?.userId?.bio}</span>
+                <span className="text-center">{user?.user?.bio}</span>
 
                 <Quote
                   size={16}

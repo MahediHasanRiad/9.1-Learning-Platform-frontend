@@ -22,13 +22,12 @@ const authSlice = createSlice({
       state.user = action.payload.user;
     },
     setTeacher: (state, action) => {
-      state.teacher = action.payload.teacher;
+      state.teacher = action.payload;
     },
     setCoaching: (state, action) => {
-      state.coaching = action.payload.data;
+      state.coaching = action.payload;
     },
     updateRole: (state, action) => {
-      console.log('role', action.payload)
       state.role = action.payload;
     }
   },
