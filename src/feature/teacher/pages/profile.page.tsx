@@ -21,7 +21,7 @@ function TeacherProfile() {
 
   const dispatch = useDispatch<AppDispatch>();
   const {user, loading, error} = useSelector((state: RootState) => state.teacher as TeacherProfileType)
-console.log('single', user)
+
   useEffect(() => {
     ;(async () => {
       try {

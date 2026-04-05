@@ -4,7 +4,6 @@ import InputField from "@/shared/utils/input";
 import { useEffect, useState } from "react";
 import { useForm, Controller, type SubmitHandler } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import axios from "axios";
 import { toast } from "sonner";
 import { createDemoClassAsyncThunk } from "@/feature/teacher/redux/createDemoClass.thunk";
 import CustomMultiSelect from "../utils/custom-multi-select";
@@ -12,6 +11,7 @@ import type { DemoClassType, SubjectType } from "@/feature/teacher/teacher-type"
 import type { AppDispatch } from "@/store/store";
 import { dayOptions } from "@/feature/teacher/components/data";
 import MultiSelect from "../utils/multi-select";
+import { api } from "@/API/api-client";
 
 function DemoClass() {
   const {
@@ -24,8 +24,7 @@ function DemoClass() {
       title: "",
       videoURL: "",
       subjectId: "",
-      batchId: "",
-      // teacherId: "",
+      // batchId: "",
     },
   });
 
@@ -34,7 +33,7 @@ function DemoClass() {
 
   // formated according props
   const formattedSubjects = subjectList?.map((item) => ({
-    _id: item._id as string,
+    id: item.id as string,
     label: item.name,
     value: item.name,
     description: item.className,
@@ -42,8 +41,8 @@ function DemoClass() {
 
   // get subject
   useEffect(() => {
-    (async () => {
-      const subjects = await axios.get(`/api/v1/subjectsByUser`);
+    ;(async () => {
+      const subjects = await api.get(`/api/v1/subjects-by-user`, {withCredentials: true});
       setSubjectList(subjects.data.data);
     })();
   }, []);
@@ -51,6 +50,7 @@ function DemoClass() {
   // handle all data
   const saveData: SubmitHandler<DemoClassType> = async (data) => {
     try {
+      console.log(data)
       await dispatch(
         createDemoClassAsyncThunk(data),
       ).unwrap();
@@ -119,7 +119,7 @@ function DemoClass() {
             />
             {<ErrorMsg text={errors.subjectId?.message} />}
           </div>
-          <div>
+          {/* <div>
             <Controller
               name="batchId"
               control={control}
@@ -136,22 +136,6 @@ function DemoClass() {
               )}
             />
             {<ErrorMsg text={errors.batchId?.message} />}
-          </div>
-          {/* <div>
-            <Controller
-              name="teacherId"
-              control={control}
-              defaultValue={[]}
-              rules={{ required: "Teacher Name is required !!!" }}
-              render={({ field }) => (
-                <CustomMultiSelect
-                  label="Teacher Name *"
-                  itemList={itemList}
-                  {...field}
-                />
-              )}
-            />
-            {<ErrorMsg text={errors.teacherName?.message} />}
           </div> */}
         </section>
 

@@ -2,6 +2,7 @@ import React, { useState, type ReactNode } from "react";
 import MainLayout from "./Main-Layout";
 import { Menu, X } from "lucide-react";
 
+
 interface DashboardLayoutType {
   menu: ReactNode;
   children: ReactNode;
@@ -27,7 +28,7 @@ function DashboardLayout({ menu, children }: DashboardLayoutType) {
           <aside className="col-span-1 hidden md:block">{menu}</aside>
 
           {/* right section */}
-          <section className="col-span-3 md:w-full">{children}</section>
+            <section className="col-span-3 md:w-full">{children}</section>
         </section>
 
         {/* toggle menu  */}

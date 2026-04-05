@@ -155,7 +155,7 @@ function MainLayout({ children }: childrenType) {
       </nav>
 
       {/* children section  */}
-      <section className="w-full min-h-screen">{children}</section>
+        <section className="w-full min-h-screen">{children}</section>
 
       {/* footer section  */}
       <section>
