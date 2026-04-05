@@ -68,7 +68,7 @@ export interface UpdateTeacherProfileType {
 }
 
 export interface SelectItem {
-  _id?: string;
+  id?: string;
   value: string;
   label: string;
   img?: string;
@@ -85,7 +85,7 @@ export interface CustomMultiSelectType {
 }
 
 export interface SubjectType {
-   id: string;
+  readonly id?: string;
   name: string;
   className: string,
 }

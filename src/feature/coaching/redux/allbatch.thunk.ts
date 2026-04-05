@@ -16,7 +16,7 @@ export const AllBatchByCoachingThunk = createAsyncThunk<ReturnType, ShowBatchTyp
       const response = await api.get(`/api/v1/coaching-staffs?role=Teacher`, {
         withCredentials: true
       });
-      return response.data
+      return response.data.data;
     } 
     catch (error: unknown) {
       if (axios.isAxiosError(error)) {

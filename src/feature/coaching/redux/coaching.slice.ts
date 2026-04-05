@@ -3,10 +3,11 @@ import { createCoachingAsyncThunk } from "./createCoaching.thunk";
 import type { ShowBatchType, StaffType } from "../coaching-type";
 import { AllBatchByCoachingThunk } from "./allbatch.thunk";
 import { updateCoachingProfileAsynkThunk } from "./updateCoachingProfile.thunk";
+import { createBatchAsyncThunk } from "./create-batch.thunk";
 
 export interface initialStateType {
   coaching: any | null;
-  batch: ShowBatchType[] | null;
+  batch: ShowBatchType | null;
   staff: StaffType | null;
   loading: boolean;
   error: string | null | undefined | unknown;
@@ -51,7 +52,7 @@ const coachingSlice = createSlice({
       .addCase(updateCoachingProfileAsynkThunk.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        console.log('update', action.payload.data)
+        console.log("update", action.payload.data);
         state.coaching = action.payload.data;
       })
       .addCase(updateCoachingProfileAsynkThunk.rejected, (state, action) => {
@@ -60,17 +61,34 @@ const coachingSlice = createSlice({
       });
 
     // all batches by coaching
+    // builder
+    //   .addCase(AllBatchByCoachingThunk.pending, (state) => {
+    //     state.loading = true;
+    //     state.error = null;
+    //   })
+    //   .addCase(AllBatchByCoachingThunk.fulfilled, (state, action) => {
+    //     state.loading = false;
+    //     state.error = null;
+    //     console.log('return batch', action.payload)
+    //     state.batch = action.payload;
+    //   })
+    //   .addCase(AllBatchByCoachingThunk.rejected, (state, action) => {
+    //     state.loading = false;
+    //     state.error = action.payload;
+    //   });
+
+    // create
     builder
-      .addCase(AllBatchByCoachingThunk.pending, (state) => {
+      .addCase(createBatchAsyncThunk.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(AllBatchByCoachingThunk.fulfilled, (state, action) => {
+      .addCase(createBatchAsyncThunk.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.batch = action.payload.data;
+        state.batch = action.payload;
       })
-      .addCase(AllBatchByCoachingThunk.rejected, (state, action) => {
+      .addCase(createBatchAsyncThunk.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

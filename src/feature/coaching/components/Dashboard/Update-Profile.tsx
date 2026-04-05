@@ -10,7 +10,6 @@ import type { AppDispatch, RootState } from "@/store/store";
 import type { CoachingType } from "../../coaching-type";
 import dayjs from "dayjs";
 
-
 function UpdateProfile() {
   const {
     control,
@@ -43,7 +42,7 @@ function UpdateProfile() {
 
       const formData = new FormData();
       if(data.CcName !== undefined) formData.append("CcName", data.CcName)
-      if(data.email !== undefined) formData.append("address", data.email)
+      if(data.email !== undefined) formData.append("email", data.email)
       if(data.address !== undefined) formData.append("address", data.address)
       if(data.mobile !== undefined) formData.append("mobile", data.mobile)
       if(data.bio !== undefined) formData.append("bio", data.bio)

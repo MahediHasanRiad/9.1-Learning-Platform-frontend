@@ -2,16 +2,16 @@ import React from "react";
 import { Link } from "react-router";
 
 interface TeacherCardType {
-  image: string;
+  image: File | string;
   name: string;
   path: string;
 }
 
-function TeacherCard({ image, name, path = '#' }: TeacherCardType) {
+function TeacherCard({ image, name, path = "#" }: TeacherCardType) {
   return (
     <section className="flex flex-col items-center">
       <img
-        src={image}
+        src={image instanceof File ? URL.createObjectURL(image) : image}
         alt="image"
         className="rounded-full w-15 h-15 border object-cover"
       />

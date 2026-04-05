@@ -58,10 +58,10 @@ function CoachingInfo({ coaching }: Coaching) {
         `/api/v1/coaching-staffs?role=Teacher`,
         { withCredentials: true },
       );
+     
       setTeachers(allTeachers.data.data.staff);
     })();
   }, []);
-
   return (
     <section>
       <section className="h-15 w-full mx-auto flex items-center border-b">
@@ -112,9 +112,9 @@ function CoachingInfo({ coaching }: Coaching) {
             {teachers?.map((teacher) => (
               <TeacherCard
                 key={teacher.id}
-                path={`/user/profile/${teacher.userId}`}
-                image={teacher.avatar}
-                name={teacher.name}
+                path={`/user/profile/${teacher.user.id}`}
+                image={teacher.user.avatar!}
+                name={teacher.user.name}
               />
             ))}
           </section>

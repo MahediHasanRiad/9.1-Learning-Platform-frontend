@@ -4,7 +4,6 @@ import DatePicker from "@/shared/utils/date";
 import ErrorMsg from "@/shared/utils/error-msg";
 import InputField from "@/shared/utils/input";
 import MultiSelect from "@/shared/utils/multi-select";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm, Controller, type SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
@@ -13,7 +12,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { createBatchAsyncThunk } from "../../redux/create-batch.thunk";
 import TextareaField from "@/shared/utils/textarea";
 import type { AppDispatch, RootState } from "@/store/store";
-import type { ShowBatchType, StaffType, UpdateBatchType } from "../../coaching-type";
+import type { StaffType, UpdateBatchType } from "../../coaching-type";
+import { api } from "@/API/api-client";
 
 
 interface Subject {
@@ -48,23 +48,20 @@ function CreateBatch() {
   const [allStaffs, setAllStaffs] = useState<StaffType[]>();
   const [allSubject, setAllSubject] = useState<Subject[]>();
 
-  const { formattedTeachers, formattedSubject, recurringRule } =
-    useFormatedValue({ allStaffs, allSubject });
-
   const dispatch = useDispatch<AppDispatch>();
-  const { batch, loading, error } = useSelector((state: RootState) => state.coaching);
+  const { loading } = useSelector((state: RootState) => state.coaching);
 
   useEffect(() => {
     const fetchStaffs = async () => {
       try {
         // all staff
-        const allStaff = await axios.get(`/api/v1/coaching-staffs`, {
+        const allStaff = await api.get(`/api/v1/coaching-staffs`, {
           withCredentials: true,
         });
         setAllStaffs(allStaff?.data?.data?.staff);
 
         // all subjects
-        const allSubject = await axios.get("/api/v1/subjects-by-user", {
+        const allSubject = await api.get("/api/v1/subjects-by-user", {
           withCredentials: true,
         });
         setAllSubject(allSubject?.data?.data);
@@ -76,13 +73,17 @@ function CreateBatch() {
     fetchStaffs();
   }, []);
 
+  // formated 
+   const { formattedTeachers, formattedSubject, recurringRule } =
+    useFormatedValue({ allStaffs, allSubject });
+
+
   // handle all data
   const saveData: SubmitHandler<Partial<UpdateBatchType>> = async (data) => {
     try {
       const formData = new FormData();
 
       if(data.name !== undefined) formData.append("name", data.name)
-      if(data.coverImage !== undefined) formData.append("coverImage", data.coverImage)
       if(data.start_date !== undefined) formData.append("start_date", data.start_date)
       if(data.end_date !== undefined) formData.append("end_date", data.end_date)
       if(data.capacity !== undefined) formData.append("capacity", data.capacity)
@@ -129,7 +130,7 @@ function CreateBatch() {
               }}
               render={({ field }) => (
                 <InputField
-                  label="Name *"
+                  label="Batch Name *"
                   placeholder="mahedi hasan riad"
                   {...field}
                 />

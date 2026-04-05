@@ -1,4 +1,5 @@
 import type { SubjectType } from "../teacher/teacher-type";
+import type { UserType } from "../user/user-type";
 
 interface AssignedTeacherType {
   id: string;
@@ -13,7 +14,7 @@ interface Subjects {
 }
 
 export interface ShowBatchType {
-  readonly _id: string;
+  readonly id: string;
   assignedTeachers: AssignedTeacherType[];
   capacity: string;
   coachingId: string;
@@ -73,7 +74,7 @@ export interface CreateCoachingType {
 }
 
 export interface StaffType {
-  readonly id: string;
+  readonly id?: string;
   role: 'Admin' | 'Manager' | 'Teacher' | 'Other';
   userId: string;
   name: string;
@@ -81,6 +82,7 @@ export interface StaffType {
   coachingId: string;
   CcName: string;
   staffLink: string;
+  user: UserType;
 }
 
 export interface CoachingType {

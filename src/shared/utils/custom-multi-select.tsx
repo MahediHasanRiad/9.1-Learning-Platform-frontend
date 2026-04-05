@@ -78,7 +78,7 @@ function CustomMultiSelect({
 
         {/* Dropdown */}
         <ComboboxContent className="bg-white" anchor={anchor}>
-          <ComboboxEmpty>No countries found.</ComboboxEmpty>
+          <ComboboxEmpty>No Data found.</ComboboxEmpty>
 
           <ComboboxList>
             {(item) => (

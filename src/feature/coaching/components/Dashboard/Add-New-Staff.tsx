@@ -9,9 +9,10 @@ import { useDispatch } from "react-redux";
 import { toast } from "sonner";
 import { createCoachingStaffAsyncThunk } from "../../redux/create-staff.thunk";
 import type { AppDispatch } from "@/store/store";
+import { api } from "@/API/api-client";
 
 interface UserType {
-  _id: string;
+  id: string;
   name: string;
   avatar: string;
 }
@@ -47,7 +48,7 @@ function AddNewStaff() {
   useEffect(() => {
     (async () => {
       // get all users
-      const users = await axios.get("/api/v1/users/all", {
+      const users = await api.get("/api/v1/users/all", {
         withCredentials: true,
       });
       setAllUsers(users.data.data.users);
@@ -57,7 +58,7 @@ function AddNewStaff() {
   // user formated
   const formatedUser =
     allUsers?.map((user) => ({
-      id: user._id,
+      id: user.id,
       label: user.name,
       value: user.name,
       img: user.avatar,

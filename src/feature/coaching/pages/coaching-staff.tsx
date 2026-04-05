@@ -35,8 +35,8 @@ function CoachingStaff() {
       <section className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
         {staffs?.staff?.map((staff) => (
           <StaffCard
-            path={`/user/profile/${staff?.userId}`}
-            img={staff?.avatar}
+            path={`/user/profile/${staff?.user.id}`}
+            img={staff?.user.avatar!}
             name={staff?.name}
             role={staff?.role}
           />
