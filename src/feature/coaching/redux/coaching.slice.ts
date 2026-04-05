@@ -51,6 +51,7 @@ const coachingSlice = createSlice({
       .addCase(updateCoachingProfileAsynkThunk.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
+        console.log('update', action.payload.data)
         state.coaching = action.payload.data;
       })
       .addCase(updateCoachingProfileAsynkThunk.rejected, (state, action) => {

@@ -16,7 +16,7 @@ function MainLayout({ children }: childrenType) {
   const [open, setOpen] = useState(false);
   
   // role
-  const { user, teacher, role } = useSelector((state: RootState) => state.auth);
+  const { user, teacher, coaching, role } = useSelector((state: RootState) => state.auth);
 
   return (
     <section className="w-5/6 m-auto">
@@ -72,13 +72,13 @@ function MainLayout({ children }: childrenType) {
                     profile={true}
                     profilePath={`/coaching/profile`}
                     dashboard={true}
-                    dashboardPath={`/coaching/dashboard/${user.id}`}
+                    dashboardPath={`/coaching/dashboard/${coaching?.id}`}
                     coachingStaff={true}
-                    coachingStaffPath={`/coaching/staff/${user.id}`}
+                    coachingStaffPath={`/coaching/staff/${coaching?.id}`}
                     coachingBatch={true}
-                    coachingBatchPath={`/coaching/batch/${user.id}`}
+                    coachingBatchPath={`/coaching/batch/${coaching?.id}`}
                     enrolled={true}
-                    enrolledPath={`/coaching/enrolled/${user.id}`}
+                    enrolledPath={`/coaching/enrolled/${coaching?.id}`}
                     becomeUser={true}
                     becomeUserPath={`/teachers`}
                   />

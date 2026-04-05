@@ -1,3 +1,5 @@
+import type { CoachingType } from "../coaching/coaching-type";
+
 export interface RegisterInput {
   name: string;
   email: string;
@@ -49,29 +51,10 @@ export interface Teacher {
   }
 }
 
-interface Coaching {
-  readonly _id: string;
-  CcName: string;
-  address: string;
-  subjects: string[];
-  staffs: string[];
-  batch: string[];
-  userId: string;
-  avatar: string;
-  bio: string;
-  coverImage: string;
-  email: string;
-  facebook: string;
-  linkedIn: string;
-  mobile: string;
-  website: string;
-  status: 'Pending' | 'Approved' | 'Suspended ';
-}
-
 export interface AuthSliceType {
   user: User | null;
   teacher: Teacher | null;
-  coaching: Coaching | null;
+  coaching: CoachingType | null;
   role: 'User' | 'Teacher' | 'Coaching',
   loading: boolean,
   error: string | null | undefined | unknown,

@@ -73,7 +73,7 @@ export interface CreateCoachingType {
 }
 
 export interface StaffType {
-  readonly _id: string;
+  readonly id: string;
   role: 'Admin' | 'Manager' | 'Teacher' | 'Other';
   userId: string;
   name: string;
@@ -84,13 +84,14 @@ export interface StaffType {
 }
 
 export interface CoachingType {
+  readonly id: string;
   userId: string;
   CcName: string;
   address: string;
   officeTime?: string;
-  avatar: string;
+  avatar: File | string;
+  coverImage: File | string;
   bio: string;
-  coverImage: string;
   email: string;
   facebook: string;
   linkedIn: string;

@@ -21,10 +21,10 @@ import { AllBatchByCoachingThunk } from "@/feature/coaching/redux/allbatch.thunk
 import { useParams } from "react-router";
 
 interface Coaching {
-  coaching: CoachingType | null;
+  coaching?: CoachingType;
 }
 interface ShowBatch extends ShowBatchType {
-  _id: string;
+  id: string;
   path: string;
 }
 
@@ -42,13 +42,12 @@ function CoachingInfo({ coaching }: Coaching) {
 
   const [allBatch, setAllBatch] = useState<ShowBatch[]>();
   const [teachers, setTeachers] = useState<StaffType[]>();
-  const {id} = useParams()
 
 
   useEffect(() => {
     (async () => {
       // all batch
-      const allBatch = await api.get(`/api/v1/all-batch-in-coaching/${id}`, {
+      const allBatch = await api.get(`/api/v1/all-batch-in-coaching/${coaching?.id}`, {
         withCredentials: true,
       });
 
@@ -94,8 +93,8 @@ function CoachingInfo({ coaching }: Coaching) {
           <section className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {allBatch?.map((batch) => (
               <CoachingBatchCard
-                key={batch?._id}
-                path={batch?._id}
+                key={batch?.id}
+                path={batch?.id}
                 image={batch?.coverImage}
                 name={batch?.name}
                 subjects={batch?.subjects}
@@ -112,7 +111,7 @@ function CoachingInfo({ coaching }: Coaching) {
           <section className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {teachers?.map((teacher) => (
               <TeacherCard
-                key={teacher._id}
+                key={teacher.id}
                 path={`/user/profile/${teacher.userId}`}
                 image={teacher.avatar}
                 name={teacher.name}

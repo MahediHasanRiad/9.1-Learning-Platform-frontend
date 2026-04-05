@@ -52,7 +52,7 @@ function CoachingProfile() {
           </section>
           {/* info  */}
           <section className="mt-4">
-            <CoachingInfo coaching = {coaching} />
+            <CoachingInfo coaching = {coaching!} />
           </section>
         </section>
       </section>

@@ -1,7 +1,6 @@
-import { BookOpen, Calendar, ArrowRight } from "lucide-react";
+import { BookOpen, Calendar, ChevronRight, Clock } from "lucide-react";
 import DrawerField from "@/shared/utils/Drawer";
 import type { CoachingBatchCardType } from "../coaching-type";
-
 
 export default function CoachingBatchCard({
   image,
@@ -11,75 +10,88 @@ export default function CoachingBatchCard({
   end,
   btnText = "View Details",
   batch,
-  path = '#'
+  path = "#",
 }: CoachingBatchCardType) {
   return (
-    <section className="group w-full  bg-white border border-slate-200/60 rounded-2xl overflow-hidden hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] transition-all duration-500 flex flex-col h-full">
-      
-      {/* Top Section: Image with Badge */}
-      <div className="relative aspect-[16/10] overflow-hidden">
+    <article className="group relative w-full bg-white rounded-2xl overflow-hidden flex flex-col h-full shadow-sm hover:shadow-xl transition-shadow duration-500 border border-slate-100">
+
+      {/* Image */}
+      <div className="relative h-44 overflow-hidden bg-slate-100">
         <img
           src={image}
           alt={name}
-          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+          className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-        
-        {/* Simple Status Badge (Optional) */}
-        <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-lg shadow-sm">
-          <span className="text-[10px] font-bold text-slate-800 uppercase tracking-wider">Active</span>
-        </div>
-      </div>
+        {/* Gradient overlay — always subtle, stronger on hover */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
 
-      {/* Bottom Section: Content */}
-      <div className="p-5 flex flex-col flex-grow">
-        {/* Category or Type */}
-        <span className="text-[10px] font-bold text-secondary-0 uppercase tracking-[0.1em] mb-1">
-          Coaching Batch
+        {/* Status badge */}
+        <span className="absolute top-3 left-3 inline-flex items-center gap-1.5 bg-white/95 backdrop-blur-sm text-emerald-600 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full shadow-sm">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          Active
         </span>
 
-        {/* Name */}
-        <h3 className="font-bold text-slate-800 text-[18px] leading-snug line-clamp-2 mb-4 group-hover:text-secondary-0 transition-colors">
-          {name}
-        </h3>
+        {/* Subject count pill — bottom right of image */}
+        {subjects?.length > 0 && (
+          <span className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm text-white text-[10px] font-semibold px-2.5 py-1 rounded-full">
+            {subjects.length} Subject{subjects.length > 1 ? "s" : ""}
+          </span>
+        )}
+      </div>
 
-        {/* Info Grid */}
-        <div className="space-y-3 mb-6">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center shrink-0">
-              <BookOpen size={14} className="text-slate-500" />
+      {/* Content */}
+      <div className="flex flex-col flex-grow p-5 gap-4">
+
+        {/* Label + Title */}
+        <div>
+          <p className="text-[10px] font-bold text-blue-500 uppercase tracking-[0.12em] mb-1">
+            Coaching Batch
+          </p>
+          <h3 className="text-[16px] font-bold text-slate-800 leading-snug line-clamp-2 group-hover:text-blue-600 transition-colors duration-300">
+            {name}
+          </h3>
+        </div>
+
+        {/* Info rows */}
+        <div className="flex flex-col gap-2.5">
+          {/* Subjects */}
+          <div className="flex items-start gap-2.5">
+            <div className="mt-0.5 shrink-0 w-7 h-7 rounded-lg bg-blue-50 flex items-center justify-center">
+              <BookOpen size={13} className="text-blue-500" />
             </div>
-            <div className="flex flex-col">
-              <span className="text-[10px] text-slate-400 font-medium">Subjects</span>
-              <p className="text-xs text-slate-600 font-semibold truncate">
-                {subjects?.length > 0 ? subjects?.map(s => s.name).join(", ") : "N/A"}
+            <div className="min-w-0">
+              <p className="text-[9px] text-slate-400 font-semibold uppercase tracking-wider">Subjects</p>
+              <p className="text-xs text-slate-600 font-medium truncate">
+                {subjects?.length > 0 ? subjects.map((s) => s.name).join(", ") : "N/A"}
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center shrink-0">
-              <Calendar size={14} className="text-slate-500" />
+          {/* Schedule */}
+          <div className="flex items-start gap-2.5">
+            <div className="mt-0.5 shrink-0 w-7 h-7 rounded-lg bg-violet-50 flex items-center justify-center">
+              <Clock size={13} className="text-violet-500" />
             </div>
-            <div className="flex flex-col">
-              <span className="text-[10px] text-slate-400 font-medium">Schedule</span>
-              <p className="text-xs text-slate-600 font-semibold truncate">
-                {start} - {end}
+            <div className="min-w-0">
+              <p className="text-[9px] text-slate-400 font-semibold uppercase tracking-wider">Schedule</p>
+              <p className="text-xs text-slate-600 font-medium truncate">
+                {start} – {end}
               </p>
             </div>
           </div>
         </div>
-        {/* Action: Customizing the feel of DrawerField wrapper */}
-        <div className="mt-auto pt-4 border-t border-slate-50">
-          <div className="flex items-center justify-between group/btn">
-             <DrawerField 
-                btnText={btnText} 
-                batch={batch}
-              />
-             <ArrowRight size={16} className="text-slate-300 -translate-x-2 opacity-0 group-hover/btn:translate-x-0 group-hover/btn:opacity-100 transition-all text-blue-600" />
-          </div>
+
+        {/* Divider */}
+        <div className="h-px bg-slate-100 mt-auto" />
+
+        {/* CTA row */}
+        <div className="flex items-center justify-between pt-1">
+          <DrawerField btnText={btnText} batch={batch} />
+          <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-400 group-hover:text-blue-500 transition-colors duration-300 group-hover:translate-x-0.5 transform">
+            <ChevronRight size={15} />
+          </span>
         </div>
       </div>
-    </section>
+    </article>
   );
 }

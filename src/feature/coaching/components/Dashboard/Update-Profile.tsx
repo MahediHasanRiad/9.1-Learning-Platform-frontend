@@ -59,12 +59,12 @@ function UpdateProfile() {
       if (data.coverImage) formData.append("coverImage", data.coverImage);
 
       await dispatch(updateCoachingProfileAsynkThunk({
-        id: coaching?._id, 
+        id: coaching?.id, 
         formData
       })).unwrap();
 
-      reset();
       toast.success('Successfully Updated');
+      reset();
 
     } catch (error: any) {
       toast.error(error);
