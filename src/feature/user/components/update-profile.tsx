@@ -43,7 +43,7 @@ function UpdateProfile() {
         formData.append("coverImage", data.coverImage);
       if (data.avatar) formData.append("avatar", data.avatar);
 
-      await dispatch(updateProfileAsyncThunk({ id: user?._id, formData }))
+      await dispatch(updateProfileAsyncThunk({ id: user?.id, formData }))
         .unwrap()
         .then(() => {
           reset();

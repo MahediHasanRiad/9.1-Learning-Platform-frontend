@@ -6,7 +6,7 @@ import axios from "axios";
 export const findUserByIdAsyncThunk = createAsyncThunk('userSlice/findUserById', async (id: string, {rejectWithValue}) => {
   try {
     const response = await api.get(`/api/v1/users/${id}`, {withCredentials: true})
-    return response.data;
+    return response.data.data;
   } 
   catch (error: unknown) {
     if(axios.isAxiosError(error)){

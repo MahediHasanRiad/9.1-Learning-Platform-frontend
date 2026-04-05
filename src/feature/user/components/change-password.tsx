@@ -30,6 +30,7 @@ function ChangePassword() {
     try {
       await dispatch(resetPasswordAsyncThunk(data)).unwrap()
       toast.success('Update Password')
+      reset()
 
     } catch (error: any) {
       toast.error(error)

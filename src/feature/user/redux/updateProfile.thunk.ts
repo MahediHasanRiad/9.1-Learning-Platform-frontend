@@ -17,7 +17,7 @@ export const updateProfileAsyncThunk = createAsyncThunk<
     const response = await api.patch(`/api/v1/users/${id}`, formData, {
       withCredentials: true,
     });
-    return response.data;
+    return response.data.data;
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
       return rejectWithValue(error.response?.data?.message || error.message);

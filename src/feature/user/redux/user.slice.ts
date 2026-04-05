@@ -6,7 +6,7 @@ import { findUserByIdAsyncThunk } from "./find-by-id.thunk";
 
 
 export interface UserInitialStateType {
-  user: UserType | null;
+  user: Partial<UserType> | null;
   loading: boolean;
   error: null | undefined | string | unknown
 }
@@ -23,35 +23,35 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     // update profile
-    // builder
-    //   .addCase(updateProfileAsyncThunk.pending, (state) => {
-    //     state.loading = true;
-    //     state.error = null;
-    //   })
-    //   .addCase(updateProfileAsyncThunk.fulfilled, (state, action) => {
-    //     state.loading = false;
-    //     state.error = null;
-    //     state.user = action.payload.data;
-    //   })
-    //   .addCase(updateProfileAsyncThunk.rejected, (state, action) => {
-    //     state.loading = false;
-    //     state.error = action.payload;
-    //   });
+    builder
+      .addCase(updateProfileAsyncThunk.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateProfileAsyncThunk.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.user = action.payload;
+      })
+      .addCase(updateProfileAsyncThunk.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
 
     // reset password
     // builder
-      // .addCase(resetPasswordAsyncThunk.pending, (state) => {
-      //   state.loading = true;
-      // })
-      // .addCase(resetPasswordAsyncThunk.fulfilled, (state, action) => {
-      //   state.error = null;
-      //   state.loading = true;
-      //   state.user = action.payload.data;
-      // })
-      // .addCase(resetPasswordAsyncThunk.rejected, (state, action) => {
-      //   state.error = action.payload;
-      //   state.loading = false;
-      // });
+    //   .addCase(resetPasswordAsyncThunk.pending, (state) => {
+    //     state.loading = true;
+    //   })
+    //   .addCase(resetPasswordAsyncThunk.fulfilled, (state, action) => {
+    //     state.error = null;
+    //     state.loading = true;
+    //     state.user = action.payload;
+    //   })
+    //   .addCase(resetPasswordAsyncThunk.rejected, (state, action) => {
+    //     state.error = action.payload;
+    //     state.loading = false;
+    //   });
 
     // find user by id
     builder
@@ -62,7 +62,7 @@ const userSlice = createSlice({
       .addCase(findUserByIdAsyncThunk.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.user = action.payload.data;
+        state.user = action.payload;
       })
       .addCase(findUserByIdAsyncThunk.rejected, (state, action) => {
         state.loading = false;

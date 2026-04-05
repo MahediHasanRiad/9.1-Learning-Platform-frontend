@@ -15,7 +15,11 @@ import CoachingStaff from "@/feature/coaching/pages/coaching-staff";
 import Register from "@/feature/auth/pages/register.page";
 import LogIn from "@/feature/auth/pages/login.page";
 import { useDispatch } from "react-redux";
-import { setCoaching, setUser } from "@/feature/auth/redux/auth.slice";
+import {
+  setCoaching,
+  setTeacher,
+  setUser,
+} from "@/feature/auth/redux/auth.slice";
 import BecomeATeacher from "@/feature/teacher/pages/become-teacher.page";
 import CreateCoaching from "@/feature/coaching/pages/create-coaching.page";
 import Home from "@/feature/Home/pages/home.page";
@@ -24,7 +28,6 @@ import CoachingBatch from "@/feature/coaching/pages/coaching-batch";
 import BatchesPage from "../feature/Home/pages/batches";
 import { api } from "@/API/api-client";
 import type { AppDispatch } from "@/store/store";
-
 
 function App() {
   const dispatch = useDispatch<AppDispatch>();
@@ -42,11 +45,20 @@ function App() {
         });
         dispatch(setUser(userRes.data.data));
 
+        // teacher
+        if (userRes) {
+          const teacher = await api.get("/api/v1/self-teacher", {
+            withCredentials: true,
+          });
+          dispatch(setTeacher(teacher.data.data));
+          console.log("teacher", teacher);
+        }
+
         // coaching
         if (userRes) {
-          const coachingRes = await api.get(
-            '/api/v1/coaching-center-by-user', { withCredentials: true }
-          );
+          const coachingRes = await api.get("/api/v1/coaching-center-by-user", {
+            withCredentials: true,
+          });
           dispatch(setCoaching(coachingRes.data));
         }
       } catch (error: any) {
@@ -59,7 +71,7 @@ function App() {
     fetchUserData();
   }, [dispatch, location.pathname]);
 
-// dispatch, location.pathname
+  // dispatch, location.pathname
 
   return (
     <section>
@@ -82,12 +94,12 @@ function App() {
         <Route path="/user/enrolled/:id" element={<UserEnrolledBatch />} />
 
         {/* teacher  */}
-         <Route path="/teacher/profile/:id" element={<TeacherProfile />} />
+        <Route path="/teacher/profile/:id" element={<TeacherProfile />} />
         <Route path="/teacher/dashboard/:id" element={<TeacherDashboard />} />
         <Route
           path="/teacher/connected-coaching/:id"
           element={<ConnectedCoaching />}
-        /> 
+        />
 
         {/* coaching  */}
         <Route path="/coaching" element={<CreateCoaching />} />

@@ -3,7 +3,7 @@ import InfoMenuItem from '../utils/info-menu-item';
 import type { UserType } from '../user-type';
 
 interface userType {
-  user: UserType
+  user: Partial<UserType>
 }
 
 function UserInfo({user}: userType) {

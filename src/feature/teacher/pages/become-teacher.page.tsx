@@ -8,9 +8,9 @@ import { toast } from "sonner";
 import { createTeacherAsyncThunk } from "../redux/createTeacher.thunk";
 import { useNavigate } from "react-router";
 import ErrorMsg from "@/shared/utils/error-msg";
-import img from '../../../../public/images/form-fill.svg'
 import type { AppDispatch, RootState } from "@/store/store";
 import type { TeacherType } from "../teacher-type";
+import img from '../../../../public/images/form-fill.svg'
 
 
 function BecomeATeacher() {
@@ -34,8 +34,8 @@ function BecomeATeacher() {
   const saveData = async (data: TeacherType) => {
     try {
       const formData = new FormData();
-      if(user?._id){
-        formData.append("userId", user?._id);
+      if(user?.id){
+        formData.append("userId", user?.id);
       }
       formData.append("education", data.education);
       formData.append("experience", data.experience);

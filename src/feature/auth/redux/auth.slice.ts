@@ -20,6 +20,8 @@ const authSlice = createSlice({
     logout: () => {},
     setUser: (state, action) => {
       state.user = action.payload.user;
+    },
+    setTeacher: (state, action) => {
       state.teacher = action.payload.teacher;
     },
     setCoaching: (state, action) => {
@@ -81,5 +83,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { logout, setUser, setCoaching, updateRole } = authSlice.actions;
+export const { logout, setUser, setTeacher, setCoaching, updateRole } = authSlice.actions;
 export default authSlice.reducer;

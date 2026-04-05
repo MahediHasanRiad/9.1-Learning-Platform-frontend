@@ -10,6 +10,7 @@ interface ResetPassType {
 interface ReturnResetPass {
   success: boolean;
   message: string;
+  data: ResetPassType
 }
 
 export const resetPasswordAsyncThunk = createAsyncThunk<
@@ -21,7 +22,7 @@ export const resetPasswordAsyncThunk = createAsyncThunk<
     const response = await api.post("/api/v1/changePassword", data, {
       withCredentials: true,
     });
-    return response.data;
+    return response.data.data;
   } 
   catch (error: unknown) {
     if (axios.isAxiosError(error)) {
