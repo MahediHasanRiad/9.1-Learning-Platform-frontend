@@ -3,6 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import type { TeacherSliceType } from "../teacher-type";
 
+
 interface UpdateTeacherType {
   id: string | undefined;
   formData: FormData;
@@ -25,8 +26,10 @@ export const updateTeacherProfileAsyncThunk = createAsyncThunk<
       const response = await api.patch(`/api/v1/teachers/${id}`, formData, {
         withCredentials: true,
       });
+      console.log('paramId', id)
       return response.data;
-    } catch (error: unknown) {
+    } 
+    catch (error: unknown) {
       if (axios.isAxiosError(error)) {
         return rejectWithValue(error.response?.data?.message || error.message);
       }

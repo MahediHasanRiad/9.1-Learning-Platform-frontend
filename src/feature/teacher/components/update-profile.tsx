@@ -81,11 +81,12 @@ function UpdateProfile() {
 
     await dispatch(
       updateTeacherProfileAsyncThunk({
-        id: user.id,
+        id,
         formData,
       })
     ).unwrap();
 
+    reset();
     toast.success("Profile Updated!");
     
   } catch (error: unknown) {

@@ -13,7 +13,7 @@ export const SingleTeacherAsyncThunk = createAsyncThunk<
   ReturnType,
   string,
   { rejectValue: string }
->("teacherSlice/singleTeacher", async (id, { rejectWithValue }) => {
+>("teacherSlice/teachers", async (id, { rejectWithValue }) => {
   try {
     const response = await api.get(`/api/v1/teachers/${id}`, {
       withCredentials: true,

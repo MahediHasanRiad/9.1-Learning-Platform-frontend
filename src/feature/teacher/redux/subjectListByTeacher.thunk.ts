@@ -7,7 +7,8 @@ export const subjectListByTeacherAsyncThunk = createAsyncThunk('teacherSlice/sub
   try {
     const response = await api.get(`/api/v1/subjects/${id}`, {withCredentials: true})
     return response.data
-  } catch (error: unknown) {
+  } 
+  catch (error: unknown) {
     if(axios.isAxiosError(error)){
       return rejectWithValue(error.response?.data?.message || error.message)
     }
