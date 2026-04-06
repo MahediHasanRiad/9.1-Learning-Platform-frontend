@@ -28,6 +28,7 @@ function UpdateProfile() {
 
   const dispatch = useDispatch<AppDispatch>();
   const { user } = useSelector((state: RootState) => state.auth);
+  const { loading } = useSelector((state: RootState) => state.user);
 
   const saveData = async (data: Partial<UserType>) => {
     try {
@@ -146,7 +147,7 @@ function UpdateProfile() {
             )}
           />
         </section>
-        <Button text={"Save"} className={"float-right mt-4"} />
+        <Button text={loading ? 'Loading...' : "Save"} className={"float-right mt-4"} />
       </form>
     </section>
   );

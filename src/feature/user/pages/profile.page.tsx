@@ -17,7 +17,6 @@ function Profile() {
     ;(async () => {
       try {
         if (!id) return;
-
         await dispatch(findUserByIdAsyncThunk(id)).unwrap();
       } catch (error: any) {
         toast.error(error);

@@ -120,7 +120,13 @@ export interface initialStateType {
       self: string;
     }
   } | null;
-  staff: StaffType | null;
+  staff: {
+    staff: StaffType[] | null;
+    pagination: PaginationType;
+    links: {
+      self: string;
+    }
+  } | null;
   loading: boolean;
   error: string | null | undefined | unknown;
 }

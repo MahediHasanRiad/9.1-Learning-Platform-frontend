@@ -1,9 +1,6 @@
-import { api } from "@/API/api-client";
-import type { QueryParamsType } from "@/feature/auth/auth-type";
 import CoachingBatchCard from "@/feature/coaching/components/Coaching-Batch-Card";
 import MainLayout from "@/layout/Main-Layout";
-import { useEffect, useState } from "react";
-import type { EnrolledBatchType } from "../user-type";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "@/store/store";
 import { fetchEnrolledBatchThunk } from "../redux/enrolled.thunk";

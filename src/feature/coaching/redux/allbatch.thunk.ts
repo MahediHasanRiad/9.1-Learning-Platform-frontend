@@ -1,19 +1,13 @@
 import { api } from "@/API/api-client";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import type { ShowBatchType } from "../coaching-type";
 
-interface ReturnType {
-  success: boolean;
-  message: string;
-  data: ShowBatchType[];
-}
 
-export const AllBatchByCoachingThunk = createAsyncThunk<ReturnType, ShowBatchType[], {rejectValue: string}>(
-  "coachingSlice/allbatch",
-  async (_, { rejectWithValue }) => {
+export const AllBatchByCoachingThunk = createAsyncThunk(
+  "coaching/allbatch",
+  async (id: string, { rejectWithValue }) => {
     try {
-      const response = await api.get(`/api/v1/coaching-staffs?role=Teacher`, {
+      const response = await api.get(`/api/v1/all-batch-in-coaching/${id}`, {
         withCredentials: true
       });
       return response.data.data;

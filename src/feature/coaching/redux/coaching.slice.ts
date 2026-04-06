@@ -4,6 +4,8 @@ import type { initialStateType } from "../coaching-type";
 import { updateCoachingProfileAsynkThunk } from "./updateCoachingProfile.thunk";
 import { createBatchAsyncThunk } from "./create-batch.thunk";
 import { fetchAllBatchesThunk } from "./fetch-all-batches.thunk";
+import { AllBatchByCoachingThunk } from "./allbatch.thunk";
+import { fetchStaffThunk } from "./fetch-staff.thunk";
 
 const initialState: initialStateType = {
   coaching: null,
@@ -54,21 +56,21 @@ const coachingSlice = createSlice({
       });
 
     // all batches by coaching
-    // builder
-    //   .addCase(AllBatchByCoachingThunk.pending, (state) => {
-    //     state.loading = true;
-    //     state.error = null;
-    //   })
-    //   .addCase(AllBatchByCoachingThunk.fulfilled, (state, action) => {
-    //     state.loading = false;
-    //     state.error = null;
-    //     console.log('return batch', action.payload)
-    //     state.batch = action.payload;
-    //   })
-    //   .addCase(AllBatchByCoachingThunk.rejected, (state, action) => {
-    //     state.loading = false;
-    //     state.error = action.payload;
-    //   });
+    builder
+      .addCase(AllBatchByCoachingThunk.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(AllBatchByCoachingThunk.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        console.log('return batch', action.payload)
+        state.batches = action.payload;
+      })
+      .addCase(AllBatchByCoachingThunk.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
 
     // create
     builder
@@ -98,6 +100,22 @@ const coachingSlice = createSlice({
         state.batches = action.payload;
       })
       .addCase(fetchAllBatchesThunk.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+
+    // fetch all staff
+    builder
+      .addCase(fetchStaffThunk.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchStaffThunk.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.staff = action.payload;
+      })
+      .addCase(fetchStaffThunk.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
