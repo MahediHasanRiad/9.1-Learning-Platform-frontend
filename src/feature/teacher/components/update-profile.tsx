@@ -37,13 +37,14 @@ function UpdateProfile() {
   });
 
   const dispatch = useDispatch<AppDispatch>();
-  const { user } = useSelector((state: RootState) => state.auth);
+  // const { user } = useSelector((state: RootState) => state.auth);
+  const { loading } = useSelector((state: RootState) => state.teacher);
   const { id } = useParams();
 
   const saveData: SubmitHandler<UpdateTeacherProfileType> = async (data) => {
   try {
 
-    if (!user?.id) throw new Error("User ID missing");
+    // if (!user?.id) throw new Error("User ID missing");
     const formData = new FormData();
 
     if (data.name) formData.append("name", data.name);
@@ -260,7 +261,7 @@ function UpdateProfile() {
         </section>
 
         {/* submit btn  */}
-        <Button text={"Save"} className={"float-right mt-10"} />
+        <Button text={`${loading ? 'Loading...' : 'Save'}`} className={"float-right mt-10"} />
       </form>
     </section>
   );
