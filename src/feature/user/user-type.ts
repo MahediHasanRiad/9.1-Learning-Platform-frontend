@@ -1,4 +1,4 @@
-import type { AllBatchType, ShowBatchType } from "../coaching/coaching-type";
+import type { AllBatchType, PaginationType, ShowBatchType } from "../coaching/coaching-type";
 
 export interface UserType {
   readonly id: string;
@@ -19,4 +19,24 @@ export interface EnrolledBatchType {
   studentId: string;
   batchId: string;
   status: string;
+}
+
+interface EnrolledBatch {
+    batch: ShowBatchType;
+    studentId: string;
+    batchId: string;
+    status: "Pending" | "Completed" | "Rejected"
+}
+
+export interface UserInitialStateType {
+  user: Partial<UserType> | null;
+  enrolled: {
+    enrolled_Batch: EnrolledBatch[] | null;
+    pagination: PaginationType;
+    links: {
+      self: string;
+    }
+  } | null;
+  loading: boolean;
+  error: null | undefined | string | unknown
 }

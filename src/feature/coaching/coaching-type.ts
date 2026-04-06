@@ -109,3 +109,18 @@ export interface AdminType {
   linkedIn: string;
   facebook: string;
 }
+
+export interface initialStateType {
+  coaching: any | null;
+  batch: ShowBatchType | null;
+  batches: {
+    batches: ShowBatchType[] | null;
+    pagination: PaginationType;
+    links: {
+      self: string;
+    }
+  } | null;
+  staff: StaffType | null;
+  loading: boolean;
+  error: string | null | undefined | unknown;
+}

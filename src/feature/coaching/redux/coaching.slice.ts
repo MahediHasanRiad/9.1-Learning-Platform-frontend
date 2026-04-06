@@ -1,21 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createCoachingAsyncThunk } from "./createCoaching.thunk";
-import type { ShowBatchType, StaffType } from "../coaching-type";
-import { AllBatchByCoachingThunk } from "./allbatch.thunk";
+import type { initialStateType } from "../coaching-type";
 import { updateCoachingProfileAsynkThunk } from "./updateCoachingProfile.thunk";
 import { createBatchAsyncThunk } from "./create-batch.thunk";
-
-export interface initialStateType {
-  coaching: any | null;
-  batch: ShowBatchType | null;
-  staff: StaffType | null;
-  loading: boolean;
-  error: string | null | undefined | unknown;
-}
+import { fetchAllBatchesThunk } from "./fetch-all-batches.thunk";
 
 const initialState: initialStateType = {
   coaching: null,
   batch: null,
+  batches: null,
   staff: null,
   loading: false,
   error: null,
@@ -89,6 +82,22 @@ const coachingSlice = createSlice({
         state.batch = action.payload;
       })
       .addCase(createBatchAsyncThunk.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+
+    // fetch all batch for batches page
+    builder
+      .addCase(fetchAllBatchesThunk.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchAllBatchesThunk.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.batches = action.payload;
+      })
+      .addCase(fetchAllBatchesThunk.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

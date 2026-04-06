@@ -3,9 +3,11 @@ import { createTeacherAsyncThunk } from "./createTeacher.thunk";
 import { updateTeacherProfileAsyncThunk } from "./profileUpdate.thunk";
 import { SingleTeacherAsyncThunk } from "./single-teacher.thunk";
 import type { initialStateType } from "../teacher-type";
+import { fetchTeachers } from "./teachers.thunk";
 
 const initialState: initialStateType = {
   user: null,
+  users: null,
   demoVideos: null,
   loading: false,
   error: null,
@@ -14,7 +16,12 @@ const initialState: initialStateType = {
 const teacherSlice = createSlice({
   name: "teacherSlice",
   initialState,
-  reducers: {},
+  reducers: {
+    // setUsers: (state, action) => {
+    //   console.log('fetch teachers', action.payload)
+    //   state.users = action.payload;
+    // },
+  },
   extraReducers: (builder) => {
     // create teacher
     builder
@@ -62,6 +69,21 @@ const teacherSlice = createSlice({
       .addCase(SingleTeacherAsyncThunk.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      });
+
+      // fetch all teachers
+      builder
+      .addCase(fetchTeachers.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchTeachers.fulfilled, (state, action) => {
+        state.loading = false;
+        state.users = action.payload;
+      })
+      .addCase(fetchTeachers.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
       });
   },
 });

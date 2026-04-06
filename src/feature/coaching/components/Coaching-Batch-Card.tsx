@@ -12,6 +12,7 @@ export default function CoachingBatchCard({
   batch,
   path = "#",
 }: CoachingBatchCardType) {
+
   return (
     <article className="group relative w-full bg-white rounded-2xl overflow-hidden flex flex-col h-full shadow-sm hover:shadow-xl transition-shadow duration-500 border border-slate-100">
 

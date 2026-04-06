@@ -1,3 +1,5 @@
+import type { PaginationType } from "../coaching/coaching-type";
+
 export interface TeacherType {
   userId?: string;
   education: string;
@@ -20,7 +22,7 @@ export interface UserType {
 }
 
 export interface TeacherSliceType {
-  readonly _id: string;
+  readonly id: string;
   userId: string;
   education: string;
   certificate: string;
@@ -42,6 +44,13 @@ export interface DemoClassType {
 
 export interface initialStateType {
   user?: TeacherSliceType | null;
+  users?: {
+    teachers: TeacherSliceType[] | null;
+    pagination: PaginationType;
+    links: {
+      self: string;
+    }
+  } | null;
   demoVideos?: DemoClassType[] | null;
   loading: boolean;
   error: string | null | undefined | unknown;

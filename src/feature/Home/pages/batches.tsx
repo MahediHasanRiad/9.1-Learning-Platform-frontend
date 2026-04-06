@@ -3,14 +3,13 @@ import CoachingBatchCard from "@/feature/coaching/components/Coaching-Batch-Card
 import PaginationItems from "@/shared/utils/Pagination";
 import MainLayout from "@/layout/Main-Layout";
 import FilterSection from "../components/Filter-section";
-import { api } from "@/API/api-client";
 import type { QueryParamsType } from "@/feature/auth/auth-type";
-import type { AllBatchType } from "@/feature/coaching/coaching-type";
-
-
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "@/store/store";
+import { fetchAllBatchesThunk } from "@/feature/coaching/redux/fetch-all-batches.thunk";
+import CoachingBatchCardSkeleton from "@/feature/coaching/components/skeleton/batches-card-skeleton";
 
 function BatchesPage() {
-  const [allBatch, setAllBatch] = useState<AllBatchType>();
   const [filterQuery, setFilterQuery] = useState<QueryParamsType>({
     search: "",
     sortType: "desc",
@@ -18,28 +17,17 @@ function BatchesPage() {
     limit: 10,
   });
 
+  const dispatch = useDispatch<AppDispatch>();
+  const { batches, loading } = useSelector(
+    (state: RootState) => state.coaching,
+  );
+
   const handlePageChange = (newPage: number) => {
     setFilterQuery((prev) => ({ ...prev, page: newPage }));
   };
 
-  // get all coaching centers
-  const fetchBatches = async (query: QueryParamsType) => {
-    try {
-      const { search, limit, page, sortType } = query;
-      const res = await api.get(
-        `/api/v1/all-batches?search=${search}&limit=${limit}&page=${page}&sortType=${sortType}`,
-        // { withCredentials: true , params: { search, limit, page, sortType }},
-        { withCredentials: true },
-      );
-      setAllBatch(res.data.data);
-    } 
-    catch (error) {
-      console.error("Error fetching batches:", error);
-    }
-  };
-
   useEffect(() => {
-    fetchBatches(filterQuery);
+    dispatch(fetchAllBatchesThunk(filterQuery));
   }, [filterQuery]);
 
   return (
@@ -52,23 +40,27 @@ function BatchesPage() {
       {/* ------------------------------------ batches ----------------------------------- */}
 
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 my-6 ">
-        {allBatch?.batches?.map((batch) => (
-          <CoachingBatchCard
-            image={batch?.coverImage}
-            name={batch?.name}
-            subjects={batch?.subjects}
-            start={batch?.start_date}
-            end={batch?.end_date}
-            btnText="view details..."
-            batch={batch}
-          />
-        ))}
+        {loading
+          ? Array.from({ length: 8 }).map((_, i) => (
+              <CoachingBatchCardSkeleton key={i} />
+            ))
+          : batches?.batches?.map((batch) => (
+              <CoachingBatchCard
+                image={batch?.coverImage}
+                name={batch?.name}
+                subjects={batch?.subjects}
+                start={batch?.start_date}
+                end={batch?.end_date}
+                btnText="view details..."
+                batch={batch}
+              />
+            ))}
       </section>
 
       {/* -------------------------- Pagination --------------------- */}
-      {allBatch?.pagination && (
+      {batches?.pagination && (
         <PaginationItems
-          totalPage={allBatch?.pagination?.totalPage}
+          totalPage={batches?.pagination?.totalPage}
           currentPage={filterQuery?.page}
           onPageChange={handlePageChange}
         />

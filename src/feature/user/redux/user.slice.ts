@@ -1,18 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { UserType } from "../user-type";
+import type { UserInitialStateType } from "../user-type";
 import { updateProfileAsyncThunk } from "./updateProfile.thunk";
 import { resetPasswordAsyncThunk } from "./resetPassword.thunk";
 import { findUserByIdAsyncThunk } from "./find-by-id.thunk";
+import { fetchEnrolledBatchThunk } from "./enrolled.thunk";
 
-
-export interface UserInitialStateType {
-  user: Partial<UserType> | null;
-  loading: boolean;
-  error: null | undefined | string | unknown
-}
 
 const initialState: UserInitialStateType = {
   user: null,
+  enrolled: null,
   loading: false,
   error: null,
 };
@@ -65,6 +61,22 @@ const userSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(findUserByIdAsyncThunk.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+
+    // enrolled
+    builder
+      .addCase(fetchEnrolledBatchThunk.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchEnrolledBatchThunk.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.enrolled = action.payload;
+      })
+      .addCase(fetchEnrolledBatchThunk.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
