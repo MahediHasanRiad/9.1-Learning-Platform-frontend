@@ -29,7 +29,7 @@ function TeachersPage() {
   // get all teachers
   useEffect(() => {
     dispatch(fetchTeachers(filterQuery));
-  }, [dispatch]);
+  }, [filterQuery]);
 
   return (
     <MainLayout>
