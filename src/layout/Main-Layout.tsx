@@ -25,7 +25,7 @@ function MainLayout({ children }: childrenType) {
       <nav className="w-full my-4 flex justify-center">
         <section className="w-5/6 p-3 flex items-center justify-between ">
           {/* Logo */}
-          <div className="text-xl font-bold w-50 h-auto">
+          <div className="text-xl w-50 h-auto">
             <Link to={"/"}>
               {/* <img src={logo} alt="" className="object-cover" /> */}
               <span className="text-primary-0/80"><b>Learn</b>Nova</span>
