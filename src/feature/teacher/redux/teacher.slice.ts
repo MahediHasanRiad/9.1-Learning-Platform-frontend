@@ -79,7 +79,6 @@ const teacherSlice = createSlice({
       })
       .addCase(fetchTeachers.fulfilled, (state, action) => {
         state.loading = false;
-        console.log('ccc', action.payload)
         state.users = action.payload;
       })
       .addCase(fetchTeachers.rejected, (state, action) => {

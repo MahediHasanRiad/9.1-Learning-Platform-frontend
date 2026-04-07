@@ -56,7 +56,6 @@ function App() {
           const coachingRes = await api.get("/api/v1/coaching-center-by-user", {
             withCredentials: true,
           });
-          console.log(coachingRes.data.data)
           dispatch(setCoaching(coachingRes.data.data));
         }
       } catch (error: any) {

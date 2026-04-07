@@ -51,7 +51,7 @@ function CoachingInfo({ coaching }: Coaching) {
         withCredentials: true,
       });
 
-      setAllBatch(allBatch.data.data.batch);
+      setAllBatch(allBatch.data.data.batches);
 
       // all teachers
       const allTeachers = await api.get(
