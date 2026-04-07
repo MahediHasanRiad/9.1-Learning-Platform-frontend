@@ -27,7 +27,8 @@ function MainLayout({ children }: childrenType) {
           {/* Logo */}
           <div className="text-xl font-bold w-50 h-auto">
             <Link to={"/"}>
-              <img src={logo} alt="" className="object-cover" />
+              {/* <img src={logo} alt="" className="object-cover" /> */}
+              <span className="text-primary-0/80"><b>Learn</b>Nova</span>
             </Link>
           </div>
 
