@@ -51,7 +51,7 @@ function ProfileDropdown({
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const { user, teacher, coaching } = useSelector((state: RootState) => state.auth);
-
+console.log('coa', coaching)
   const handleCoachingClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement | HTMLSpanElement>) => {
     e.preventDefault();
     dispatch(updateRole("Coaching"));

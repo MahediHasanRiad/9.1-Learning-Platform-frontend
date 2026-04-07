@@ -11,8 +11,8 @@ export const fetchTeachers = createAsyncThunk(
        const { search = "", limit = 10, page = 1, sortType = "asc" } = filterQuery;
 
       const res = await api.get(`/api/v1/teachers`, {
-        params: { search, limit, page, sortType },
         withCredentials: true,
+        params: { search, limit, page, sortType },
       });
 
       return res.data.data;

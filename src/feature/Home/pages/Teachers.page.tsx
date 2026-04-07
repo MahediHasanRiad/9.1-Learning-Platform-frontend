@@ -10,7 +10,6 @@ import { fetchTeachers } from "@/feature/teacher/redux/teachers.thunk";
 import TeacherCardItemSkeleton from "../components/skeleton/Teacher-card-item-skeleton";
 
 function TeachersPage() {
-  // const [allTeachers, setAllTeachers] = useState<AllTeacherType>();
   const [filterQuery, setFilterQuery] = useState<QueryParamsType>({
     search: "",
     sortType: "desc",
@@ -31,7 +30,6 @@ function TeachersPage() {
   useEffect(() => {
     dispatch(fetchTeachers(filterQuery));
   }, [dispatch]);
-
 
   return (
     <MainLayout>

@@ -15,19 +15,17 @@ import CoachingStaff from "@/feature/coaching/pages/coaching-staff";
 import Register from "@/feature/auth/pages/register.page";
 import LogIn from "@/feature/auth/pages/login.page";
 import { useDispatch } from "react-redux";
-import {
-  setCoaching,
-  setTeacher,
-  setUser,
-} from "@/feature/auth/redux/auth.slice";
+import { setCoaching, setTeacher, setUser } from "@/feature/auth/redux/auth.slice";
 import BecomeATeacher from "@/feature/teacher/pages/become-teacher.page";
 import CreateCoaching from "@/feature/coaching/pages/create-coaching.page";
 import Home from "@/feature/Home/pages/home.page";
-// import EnrolledStudent from "@/feature/coaching/components/Dashboard/enrolled";
 import CoachingBatch from "@/feature/coaching/pages/coaching-batch";
 import BatchesPage from "../feature/Home/pages/batches";
-import { api } from "@/API/api-client";
 import type { AppDispatch } from "@/store/store";
+import { api } from "@/API/api-client";
+// import EnrolledStudent from "@/feature/coaching/components/Dashboard/enrolled";
+
+
 
 function App() {
   const dispatch = useDispatch<AppDispatch>();
@@ -58,6 +56,7 @@ function App() {
           const coachingRes = await api.get("/api/v1/coaching-center-by-user", {
             withCredentials: true,
           });
+          console.log(coachingRes.data.data)
           dispatch(setCoaching(coachingRes.data.data));
         }
       } catch (error: any) {
@@ -69,8 +68,9 @@ function App() {
 
     fetchUserData();
   }, [dispatch, location.pathname]);
-
   // dispatch, location.pathname
+
+
 
   return (
     <section>

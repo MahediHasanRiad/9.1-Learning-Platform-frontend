@@ -5,7 +5,7 @@ import { Menu as MenuIcon, X } from "lucide-react";
 import { Link } from "react-router";
 import { useSelector } from "react-redux";
 import Button from "@/shared/utils/button.js";
-import logo from '../../public/images/logo.png'
+import logo from "../../public/images/logo.png";
 import type { RootState } from "@/store/store.js";
 
 interface childrenType {
@@ -14,9 +14,11 @@ interface childrenType {
 
 function MainLayout({ children }: childrenType) {
   const [open, setOpen] = useState(false);
-  
+
   // role
-  const { user, teacher, coaching, role } = useSelector((state: RootState) => state.auth);
+  const { user, teacher, coaching, role } = useSelector(
+    (state: RootState) => state.auth,
+  );
 
   return (
     <section className="w-5/6 m-auto">
@@ -31,8 +33,8 @@ function MainLayout({ children }: childrenType) {
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex gap-6 items-center">
-            <Menu text="Teacher" path={"teachers"} />
             <Menu text="All Batch" path={"batches"} />
+            <Menu text="Teacher" path={"teachers"} />
             <Menu text="About" path="about" />
             <Menu text="Contact" path="contact" />
             {user ? (
@@ -136,17 +138,17 @@ function MainLayout({ children }: childrenType) {
               {role === "Coaching" && (
                 <ProfileDropdown
                   profile={true}
-                  profilePath="/coaching/profile"
+                  profilePath={`/coaching/profile`}
                   dashboard={true}
-                  dashboardPath="/coaching/dashboard"
+                  dashboardPath={`/coaching/dashboard/${coaching?.id}`}
                   coachingStaff={true}
-                  coachingStaffPath={"/coaching/staff"}
+                  coachingStaffPath={`/coaching/staff/${coaching?.id}`}
                   coachingBatch={true}
-                  coachingBatchPath="/coaching/batch"
+                  coachingBatchPath={`/coaching/batch/${coaching?.id}`}
                   enrolled={true}
-                  enrolledPath="/coaching/enrolled"
+                  enrolledPath={`/coaching/enrolled/${coaching?.id}`}
                   becomeUser={true}
-                  becomeUserPath="/teachers"
+                  becomeUserPath={`/teachers`}
                 />
               )}
             </div>
@@ -155,7 +157,7 @@ function MainLayout({ children }: childrenType) {
       </nav>
 
       {/* children section  */}
-        <section className="w-full min-h-screen">{children}</section>
+      <section className="w-full min-h-screen">{children}</section>
 
       {/* footer section  */}
       <section>
